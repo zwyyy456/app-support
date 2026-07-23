@@ -1,0 +1,109 @@
+:root {
+  color-scheme: light dark;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+  color: #28241f;
+  background: #f7f5f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, rgba(205, 158, 82, 0.14), transparent 34rem),
+    #f7f5f0;
+}
+
+main {
+  width: min(100% - 32px, 860px);
+  margin: 0 auto;
+  padding: 48px 0 80px;
+}
+
+.card {
+  padding: clamp(24px, 5vw, 44px);
+  border: 1px solid rgba(66, 55, 39, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 254, 251, 0.94);
+  box-shadow: 0 18px 60px rgba(69, 55, 30, 0.08);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(30px, 6vw, 42px);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  margin: 36px 0 12px;
+  font-size: 22px;
+}
+
+p,
+li {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.muted {
+  color: #746d64;
+}
+
+.links {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid #e5ded3;
+  border-radius: 14px;
+  background: #fffefb;
+}
+
+a {
+  color: #9b5e16;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f5efe7;
+    background: #171511;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top right, rgba(205, 158, 82, 0.16), transparent 34rem),
+      #171511;
+  }
+
+  .card {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(35, 31, 25, 0.95);
+    box-shadow: none;
+  }
+
+  .muted {
+    color: #bdb3a5;
+  }
+
+  .links a {
+    border-color: #4e463b;
+    background: #2b261f;
+  }
+
+  a {
+    color: #e7b66f;
+  }
+}
+
