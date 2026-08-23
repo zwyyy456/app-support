@@ -11,7 +11,7 @@
   <main>
     <article class="card">
       <h1>FlashDict 隐私政策</h1>
-      <p class="muted">最后更新：2026-04-18</p>
+      <p class="muted">最后更新：2026-08-23</p>
 
       <p>FlashDict 是由 Hyperseek 提供的词典与闪卡应用。本政策说明我们如何处理与你使用 FlashDict 相关的信息。</p>
 
@@ -33,25 +33,41 @@
       <h2>3. 词典文件与本地数据</h2>
       <p>你导入的 MDX/MDD 等词典文件由你自行提供并保存在你的设备或你选择的存储位置。FlashDict 仅在获得你授权后访问这些文件，以提供查词、卡片生成与资源展示功能。</p>
 
-      <h2>4. iCloud 与 CloudKit</h2>
+      <h2>4. 浏览器扩展与网页内容</h2>
+      <ul>
+        <li><strong>查词：</strong>当你在网页中主动触发查词时，浏览器扩展会读取所选单词和它所在的原句，并在当前网页浮层中显示原句。普通查词只把所选单词通过 Native Messaging 发送给同一台 Mac 上已运行的 FlashDict。</li>
+        <li><strong>原句翻译：</strong>只有你点击“翻译”时，扩展才会把当前原句发送给本机 FlashDict。FlashDict 使用已安装的 Apple 本机翻译模型返回译文，不会为此保存原句或译文，也不会调用你在 FlashDict 中配置的远程翻译来源。</li>
+        <li><strong>添加闪卡：</strong>只有你点击添加义项时，扩展才会把当前原句和完整网页 URL 发送给本机 FlashDict，并作为该闪卡的来源上下文保存。如果你启用 iCloud，该闪卡可同步到你自己的 CloudKit 私有数据库。</li>
+        <li><strong>扩展设置：</strong>双击、Alt 或双击 Alt 等触发方式保存在浏览器同步存储中，可能由浏览器厂商同步到你自己的浏览器账户。</li>
+        <li><strong>连接记录：</strong>Native Host 只记录浏览器、扩展 ID、扩展版本和连接时间，不记录选词、原句、URL 或其他网页内容。</li>
+      </ul>
+      <p>浏览器扩展不包含广告、分析、跟踪或远程代码，也不会把网页内容发送给 Hyperseek 运营的服务器。Native Messaging 只连接同一台 Mac 上随 FlashDict 安装的签名组件，不开放网络端口。</p>
+
+      <h2>5. iCloud 与 CloudKit</h2>
       <p>如果你启用同步，FlashDict 会使用 Apple 提供的 CloudKit 将部分数据同步到你的 iCloud 私有数据库。该数据由 Apple 代表你存储并与你的 Apple ID 关联。</p>
 
-      <h2>5. 第三方服务</h2>
-      <p>FlashDict 依赖 Apple 提供的系统服务，例如 iCloud、CloudKit、App Store、StoreKit 等。你使用这些功能时，也可能受到 Apple 隐私政策的约束。</p>
+      <h2>6. 第三方服务</h2>
+      <p>FlashDict 依赖 Apple 提供的系统服务，例如 iCloud、CloudKit、App Store、StoreKit 和本机翻译。浏览器触发方式可能通过浏览器厂商的同步存储同步。你使用这些功能时，也可能受到 Apple 或对应浏览器厂商隐私政策的约束。</p>
 
-      <h2>6. 数据保留与删除</h2>
+      <h2>7. 数据保留与删除</h2>
       <ul>
         <li>本地数据：你可以通过删除应用或清除相关数据来移除本地保存的信息。</li>
         <li>iCloud 同步数据：如果你启用了 iCloud，同步数据可能保存在你的 iCloud 私有数据库中。你可以停用同步，或联系我们协助说明可行的删除路径。</li>
       </ul>
 
-      <h2>7. 联系我们</h2>
+      <h2>8. 联系我们</h2>
       <p>如果你对本隐私政策或数据处理方式有任何疑问，请联系：<a href="mailto:zwyyy456@foxmail.com">zwyyy456@foxmail.com</a></p>
 
-      <h2>8. English Summary</h2>
+      <h2>9. English Summary</h2>
       <p>FlashDict stores imported dictionary access permissions locally on your device, may sync flashcards and study progress through Apple CloudKit when iCloud sync is enabled, and reads purchase status through Apple StoreKit when applicable. We do not upload user-imported dictionary files to our own servers, do not sell personal data, and do not use third-party advertising trackers.</p>
+      <ul>
+        <li>When you invoke lookup on a webpage, the extension reads the selected word and its sentence and displays the sentence in the current-page overlay. Ordinary lookup sends only the selected word to FlashDict running on the same Mac through Native Messaging.</li>
+        <li>The sentence is sent to the local FlashDict app for translation only after you choose Translate. FlashDict uses an installed Apple on-device model, does not persist the sentence or translation for this action, and does not use configured remote translation providers.</li>
+        <li>The sentence and full page URL are sent to the local FlashDict app only after you choose to add a flashcard. They are stored as source context for that card and may sync to your private CloudKit database if iCloud sync is enabled.</li>
+        <li>The trigger preference is stored in browser sync storage and may be synchronized to your own browser account. Native Host connection records contain only browser and extension identity, version, and connection time.</li>
+      </ul>
+      <p>The browser extension contains no advertising, analytics, tracking, or remote code. It does not send webpage content to Hyperseek-operated servers, and its Native Messaging connection does not expose a network port.</p>
     </article>
   </main>
 </body>
 </html>
-
