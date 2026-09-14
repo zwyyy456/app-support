@@ -1,0 +1,17 @@
+{
+  "name": "gitstride-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.16.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "build:static": "node scripts/build-static.mjs",
+    "preview:static": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check:release": "node scripts/check-release.mjs"
+  },
+  "devDependencies": { "astro": "7.3.2" }
+}

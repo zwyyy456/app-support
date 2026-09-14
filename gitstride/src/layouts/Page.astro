@@ -1,0 +1,12 @@
+---
+import { renderHead, renderBody } from '../lib/render.mjs';
+interface Props { route: { locale: 'en' | 'zh-cn'; id: string; path: string } }
+const { route } = Astro.props;
+// Only our author-controlled renderers reach set:html. Plain strings and
+// public configuration are escaped by src/lib/html.mjs before interpolation.
+---
+<!doctype html>
+<html lang={route.locale === 'en' ? 'en' : 'zh-CN'}>
+  <head><Fragment set:html={renderHead(route)} /></head>
+  <body><Fragment set:html={renderBody(route)} /></body>
+</html>
