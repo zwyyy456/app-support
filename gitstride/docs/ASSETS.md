@@ -12,6 +12,20 @@
 | 品牌 | 正式 App 图标 / Logo | 取代当前临时分支标记与 favicon |
 | 社交分享 | 英中各一张 1200×630 图 | `site.socialImage` 中配置，不建议用 SVG 作为社交卡片主图 |
 
+## 当前配置
+
+主窗口、菜单栏弹窗和 Issue 详情已接入中英文真实截图，原始 Retina PNG 位于 `public/images/`：
+
+| 槽位 | 中文 | 英文 | 像素尺寸 |
+|---|---|---|---|
+| `workspace` | `workspace-zh-cn.png` | `workspace-en.png` | 3024 × 1898 |
+| `menubar` | `menubar-zh-cn.png` | `menubar-en.png` | 800 × 972 |
+| `issue` | `issue-zh-cn.png` | `issue-en.png` | 3024 × 1898 |
+
+截图按原比例展示。菜单栏图像是弹窗本身，不包含桌面菜单栏，网页展示宽度不超过 400 CSS 像素。
+
+工作区截图整体替换原有交互示意，因此不再提供示例看板／表格切换、搜索和事项点击。`automationVideo` 保持 `null`，首页和自动化页继续使用现有交互示意，暂不制作录屏。
+
 ## 语言
 
 中文和英文分别配置。不要在真实截图上伪造另一语言的按钮。另一语言暂缺时保留其对应占位，或明确说明实际截图使用的界面语言。
@@ -44,4 +58,4 @@ automationVideo: {
 
 ## Why there are no arbitrary stock photos
 
-The product interface is the visual proof. The current implementation uses editable, labeled HTML/CSS placeholders instead of unrelated photography, invented testimonials, or screenshots of Linear. No remote assets or font files are required.
+The product interface is the visual proof. Workspace, menu bar, and issue detail visuals use real localized GitStride screenshots; the automation flow uses a labeled HTML/CSS illustration. No unrelated photography, invented testimonials, screenshots of Linear, remote assets, or font files are included.

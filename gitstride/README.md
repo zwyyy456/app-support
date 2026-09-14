@@ -91,7 +91,7 @@ workspace: {
 }
 ```
 
-A configured screenshot automatically replaces its HTML illustration. Keep `null` to retain the labeled placeholder. See [asset checklist](docs/ASSETS.md) for menu bar, issue detail and automation recordings. The current mark is provisional; replace it with your actual brand assets when ready.
+The workspace, menu bar popover, and issue detail already use six original Retina PNG screenshots, one set per language. Automation keeps its interactive illustration; no recording is configured. A configured screenshot automatically replaces its HTML illustration, including the sample workspace controls. Keep `null` to retain the labeled placeholder. See [asset checklist](docs/ASSETS.md) for menu bar, issue detail and automation recordings. The current mark is provisional; replace it with your actual brand assets when ready.
 
 ## Source organization
 
@@ -106,7 +106,7 @@ src/
 public/
   styles/site.css          Design tokens, components, responsive layouts
   scripts/site.js          Progressive-enhancement interactions
-  images/                  Favicon now; real screenshots later
+  images/                  Six localized app screenshots and provisional favicon
 scripts/                   Offline build, preview, publication checks
 tests/                     Node tests; optional Playwright browser checks
 docs/                      Deployment, assets, sources, validation
@@ -121,7 +121,7 @@ npm test
 npm run check:release
 ```
 
-`check:release` is intentionally red until real screenshots, an installer URL, privacy review and indexing settings are configured. Its checks do not replace a manual check of the installer or app authentication.
+`check:release` checks the configured screenshots, installer URL, privacy review, and indexing settings. The screenshots are supplied; the remaining publication settings must still be configured. Its checks do not replace a manual check of the installer or app authentication.
 
 Optional browser checks: install Python Playwright, run the local preview, then `python tests/browser.py`. The default test mode uses real browser navigation; an explicitly labeled offline mode is included for restricted render environments.
 

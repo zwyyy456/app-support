@@ -32,6 +32,6 @@ Important preserved boundaries: desktop personal/organization Projects versus pe
 
 ## Editorial choices, not established product claims
 
-The bilingual headline, layout, task titles, sample Project, provisional mark and interface illustrations are created for the website. They are not screenshots, customer endorsements or measured productivity outcomes. Installer links, prices, App Store availability, and release version numbers are not assumed.
+The workspace, menu bar popover, and issue detail images are user-provided screenshots captured in the real GitStride app, with separate English and Chinese interfaces. The bilingual headline, layout, automation example, provisional mark, and optional HTML/CSS placeholders are created for the website. Those illustrations are not screenshots, customer endorsements, or measured productivity outcomes. Installer links, prices, App Store availability, and release version numbers are not assumed.
 
 The website’s docs are a curated starting point, not a new source of product truth. Reconcile them with the app repository when behavior changes. The privacy page is explicitly a publication draft until the maintainer sets `privacyReviewed` after review.

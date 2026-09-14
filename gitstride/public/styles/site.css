@@ -103,6 +103,7 @@ input::placeholder { color:#93939f; opacity:1; }
 .showcase-container::before { content:""; position:absolute; z-index:-1; top:-40px; left:10%; right:10%; height:220px; background:radial-gradient(ellipse at center,#70608925,transparent 70%); filter:blur(25px); }
 .media-frame { position:relative; min-width:0; }
 .media-frame>img { width:100%; height:auto; border-radius:12px; border:1px solid var(--line); }
+.menubar-frame:has(>img) { width:min(100%,400px); justify-self:center; }
 .media-frame figcaption { display:flex; align-items:center; gap:6px; font-size:10px; color:var(--dim); margin-top:12px; padding:0 2px; }
 .caption-dot { width:4px; height:4px; background:#77747e; border-radius:50%; }
 .workspace-preview { border:1px solid #3a3542; border-radius:12px; overflow:hidden; background:#101014; box-shadow:0 -1px 0 #a89bbb2a,0 25px 80px #0009; text-align:left; }
