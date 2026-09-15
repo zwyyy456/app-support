@@ -27,49 +27,41 @@ src/
   layouts/Page.astro     页面元信息、共享导航与页脚
   layouts/Document.astro 支持与法律页面的阅读布局
   components/            共享 Header、Footer
-  scripts/site.js        标签切换、移动导航、制卡与复习演示
+  scripts/site.js        标签切换、移动导航、义项制卡演示
   styles/                全站样式与文档页样式
   site.config.mjs        截图路径与下载地址
 public/
-  assets/                App 图标与待补充的真实截图
+  assets/                App 图标与四张真实截图
 ```
 
 页面路径为 `/`、`/support`、`/privacy`、`/licenses`，与现有 Vercel 无扩展名地址一致。
 
 ## 页面演示
 
-- 产品概览标签支持左右方向键及 Home / End。
+- 产品概览的三个标签展示 Mac 实际截图，支持左右方向键及 Home / End；窄屏可横向查看完整界面，点击截图可打开原图。
 - 义项制卡示例中，点击任意义项旁的 `+`，只将该义项的释义与例句显示在示例闪卡上。
-- 复习示例遵循“回忆 → 显示答案 → 评分”，完成后可重新体验。
-- 所有交互均为页面内演示，不连接 App，不保存学习数据。
+- 义项制卡交互是页面内演示，不连接 App，不保存学习数据；复习区域展示 App 实际答案和评分界面。
 
 ## 验证
 
-修改后运行 `npm run build`，并通过 `npm run preview` 检查桌面、手机下的页面布局、义项选择、复习评分、键盘标签切换、移动导航、FAQ 和站内链接。
+修改后运行 `npm run build`，并通过 `npm run preview` 检查桌面、手机下的页面布局、截图加载与原图入口、义项选择、键盘标签切换、移动导航、FAQ 和站内链接。
 
-## 更换截图
+## 截图
 
-将截图存入 `public/assets/`，在 `src/site.config.mjs` 中填写以 `/assets/` 开头的公开路径，然后重新构建。图片成功加载后自动替换 HTML 示意，失败时显示图片暂时无法加载的提示。无需改变页面结构。
+四张截图已接入，保留提供的 PNG 原图、文件路径和调试信息。
 
-| 配置键 | 建议截图内容 | 建议尺寸 |
+| 配置键 | 文件 | 尺寸 |
 | --- | --- | --- |
-| `lookup` | Mac 查词，包含导航、查询列表、释义和义项 `+` | 2240 × 930 或相近横向比例 |
-| `review` | Mac 独立复习窗口，显示答案及评分入口 | 2240 × 930 或相近横向比例 |
-| `library` | Mac 词典管理，展示已导入词典与启用状态 | 2240 × 930 或相近横向比例 |
-| `mobile` | iPhone 复习页或闪卡详情 | 1170 × 2532 或实际设备尺寸 |
+| `lookup` | `public/assets/lookup-mac.png` | 3024 × 1898 |
+| `review` | `public/assets/review-mac.png` | 1800 × 1304 |
+| `library` | `public/assets/library-mac.png` | 3024 × 1898 |
+| `mobile` | `public/assets/review-iphone.png` | 1206 × 2622 |
 
-桌面图片区已经带有展示用标题栏，建议裁去截图的系统标题栏，避免重复。图片按原比例显示，不强制拉伸；三张桌面截图使用一致比例，可减少切换时的高度变化。手机图片保持原比例，外层自动加圆角和边框。
+图片路径在 `src/site.config.mjs` 中配置，使用以 `/assets/` 开头的公开路径。更换图片后重新构建；尺寸变化时，同步更新 `src/pages/index.astro` 中对应图片的 `width` 和 `height`。
 
-建议使用深色主题、无个人信息且允许公开展示的内容。词条、例句均为网站原创演示，不来自真实用户数据，也不表示附赠指定商业词典。图片推荐 WebP 或 PNG。当前所有演示均标有“示意”，并非真实 App 截图。
+截图由 Astro 直接输出到 HTML，不需要浏览器脚本加载后再替换。Mac 截图保留自身标题栏，网站不另加模拟标题栏；三个标签使用相同展示高度并按原比例完整显示图片。窄屏下可横向查看，所有截图均可点击打开原图。
 
-```js
-screenshots: {
-  lookup: "/assets/lookup-mac.webp",
-  review: "/assets/review-mac.webp",
-  library: "/assets/library-mac.webp",
-  mobile: "/assets/review-iphone.webp",
-}
-```
+截图展示实际导入的词典，不表示 App 附赠这些词典内容。下方的义项制卡流程继续使用已标注的原创交互示意。
 
 ## 下载入口
 
@@ -103,4 +95,4 @@ screenshots: {
 
 `vercel.json` 已声明 Astro 构建与输出目录，保留 `cleanUrls` 和无尾斜杠地址。现有 Vercel 项目如果设置了旧的静态站点覆盖值，需要同步改为上表配置。无需 Vercel adapter、后端或环境变量。
 
-网站没有统计追踪、表单提交、网络字体或前端框架运行时。正式截图与下载地址仍由 `src/site.config.mjs` 配置；未提供时继续显示已标注的演示与不可点击的下载入口。
+网站没有统计追踪、表单提交、网络字体或前端框架运行时。截图与下载地址由 `src/site.config.mjs` 配置；当前四张截图已提供，下载地址留空时显示不可点击的下载入口。

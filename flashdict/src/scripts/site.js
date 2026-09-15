@@ -2,7 +2,6 @@ import { site as config } from '../site.config.mjs';
 
 (() => {
   const tabs = [...document.querySelectorAll('[role="tab"]')];
-  const note = document.querySelector('#screenshot-note');
 
   function selectTab(tab, focus = false) {
     tabs.forEach(item => {
@@ -11,8 +10,6 @@ import { site as config } from '../site.config.mjs';
       item.tabIndex = selected ? 0 : -1;
       document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
     });
-    const panel = document.getElementById(tab.getAttribute('aria-controls'));
-    note.textContent = panel.dataset.hasScreenshot === 'true' ? 'App 实际截图' : '界面示意 · 非实际截图';
     if (focus) tab.focus();
   }
 
@@ -26,10 +23,6 @@ import { site as config } from '../site.config.mjs';
       if (event.key === 'End') next = tabs.length - 1;
       if (next !== undefined) { event.preventDefault(); selectTab(tabs[next], true); }
     });
-  });
-
-  document.querySelectorAll('[data-demo-link]').forEach(link => {
-    link.addEventListener('click', () => selectTab(document.getElementById(`tab-${link.dataset.demoLink}`)));
   });
 
   const menu = document.querySelector('.menu-toggle');
@@ -48,42 +41,6 @@ import { site as config } from '../site.config.mjs';
 
   // Support and legal pages only need the shared navigation.
   if (!tabs.length) return;
-
-  const reveal = document.querySelector('#reveal-answer');
-  const answer = document.querySelector('#review-answer');
-  const ratings = document.querySelector('#review-ratings');
-  const reviewFeedback = document.querySelector('#review-feedback');
-  function resetReview() {
-    reveal.setAttribute('aria-expanded', 'false');
-    answer.hidden = true;
-    ratings.hidden = true;
-    document.querySelector('.review-prompt').hidden = false;
-    reveal.hidden = false;
-    reveal.textContent = '显示答案 ↵';
-    reviewFeedback.textContent = '交互示意 · 先回忆，再显示答案并评分。';
-  }
-  reveal.addEventListener('click', () => {
-    if (reveal.getAttribute('aria-expanded') === 'true') {
-      resetReview();
-      return;
-    }
-    reveal.setAttribute('aria-expanded', 'true');
-    answer.hidden = false;
-    ratings.hidden = false;
-    document.querySelector('.review-prompt').hidden = true;
-    reveal.hidden = true;
-    ratings.querySelector('button').focus({ preventScroll: true });
-    reviewFeedback.textContent = '想起来多少？选择一个评分，完成这次示例复习。';
-  });
-  ratings.querySelectorAll('button').forEach(button => {
-    button.addEventListener('click', () => {
-      ratings.hidden = true;
-      reveal.hidden = false;
-      reveal.textContent = '再试一次 ↻';
-      reveal.focus({ preventScroll: true });
-      reviewFeedback.textContent = `示例评分：${button.dataset.rating}。在 App 中，FSRS 会据此安排下次复习。`;
-    });
-  });
 
   const senseOptions = [...document.querySelectorAll('.sense-option')];
   senseOptions.forEach(option => {
@@ -105,30 +62,6 @@ import { site as config } from '../site.config.mjs';
       document.querySelector('#card-state').textContent = '已生成示例';
       document.querySelector('#sense-feedback').textContent = `已生成义项 ${option.dataset.sense} 的示例闪卡。可以选择另一个义项，再试一次。`;
     });
-  });
-
-  document.querySelectorAll('[data-screenshot]').forEach(slot => {
-    const key = slot.dataset.screenshot;
-    const source = config.screenshots[key];
-    if (!source) return;
-    const img = new Image();
-    img.className = 'screenshot-image';
-    img.alt = { lookup: '闪卡词典 Mac 查词与义项制卡界面', review: '闪卡词典 Mac 复习界面', library: '闪卡词典 Mac 词典管理界面', mobile: '闪卡词典 iPhone 复习界面' }[key];
-    img.addEventListener('load', () => {
-      slot.querySelector('.mock-content').hidden = true;
-      slot.dataset.hasScreenshot = 'true';
-      slot.append(img);
-      if (slot.getAttribute('role') === 'tabpanel' && !slot.hidden) note.textContent = 'App 实际截图';
-      const caption = slot.closest('figure')?.querySelector('figcaption');
-      if (caption) caption.textContent = 'iPhone · App 实际截图';
-    });
-    img.addEventListener('error', () => {
-      const message = document.createElement('p');
-      message.className = 'asset-error';
-      message.textContent = '产品截图暂时无法显示，请稍后刷新页面。';
-      slot.append(message);
-    });
-    img.src = source;
   });
 
   document.querySelectorAll('[data-download]').forEach(link => {
