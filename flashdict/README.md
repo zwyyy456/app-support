@@ -1,25 +1,40 @@
 # 闪卡词典宣传网站
 
-无第三方依赖的静态网站，源码即发布文件，位于本目录 `app-support/flashdict/`。视觉参考 [Linear 官网](https://linear.app/) 的深色表面、精细边框、大字号排版和产品界面叙事，保留闪卡词典自己的图标与文案。
+基于 Astro 7.3.2 的中文静态网站，与同仓库 `gitstride/` 使用相同版本。Astro 在构建时生成 HTML、CSS 和浏览器脚本，页面不需要服务器运行时。
 
-## 本地运行
+## 本地开发
 
-在本目录执行：
+使用 Node.js 24（见 `.nvmrc`）。依赖已准备好时，在本目录执行：
 
-```bash
-python3 -m http.server 4173 --bind 127.0.0.1
+```sh
+npm run dev
 ```
 
-打开 <http://127.0.0.1:4173/>。也可以直接打开 `index.html`，所有资源均为相对路径，无需构建、安装依赖或网络字体。
+打开 <http://localhost:4321>。首次独立安装或在 CI 中准备依赖时使用 `npm ci`。
 
-## 文件
+```sh
+npm run build
+npm run preview
+```
 
-- `index.html`：中文产品文案、页面结构、可替换的界面示意。
-- `styles.css`：桌面、平板、手机布局以及减少动态效果支持。
-- `site.js`：产品标签切换、键盘操作、义项制卡与复习评分示例、共享移动导航、截图与下载配置读取。
-- `site-config.js`：截图路径与下载链接。
-- `assets/app-icon.png`：复用项目现有图标。
-- `assets/site.css`：支持、隐私与许可页面的阅读排版，共用首页导航与品牌样式。
+构建输出位于 `dist/`。源码中的 `.astro` 页面需要经过 Astro 构建，不能直接当作 HTML 打开。
+
+## 文件结构
+
+```text
+src/
+  pages/                 首页、支持、隐私与许可页面
+  layouts/Page.astro     页面元信息、共享导航与页脚
+  layouts/Document.astro 支持与法律页面的阅读布局
+  components/            共享 Header、Footer
+  scripts/site.js        标签切换、移动导航、制卡与复习演示
+  styles/                全站样式与文档页样式
+  site.config.mjs        截图路径与下载地址
+public/
+  assets/                App 图标与待补充的真实截图
+```
+
+页面路径为 `/`、`/support`、`/privacy`、`/licenses`，与现有 Vercel 无扩展名地址一致。
 
 ## 页面演示
 
@@ -30,11 +45,11 @@ python3 -m http.server 4173 --bind 127.0.0.1
 
 ## 验证
 
-项目没有构建或 lint 依赖。修改后运行 `node --check site.js`，并在本地预览检查桌面、手机下的页面布局、义项选择、复习评分、键盘标签切换、移动导航、FAQ 和站内链接。
+修改后运行 `npm run build`，并通过 `npm run preview` 检查桌面、手机下的页面布局、义项选择、复习评分、键盘标签切换、移动导航、FAQ 和站内链接。
 
 ## 更换截图
 
-将截图存入 `assets/`，在 `site-config.js` 中填写对应路径。图片成功加载后自动替换 HTML 示意，失败时显示图片暂时无法加载的提示。无需改变页面结构。
+将截图存入 `public/assets/`，在 `src/site.config.mjs` 中填写以 `/assets/` 开头的公开路径，然后重新构建。图片成功加载后自动替换 HTML 示意，失败时显示图片暂时无法加载的提示。无需改变页面结构。
 
 | 配置键 | 建议截图内容 | 建议尺寸 |
 | --- | --- | --- |
@@ -49,16 +64,16 @@ python3 -m http.server 4173 --bind 127.0.0.1
 
 ```js
 screenshots: {
-  lookup: "assets/lookup-mac.webp",
-  review: "assets/review-mac.webp",
-  library: "assets/library-mac.webp",
-  mobile: "assets/review-iphone.webp",
+  lookup: "/assets/lookup-mac.webp",
+  review: "/assets/review-mac.webp",
+  library: "/assets/library-mac.webp",
+  mobile: "/assets/review-iphone.webp",
 }
 ```
 
 ## 下载入口
 
-在 `site-config.js` 的 `downloads.mac` 和 `downloads.ios` 填入正式 HTTPS 下载地址或 App Store 地址。未配置的入口没有链接，明确显示“暂未开放”；配置后自动启用。支持两个入口使用同一条通用 App Store 链接。
+在 `src/site.config.mjs` 的 `downloads.mac` 和 `downloads.ios` 填入正式 HTTPS 下载地址或 App Store 地址。未配置的入口没有链接，明确显示“暂未开放”；配置后自动启用。支持两个入口使用同一条通用 App Store 链接。
 
 ## 产品内容依据
 
@@ -73,10 +88,19 @@ screenshots: {
 
 网站没有写入未确认的价格、销量、评价、性能数字或浏览器扩展商店上线承诺。免费层与会员条款由 `docs/contracts/membership-entitlement.md` 定义，页面未扩展为价格方案页。
 
-## 发布
+## Vercel 部署配置
 
-沿用 app-support 现有 Vercel 配置：Root Directory 为 `flashdict`，Framework Preset 为 `Other`，Install / Build Command 留空，Output Directory 为 `.`。`vercel.json` 保留 `cleanUrls`，已有 `/privacy`、`/support`、`/licenses` 路由继续使用原页面。所有页面共用 `styles.css` 和 `site.js` 中的导航逻辑，支持与法律页面另加载 `assets/site.css` 提供阅读排版。首页的 `.html` 链接可直接用于本地预览，Vercel 会按 `cleanUrls` 跳转到无扩展名地址。
+沿用 app-support 中 FlashDict 的独立 Vercel 项目，配置如下：
 
-网站不包含后端、统计追踪或表单提交，不依赖特定托管平台。
+| 设置 | 值 |
+| --- | --- |
+| Root Directory | `flashdict` |
+| Framework Preset | Astro |
+| Install Command | `npm ci` |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Node.js | 24.x |
 
-发布前请配置正式下载地址、替换演示截图并核实最终宣传文案。
+`vercel.json` 已声明 Astro 构建与输出目录，保留 `cleanUrls` 和无尾斜杠地址。现有 Vercel 项目如果设置了旧的静态站点覆盖值，需要同步改为上表配置。无需 Vercel adapter、后端或环境变量。
+
+网站没有统计追踪、表单提交、网络字体或前端框架运行时。正式截图与下载地址仍由 `src/site.config.mjs` 配置；未提供时继续显示已标注的演示与不可点击的下载入口。

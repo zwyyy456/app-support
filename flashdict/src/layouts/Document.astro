@@ -1,0 +1,18 @@
+---
+import Page from './Page.astro';
+import '../styles/document.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+<Page title={title} description={description} bodyClass="document-page">
+  <main class="document-main wrap" id="main">
+    <article class="document-content">
+      <a class="document-back" href="/">← 返回产品首页</a>
+      <slot />
+    </article>
+  </main>
+</Page>

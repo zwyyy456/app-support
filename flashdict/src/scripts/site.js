@@ -1,5 +1,6 @@
+import { site as config } from '../site.config.mjs';
+
 (() => {
-  const config = window.FLASHDICT_SITE;
   const tabs = [...document.querySelectorAll('[role="tab"]')];
   const note = document.querySelector('#screenshot-note');
 
