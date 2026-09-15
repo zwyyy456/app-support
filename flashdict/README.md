@@ -16,13 +16,25 @@ python3 -m http.server 4173 --bind 127.0.0.1
 
 - `index.html`：中文产品文案、页面结构、可替换的界面示意。
 - `styles.css`：桌面、平板、手机布局以及减少动态效果支持。
-- `site.js`：产品标签切换、键盘操作、复习示例、移动导航、截图与下载配置读取。
+- `site.js`：产品标签切换、键盘操作、义项制卡与复习评分示例、共享移动导航、截图与下载配置读取。
 - `site-config.js`：截图路径与下载链接。
 - `assets/app-icon.png`：复用项目现有图标。
+- `assets/site.css`：支持、隐私与许可页面的阅读排版，共用首页导航与品牌样式。
+
+## 页面演示
+
+- 产品概览标签支持左右方向键及 Home / End。
+- 义项制卡示例中，点击任意义项旁的 `+`，只将该义项的释义与例句显示在示例闪卡上。
+- 复习示例遵循“回忆 → 显示答案 → 评分”，完成后可重新体验。
+- 所有交互均为页面内演示，不连接 App，不保存学习数据。
+
+## 验证
+
+项目没有构建或 lint 依赖。修改后运行 `node --check site.js`，并在本地预览检查桌面、手机下的页面布局、义项选择、复习评分、键盘标签切换、移动导航、FAQ 和站内链接。
 
 ## 更换截图
 
-将截图存入 `assets/`，在 `site-config.js` 中填写对应路径。图片成功加载后自动替换 HTML 示意，失败时显示路径错误。无需改变页面结构。
+将截图存入 `assets/`，在 `site-config.js` 中填写对应路径。图片成功加载后自动替换 HTML 示意，失败时显示图片暂时无法加载的提示。无需改变页面结构。
 
 | 配置键 | 建议截图内容 | 建议尺寸 |
 | --- | --- | --- |
@@ -46,7 +58,7 @@ screenshots: {
 
 ## 下载入口
 
-在 `site-config.js` 的 `downloads.mac` 和 `downloads.ios` 填入正式 HTTPS 下载地址或 App Store 地址。未配置的入口没有链接，明确显示“链接待补充”；配置后自动启用。支持两个入口使用同一条通用 App Store 链接。
+在 `site-config.js` 的 `downloads.mac` 和 `downloads.ios` 填入正式 HTTPS 下载地址或 App Store 地址。未配置的入口没有链接，明确显示“暂未开放”；配置后自动启用。支持两个入口使用同一条通用 App Store 链接。
 
 ## 产品内容依据
 
@@ -63,7 +75,7 @@ screenshots: {
 
 ## 发布
 
-沿用 app-support 现有 Vercel 配置：Root Directory 为 `flashdict`，Framework Preset 为 `Other`，Install / Build Command 留空，Output Directory 为 `.`。`vercel.json` 保留 `cleanUrls`，已有 `/privacy`、`/support`、`/licenses` 路由继续使用原页面和 `assets/site.css`。首页使用独立的 `styles.css`，不影响这些页面。首页的 `.html` 链接可直接用于本地预览，Vercel 会按 `cleanUrls` 跳转到无扩展名地址。
+沿用 app-support 现有 Vercel 配置：Root Directory 为 `flashdict`，Framework Preset 为 `Other`，Install / Build Command 留空，Output Directory 为 `.`。`vercel.json` 保留 `cleanUrls`，已有 `/privacy`、`/support`、`/licenses` 路由继续使用原页面。所有页面共用 `styles.css` 和 `site.js` 中的导航逻辑，支持与法律页面另加载 `assets/site.css` 提供阅读排版。首页的 `.html` 链接可直接用于本地预览，Vercel 会按 `cleanUrls` 跳转到无扩展名地址。
 
 网站不包含后端、统计追踪或表单提交，不依赖特定托管平台。
 
