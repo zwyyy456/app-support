@@ -106,12 +106,16 @@
     let stage = 'draft';
     const policy = root.querySelector('[data-policy]');
     function update() {
-      const state = stage === 'merged' ? 'done' : stage === 'ready' && policy?.value === 'review' ? 'review' : 'progress';
+      const readyState = policy?.value === 'review' ? 'review' : 'progress';
+      const state = stage === 'merged' ? 'done' : stage === 'ready' ? readyState : 'progress';
       const labels = { progress: 'In Progress', review: 'In review', done: 'Done' };
       root.querySelector('[data-result]').dataset.result = state;
       root.querySelector('[data-result-label]').textContent = labels[state];
       root.querySelector('[data-result-dot]').className = `status-dot ${state}`;
       root.querySelector('[data-pr-state]').textContent = { draft: 'Draft', ready: 'Ready', merged: 'Merged' }[stage];
+      root.querySelector('[data-stage="ready"]').dataset.mapResult = readyState;
+      root.querySelector('[data-ready-target]').dataset.state = readyState;
+      root.querySelector('[data-ready-result-label]').textContent = labels[readyState];
       root.querySelectorAll('[data-stage]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.stage === stage)));
     }
     root.querySelectorAll('[data-stage]').forEach(button => button.addEventListener('click', () => {

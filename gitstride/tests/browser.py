@@ -67,11 +67,15 @@ async def main():
             await page.locator('[data-view="board"]').click()
             checks.append(f'{locale}: Board/Table, assignment filter, search, empty state, dialog and Escape')
             await load(page, prefix + '/automation')
+            assert await page.locator('[data-stage]').count() == 3
+            assert await page.locator('[data-stage="draft"] .flow-stage-target strong').inner_text() == 'In Progress'
+            assert await page.locator('[data-stage="merged"] .flow-stage-target strong').inner_text() == 'Done'
             assert await page.locator('[data-result-label]').inner_text() == 'In Progress'
             await page.locator('[data-stage="ready"]').click()
             assert await page.locator('[data-result-label]').inner_text() == 'In review'
             await page.locator('[data-policy]').select_option('progress')
             assert await page.locator('[data-result-label]').inner_text() == 'In Progress'
+            assert await page.locator('[data-ready-result-label]').inner_text() == 'In Progress'
             await page.locator('[data-stage="merged"]').click()
             assert await page.locator('[data-result-label]').inner_text() == 'Done'
             await page.locator('[data-stage="draft"]').click()
