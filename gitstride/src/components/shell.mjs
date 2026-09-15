@@ -11,7 +11,7 @@ export function header(route) {
   const current=(page)=> id===page || (page==='docs'&&id.startsWith('docs/'));
   const navLink=(page,label)=>`<a href="${path(page==='home'?'':page)}" ${current(page)?'aria-current="page"':''}>${label}</a>`;
   return `<a class="skip-link" href="#main">${t.skip}</a><header class="site-header"><div class="nav-container">
-    <a class="brand" href="${path('')}" aria-label="${esc(pick(locale,'GitStride home','GitStride 首页'))}">${logo()}<span>GitStride</span><span class="brand-cn">迹程</span></a>
+    <a class="brand" href="${path('')}" aria-label="${esc(pick(locale,'GitStride home','GitStride 首页'))}">${logo()}<span>GitStride</span></a>
     <nav id="primary-nav" class="primary-nav" aria-label="${t.navLabel}">${navLink('home',t.product)}${navLink('automation',t.automation)}${navLink('docs',t.docs)}${navLink('support',t.support)}</nav>
     <div class="nav-actions"><a class="github-nav" href="${site.github}" rel="noopener noreferrer" aria-label="GitStride on GitHub">${icon('github')}</a><a class="language-switch" href="${translated}" data-language-link lang="${otherLocale==='en'?'en':'zh-CN'}" hreflang="${otherLocale==='en'?'en':'zh-CN'}">${icon('globe')}<span>${t.language}</span></a><a class="button button-small button-primary nav-download" href="${path('download')}">${t.download}${icon('arrow')}</a><button class="icon-button menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="${t.menu}" data-menu-toggle>${icon('menu')}</button></div>
   </div></header>`;

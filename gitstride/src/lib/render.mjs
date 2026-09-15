@@ -60,7 +60,7 @@ ${alternates}
 <meta property="og:locale:alternate" content="${language==='en'?'zh_CN':'en_US'}" />
 ${image?`<meta property="og:image" content="${esc(new URL(image,site.url).href)}" />`:''}
 <meta name="twitter:card" content="${image?'summary_large_image':'summary'}" />
-<link rel="icon" href="/images/app-icon.svg" type="image/svg+xml" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" sizes="any" />
 <link rel="stylesheet" href="/styles/site.css" />
 <script src="/scripts/site.js" defer></script>`;
 }
