@@ -9,9 +9,9 @@
   --dim: #898995;
   --line: #27272f;
   --line-soft: #1d1d23;
-  --accent: #ac9df2;
-  --accent-soft: #272234;
-  --progress: #a598ee;
+  --accent: #5a9dff;
+  --accent-soft: #17263c;
+  --progress: #6f9fe8;
   --review: #deb77e;
   --done: #8abcaa;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -21,7 +21,7 @@
 *,*::before,*::after { box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:100px; }
 body { margin:0; background:var(--bg); color:var(--text); font:15px/1.65 var(--font); -webkit-font-smoothing:antialiased; }
-::selection { background:#4c415e; color:white; }
+::selection { background:#27466f; color:white; }
 [hidden] { display:none !important; }
 button,input,select,textarea { font:inherit; }
 button,a,input,select { -webkit-tap-highlight-color:transparent; }
@@ -66,12 +66,10 @@ input::placeholder { color:#93939f; opacity:1; }
 .icon-button { display:grid; place-items:center; background:transparent; width:36px; height:36px; border-radius:6px; }
 .icon-button:hover { background:#25242d; }
 .brand { display:flex; gap:10px; align-items:center; white-space:nowrap; font-size:18px; font-weight:650; letter-spacing:-.5px; }
-.brand-symbol { width:31px; height:31px; display:inline-flex; align-items:center; justify-content:center; border:1px solid #51475f; border-radius:9px; color:#c4b6e4; background:linear-gradient(130deg,#302a3d,#16151b); }
-.brand-symbol svg { width:24px; height:24px; }
-.brand-symbol.mini { width:19px; height:19px; border:0; border-radius:5px; background:transparent; }
-.brand-symbol.mini svg { width:17px; height:17px; }
-.brand-symbol.tiny { width:20px; height:20px; border:0; border-radius:4px; }
-.brand-symbol.tiny svg { width:16px; height:16px; }
+.brand-symbol { width:31px; height:31px; display:inline-flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid #3b3b42; border-radius:9px; background:#fcfcfc; box-shadow:0 2px 8px #0006; }
+.brand-symbol img { width:100%; height:100%; }
+.brand-symbol.mini { width:19px; height:19px; border-radius:5px; box-shadow:0 1px 4px #0005; }
+.brand-symbol.tiny { width:20px; height:20px; border-radius:5px; box-shadow:0 1px 4px #0005; }
 .brand-cn { color:#8d8a99; font-size:12px; border-left:1px solid #37333e; padding-left:10px; margin-left:1px; font-weight:400; }
 /* Navigation, intentionally normal links rather than a single-page application. */
 .site-header { height:72px; position:sticky; top:0; z-index:30; background:#09090bec; border-bottom:1px solid var(--line-soft); backdrop-filter:blur(18px); }
@@ -363,61 +361,60 @@ input::placeholder { color:#93939f; opacity:1; }
 .docs-sidebar nav>a { font-size:11px; color:var(--muted); padding:9px; margin-left:-9px; border-radius:5px; display:flex; align-items:center; gap:9px; }
 .docs-sidebar nav>a>.icon { width:14px; height:14px; }
 .docs-sidebar nav>a>.icon:last-child:not(:first-child) { margin-left:auto; width:11px; }
-.docs-sidebar nav>a[aria-current="page"] { background:#292131; color:#e0cdef; }
-.docs-sidebar nav>a:hover { color:#eee5f5; background:#1b1621; }
+.docs-sidebar nav>a[aria-current="page"] { background:#182235; color:#dceaff; }
+.docs-sidebar nav>a:hover { color:#f1f1f4; background:#17171c; }
 .docs-index { padding-top:14px; }
 .docs-index h1 { font-size:60px; margin-top:25px; }
 .page-description { color:var(--muted); font-size:16px; line-height:1.85; margin-top:22px; }
 .docs-card-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:42px; }
-.docs-card { border:1px solid #34303d; border-radius:9px; padding:24px; background:linear-gradient(145deg,#19151f,#111013); transition:border-color .18s,transform .18s; }
-.docs-card:hover { border-color:#75588c; transform:translateY(-2px); }
-.docs-card>div { display:flex; justify-content:space-between; color:#ad92c4; margin-bottom:28px; }
+.docs-card { border:1px solid #303038; border-radius:9px; padding:24px; background:linear-gradient(145deg,#18181d,#111114); transition:border-color .18s,transform .18s; }
+.docs-card:hover { border-color:#49688f; transform:translateY(-2px); }
+.docs-card>div { display:flex; justify-content:space-between; color:#8fb6ed; margin-bottom:28px; }
 .docs-card .mono { font-size:9px; }
 .docs-card h2 { font-size:18px; letter-spacing:-.4px; }
 .docs-card p { font-size:12px; margin-top:12px; line-height:1.8; }
-.card-arrow { display:flex; justify-content:flex-end; margin-top:24px; color:#bda4d0; }
+.card-arrow { display:flex; justify-content:flex-end; margin-top:24px; color:#8fb6ed; }
 .card-arrow>.icon { width:15px; }
 .docs-help { display:flex; align-items:center; gap:14px; border-top:1px solid var(--line); padding-top:27px; margin-top:37px; }
-.docs-help>.icon { color:#c2a5d4; }
+.docs-help>.icon { color:#91a6bf; }
 .docs-help h2 { font-size:15px; letter-spacing:-.2px; }
 .docs-help p { font-size:11px; margin-top:5px; }
 .docs-help .text-link { margin-left:auto; font-size:11px; flex-shrink:0; }
 .doc-breadcrumb { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--muted); margin:5px 0 24px; }
 .doc-breadcrumb .icon { width:10px; height:10px; }
 .doc-article h1 { font-size:44px; letter-spacing:-1.5px; }
-.doc-toc { margin:30px 0 37px; padding:17px 20px; background:#15111a; border:1px solid #35273f; border-radius:7px; display:flex; gap:7px 15px; flex-wrap:wrap; }
-.doc-toc strong { width:100%; font-size:10px; color:#d5c2e5; margin-bottom:5px; }
-.doc-toc a { font-size:11px; color:#bba1d0; }
+.doc-toc { margin:30px 0 37px; padding:17px 20px; background:#131418; border:1px solid #30333a; border-radius:7px; display:flex; gap:7px 15px; flex-wrap:wrap; }
+.doc-toc strong { width:100%; font-size:10px; color:#d7d9df; margin-bottom:5px; }
+.doc-toc a { font-size:11px; color:#8fb6ed; }
 .doc-toc a:hover { color:white; }
 .prose { font-size:14px; line-height:1.95; color:var(--muted); }
 .prose section { margin-top:35px; scroll-margin-top:110px; }
-.prose h2 { font-size:23px; color:#e4ddeb; letter-spacing:-.5px; margin:0 0 16px; display:flex; align-items:center; gap:12px; }
+.prose h2 { font-size:23px; color:#e2e3e7; letter-spacing:-.5px; margin:0 0 16px; display:flex; align-items:center; gap:12px; }
 .prose p+p { margin-top:16px; }
-.prose a:not(.button) { color:#c6a9e0; text-decoration:underline; text-decoration-color:#604675; text-underline-offset:3px; }
+.prose a:not(.button) { color:#80b2f8; text-decoration:underline; text-decoration-color:#365b88; text-underline-offset:3px; }
 .prose a:not(.button):hover { color:white; }
-.prose strong { color:#ddd2e7; font-weight:550; }
-.prose code:not(pre code) { color:#d8bde9; font-size:.86em; padding:3px 5px; border-radius:4px; background:#251b2e; overflow-wrap:anywhere; }
+.prose strong { color:#dedfe4; font-weight:550; }
+.prose code:not(pre code) { color:#b8d6ff; font-size:.86em; padding:3px 5px; border-radius:4px; background:#172131; overflow-wrap:anywhere; }
 .prose ol,.prose ul { padding-left:23px; }
 .prose li { padding-left:5px; margin-bottom:13px; }
 .prose .heading-anchor { font-size:14px; text-decoration:none; opacity:0; }
 .prose h2:hover .heading-anchor,.prose .heading-anchor:focus { opacity:1; }
-.code-block { margin:20px 0; position:relative; background:#151219; border:1px solid #3c2c49; border-radius:7px; overflow:hidden; }
-.code-block pre { margin:0; padding:22px 75px 22px 20px; overflow-x:auto; font-size:11px; color:#d9c3ea; line-height:1.8; }
-.copy-button { position:absolute; top:10px; right:10px; background:#302237; color:#d0b5df; font-size:9px; border:1px solid #5b3d69; border-radius:4px; padding:4px 7px; }
+.code-block { margin:20px 0; position:relative; background:#121418; border:1px solid #30343b; border-radius:7px; overflow:hidden; }
+.code-block pre { margin:0; padding:22px 75px 22px 20px; overflow-x:auto; font-size:11px; color:#c8d9ef; line-height:1.8; }
+.copy-button { position:absolute; top:10px; right:10px; background:#1c2634; color:#bdd7fa; font-size:9px; border:1px solid #3c5778; border-radius:4px; padding:4px 7px; }
 .shortcut-list { display:flex; flex-direction:column; gap:10px; padding:20px 0; }
 .shortcut-list>span { display:flex; align-items:center; gap:17px; font-size:12px; }
-.shortcut-list kbd { display:inline-block; min-width:110px; padding:4px 8px; border:1px solid #4b3659; background:#251b2e; border-radius:4px; font-size:11px; text-align:center; color:#d9c3e8; }
+.shortcut-list kbd { display:inline-block; min-width:110px; padding:4px 8px; border:1px solid #3a4049; background:#191b20; border-radius:4px; font-size:11px; text-align:center; color:#d7d9df; }
 .doc-end { margin-top:48px; padding-top:23px; border-top:1px solid var(--line); font-size:11px; color:var(--muted); }
 .doc-end>a:first-child { display:inline-flex; align-items:center; gap:8px; }
 .doc-end .icon { width:12px; }
-.next-doc { display:block; width:fit-content; margin:28px 0 0 auto; text-align:right; font-size:14px; color:#e3d2f0; }
+.next-doc { display:block; width:fit-content; margin:28px 0 0 auto; text-align:right; font-size:14px; color:#c5dcfb; }
 .next-doc small { display:block; font-size:8px; color:var(--dim); letter-spacing:1px; margin-bottom:4px; }
 .next-doc .icon { margin-left:10px; }
 /* Download, support and trust pages */
 .download-hero { text-align:center; max-width:820px; padding-top:76px; }
 .download-app-icon { width:80px; height:80px; margin:0 auto 29px; }
-.download-app-icon .brand-symbol { width:80px; height:80px; border-radius:23px; background:linear-gradient(145deg,#524062,#211b2c); box-shadow:0 0 100px #a873c324,0 10px 25px #0009; }
-.download-app-icon .brand-symbol svg { width:49px; height:49px; }
+.download-app-icon .brand-symbol { width:80px; height:80px; border-radius:19px; box-shadow:0 0 70px #086dfa26,0 10px 25px #0009; }
 .download-hero .eyebrow { justify-content:center; }
 .download-hero h1 { font-size:59px; margin-top:25px; letter-spacing:-2.5px; }
 .download-hero>.fine-print { margin-top:17px; }
@@ -707,7 +704,6 @@ input::placeholder { color:#93939f; opacity:1; }
   .download-hero { padding-top:52px; }
   .download-app-icon { width:65px; height:65px; }
   .download-app-icon .brand-symbol { width:65px; height:65px; border-radius:19px; }
-  .download-app-icon .brand-symbol svg { width:43px; height:43px; }
   .download-hero h1 { font-size:41px; letter-spacing:-1.6px; }
   .download-hero .eyebrow { font-size:9px; }
   .download-card { padding:20px; margin-top:28px; }
