@@ -82,10 +82,12 @@ async def main():
             assert await page.locator('[data-result-label]').inner_text() == 'In Progress'
             checks.append(f'{locale}: Draft, Ready, Merged and both review policies')
             await load(page, prefix + '/support')
+            assert await page.locator('[data-faq-group]').count() == 2
             await page.locator('[data-faq-search]').fill('OAuth')
             assert await page.locator('.faq-item:visible').count() > 0
             await page.locator('[data-faq-search]').fill('no-such-question-123')
             assert await page.locator('[data-faq-empty]').is_visible()
+            assert await page.locator('[data-faq-group]:visible').count() == 0
             await load(page, prefix + '/download')
             assert await page.locator('.download-main').is_disabled()
         await page.set_viewport_size({'width': 390, 'height': 844})

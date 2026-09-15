@@ -133,6 +133,9 @@
       item.hidden = !item.textContent.toLocaleLowerCase().includes(query);
       if (!item.hidden) count++;
     });
+    document.querySelectorAll('[data-faq-group]').forEach(group => {
+      group.hidden = !group.querySelector('.faq-item:not([hidden])');
+    });
     const empty = document.querySelector('[data-faq-empty]');
     if (empty) empty.hidden = count !== 0;
   });

@@ -11,10 +11,10 @@ export function pageMeta({locale,id}) {
   const t=(en,zh)=>pick(locale,en,zh);
   const meta={
     home:[t('GitHub Projects. At home on your Mac.','GitHub Projects，在 Mac 上更顺手。'),t('A native macOS workspace for GitHub Projects. Explore boards, tables, issue editing, and optional PR automation.','GitHub Projects 的原生 macOS 工作区。从菜单栏查看项目，用看板、表格和 Issue 编辑推进工作，按需开启 PR 自动化。')],
-    automation:[t('Pull request automation','PR 自动化'),t('Connect closing pull requests to issue status in compatible personal GitHub Projects.','让关闭关联 PR 推进 Issue 在兼容个人 GitHub Projects 中的状态。')],
-    docs:[t('Documentation','使用文档'),t('Connect GitHub, organize work, and configure optional automation.','连接 GitHub、整理工作，并配置可选的自动化服务。')],
+    automation:[t('Pull request automation','PR 自动化'),t('Let linked pull requests update issue status in matching personal GitHub Projects.','让关联 PR 自动更新 Issue 在匹配个人 GitHub Projects 中的状态。')],
+    docs:[t('Documentation','使用文档'),t('Connect GitHub, open an existing Project, and learn the workspace and optional PR automation.','连接 GitHub、打开现有 Project，并了解工作区与可选的 PR 自动化。')],
     download:[t('Get GitStride for Mac','获取 GitStride macOS 版'),t('Download information, system requirements, and installation guidance for GitStride.','GitStride 下载信息、系统要求与安装指南。')],
-    support:[t('Support','使用支持'),t('Answers to common questions and a clear path to reporting problems.','常见问题解答、连接排查与问题反馈。')],
+    support:[t('Support','使用支持'),t('Common answers, connection and data checks, and a clear path to reporting problems.','常见问题、连接与数据排查，以及问题反馈。')],
     privacy:[t('Privacy & permissions','隐私与权限'),t('Understand desktop permissions, local data, and the optional automation service.','了解桌面权限、本地数据与可选自动化服务。')],
     licenses:[t('Source & licenses','来源与许可证'),t('GitStride’s project origins, license, and acknowledgements.','GitStride 的项目来源、许可与致谢。')],
     '404':[t('Page not found','页面不存在'),t('This page does not exist. Return to GitStride.','此页面不存在，请返回 GitStride 首页。')],
