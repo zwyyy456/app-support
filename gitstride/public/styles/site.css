@@ -362,10 +362,11 @@ input::placeholder { color:#93939f; opacity:1; }
 .docs-sidebar nav>a>.icon:last-child:not(:first-child) { margin-left:auto; width:11px; }
 .docs-sidebar nav>a[aria-current="page"] { background:#182235; color:#dceaff; }
 .docs-sidebar nav>a:hover { color:#f1f1f4; background:#17171c; }
-.docs-index { padding-top:14px; }
-.docs-index h1 { font-size:60px; margin-top:25px; }
+.docs-index { padding-top:10px; }
+.docs-index h1 { font-size:42px; letter-spacing:-1.3px; }
+.docs-index>.page-description { margin-top:13px; font-size:15px; }
 .page-description { color:var(--muted); font-size:16px; line-height:1.85; margin-top:22px; }
-.docs-card-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:42px; }
+.docs-card-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; }
 .docs-card { border:1px solid #303038; border-radius:9px; padding:24px; background:linear-gradient(145deg,#18181d,#111114); transition:border-color .18s,transform .18s; }
 .docs-card:hover { border-color:#49688f; transform:translateY(-2px); }
 .docs-card>div { display:flex; justify-content:space-between; color:#8fb6ed; margin-bottom:28px; }
@@ -437,6 +438,9 @@ input::placeholder { color:#93939f; opacity:1; }
 .download-guide { display:flex; justify-content:center; gap:36px; padding:20px 0 87px; }
 .download-guide .text-link { font-size:12px; }
 .support-layout { display:grid; grid-template-columns:1.6fr 1fr; gap:85px; padding-bottom:110px; align-items:start; }
+.support-hero { padding:52px 0 32px; }
+.support-hero h1 { font-size:42px; letter-spacing:-1.3px; }
+.support-hero p { max-width:620px; margin-top:13px; font-size:15px; line-height:1.8; }
 .faq-search { border:1px solid #333740; background:#14161a; border-radius:7px; padding:12px 14px; display:flex; gap:10px; margin-bottom:19px; }
 .faq-search:focus-within { border-color:#49688f; box-shadow:0 0 0 3px #27466f33; }
 .faq-search .icon { color:#8e9bae; width:17px; }
@@ -716,7 +720,8 @@ input::placeholder { color:#93939f; opacity:1; }
   .support-contact h2 { font-size:28px; }
   .faq-item summary { font-size:13px; }
   .support-contact .button { width:100%; }
-  .support-hero h1 { font-size:40px; }
+  .support-hero { padding-top:40px; }
+  .support-hero h1 { font-size:36px; }
   .legal-page { padding-top:50px; padding-bottom:65px; }
   .legal-page h1 { font-size:38px; letter-spacing:-1.3px; }
   .legal-page .eyebrow { font-size:9px; }
