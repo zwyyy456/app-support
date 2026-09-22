@@ -3,93 +3,184 @@ import Page from '../layouts/Page.astro';
 import { site } from '../site.config.mjs';
 
 const desktopScreenshots = [
-  { key: 'lookup', src: site.screenshots.lookup, alt: '闪卡词典 Mac 查词界面，展示 commodity 的释义、例句和义项制卡入口', width: 3024, height: 1898 },
-  { key: 'review', src: site.screenshots.review, alt: '闪卡词典 Mac 复习界面，展示 commodity 的答案和四个评分按钮', width: 1800, height: 1304 },
-  { key: 'library', src: site.screenshots.library, alt: '闪卡词典 Mac 词典管理界面，展示已导入词典和当前词典设置', width: 3024, height: 1898 },
+  {
+    key: 'lookup',
+    src: site.screenshots.lookup,
+    alt: '闪卡词典 Mac 查词界面，展示 commodity 的释义、例句和义项制卡入口',
+    width: 3024,
+    height: 1898,
+    title: '在自己的 MDX 词典里查词',
+    description: '查看完整词条、例句和发音，并从适配词典中选择这次需要的义项。',
+  },
+  {
+    key: 'review',
+    src: site.screenshots.review,
+    alt: '闪卡词典 Mac 复习界面，展示 commodity 的答案和四个评分按钮',
+    width: 1800,
+    height: 1304,
+    title: '先回忆，再根据记忆情况评分',
+    description: '查看答案后，选择一个评分。FSRS-6 会根据记忆情况安排下次复习。',
+  },
+  {
+    key: 'library',
+    src: site.screenshots.library,
+    alt: '闪卡词典 Mac 词典管理界面，展示已导入词典和当前词典设置',
+    width: 3024,
+    height: 1898,
+    title: '导入并管理自己的词典',
+    description: '添加 MDX 词典、调整使用顺序，并决定查词时优先显示哪一本。',
+  },
 ];
+const appStoreURL = site.downloads.ios || site.downloads.mac || '#download';
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: '闪卡词典 FlashDict',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'iOS 17+, iPadOS 17+, macOS 14+',
+  description: '通过浏览器扩展或系统分享获取原句，选择释义后把单词、原句和释义保存为闪卡，并使用 FSRS-6 安排复习。',
+  downloadUrl: appStoreURL,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'CNY',
+  },
+};
 ---
 <Page
-  title="闪卡词典 FlashDict — 查到的词，留在你的记忆里。"
-  description="闪卡词典 FlashDict，把本地词典、义项制卡与间隔复习连在一起。在 Mac、iPhone 和 iPad 上，让每一次查词有所积累。"
-  ogTitle="闪卡词典 — 查到的词，留在你的记忆里。"
-  ogDescription="导入本地词典，留下需要的义项，用间隔复习慢慢记住。适用于 Mac、iPhone 与 iPad。"
+  title="闪卡词典 FlashDict — 查词时，同时保存原句"
+  description="在 Safari 和 Firefox 中通过扩展自动提取原句，也可以从其他 App 发送选中的句子。选择释义后，将单词、原句和释义保存为闪卡。"
+  ogTitle="闪卡词典 — 查词时，同时保存原句"
+  ogDescription="通过浏览器扩展或系统分享获取原句，选择释义后将单词、原句和释义保存为闪卡。"
+  schema={softwareSchema}
 >
 <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="eyebrow"><span class="little-mark" aria-hidden="true"></span> 本地词典 × 间隔复习</div>
-      <h1 id="hero-title">查到的词，<br><span>留在你的记忆里。</span></h1>
-      <p class="hero-description">你的本地词典，也是你的闪卡库。<br>查词时留下需要的义项，用间隔复习慢慢记住。</p>
+      <div class="eyebrow"><span class="little-mark" aria-hidden="true"></span> 本地 MDX 词典 × 原句制卡 × FSRS-6</div>
+      <h1 id="hero-title">查词时，<span>同时保存原句</span></h1>
+      <p class="hero-description">Safari 和 Firefox 扩展会在查词时自动提取原句；其他 App 可以通过系统分享或 macOS 服务发送原句。<br>选择释义后，单词、原句和释义会保存为一张闪卡。</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#download">获取闪卡词典 <span aria-hidden="true">↗</span></a>
-        <a class="button button-quiet" href="#features">体验义项制卡 <span aria-hidden="true">↓</span></a>
+        <a class="button button-primary" href={appStoreURL} target={appStoreURL.startsWith('http') ? '_blank' : undefined} rel={appStoreURL.startsWith('http') ? 'noopener' : undefined}>在 App Store 下载 <span aria-hidden="true">↗</span></a>
+        <a class="button button-quiet" href="#context">查看原句制卡流程 <span aria-hidden="true">↓</span></a>
       </div>
-      <p class="platform-caption">为 Mac、iPhone 与 iPad 而设计</p>
     </section>
 
     <section class="experience wrap" id="experience" aria-label="App 实际截图">
-      <div class="experience-footer">
+      <div class="experience-header">
         <div class="product-tabs" role="tablist" aria-label="切换产品界面">
           <button id="tab-lookup" role="tab" aria-selected="true" aria-controls="panel-lookup" tabindex="0"><span>01</span> 查词</button>
           <button id="tab-review" role="tab" aria-selected="false" aria-controls="panel-review" tabindex="-1"><span>02</span> 复习</button>
           <button id="tab-library" role="tab" aria-selected="false" aria-controls="panel-library" tabindex="-1"><span>03</span> 词典</button>
         </div>
-        <span class="placeholder-note">App 实际截图 · 点击查看原图</span>
       </div>
       <div class="product-stage">
         <div class="stage-glow" aria-hidden="true"></div>
-        <div class="window">
-          {desktopScreenshots.map(({ key, src, alt, width, height }) => (
-            <div class="product-panel" id={`panel-${key}`} role="tabpanel" aria-labelledby={`tab-${key}`} aria-describedby="screenshot-help" tabindex="0" hidden={key !== 'lookup'}>
-              <a class="screenshot-link" href={src} target="_blank" rel="noopener" aria-label={`${alt}，在新标签页查看原图`}>
+        {desktopScreenshots.map(({ key, src, alt, width, height, title, description }) => (
+          <div class="product-panel" id={`panel-${key}`} role="tabpanel" aria-labelledby={`tab-${key}`} tabindex="0" hidden={key !== 'lookup'}>
+            <div class="product-canvas">
+              <button
+                class="screenshot-preview"
+                type="button"
+                data-lightbox-src={src}
+                data-lightbox-alt={alt}
+                data-lightbox-title={title}
+                aria-label={`${alt}，放大查看`}
+              >
                 <img class="screenshot-image" src={src} alt={alt} width={width} height={height} loading={key === 'lookup' ? 'eager' : 'lazy'} />
-              </a>
+                <span class="screenshot-expand" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7.5 3.5h-4v4M12.5 3.5h4v4M7.5 16.5h-4v-4M12.5 16.5h4v-4"/></svg>
+                  查看大图
+                </span>
+              </button>
             </div>
-          ))}
-        </div>
+            <div class="product-caption">
+              <strong>{title}</strong>
+              <p>{description}</p>
+            </div>
+          </div>
+        ))}
       </div>
-      <p class="screenshot-help" id="screenshot-help">左右滑动查看完整界面，点击截图可打开原图。</p>
     </section>
 
-    <section class="workflow wrap" aria-label="从查词到复习">
-      <article><span class="feature-number">01 / 查词</span><h2>从自己的词典开始</h2><p>导入 MDX 词典，在不同释义之间参照，找到当前语境里的意思。</p></article>
-      <article><span class="feature-number">02 / 制卡</span><h2>留下这次需要的义项</h2><p>将支持提取的义项变成精简闪卡，也可以为整个词条创建词典闪卡。</p></article>
-      <article><span class="feature-number">03 / 复习</span><h2>把下一次相遇交给 FSRS</h2><p>先回忆，再看答案并评分。根据每次反馈，安排卡片的下一次复习。</p></article>
+    <dialog class="screenshot-lightbox" id="screenshot-lightbox" aria-labelledby="screenshot-lightbox-title">
+      <div class="lightbox-shell">
+        <header class="lightbox-header">
+          <p id="screenshot-lightbox-title"></p>
+          <button class="lightbox-close" type="button" aria-label="关闭大图预览"><span aria-hidden="true">×</span></button>
+        </header>
+        <div class="lightbox-body"><img id="screenshot-lightbox-image" alt="" /></div>
+      </div>
+    </dialog>
+
+    <section class="context-section wrap" id="context" aria-labelledby="context-title">
+      <div class="section-heading">
+        <div><div class="section-kicker"><span>01</span> 原句从哪里来</div><h2 id="context-title">浏览器取词时，自动提取原句。<br><span class="muted">其他 App 中，选中句子后发送到 FlashDict。</span></h2></div>
+        <p>在弹出的原句查词窗口里，点一下想查的单词，再选择这次用到的释义，就能把单词、原句和释义一起做成闪卡。</p>
+      </div>
+      <div class="context-demo" aria-label="从阅读原句到闪卡的流程示意">
+        <article class="context-step context-source">
+          <div class="context-step-label"><span>01</span><span>获取原句</span></div>
+          <blockquote>The committee eventually <mark>shelved</mark> the proposal.</blockquote>
+          <p>浏览器扩展可以自动提取原句；其他 App 可以通过系统分享或 macOS 服务发送。</p>
+          <div class="context-entry-tags"><span>Safari / Firefox 扩展</span><span>系统分享 / macOS 服务</span></div>
+        </article>
+        <div class="context-arrow" aria-hidden="true"><span>→</span><small>点选词语</small></div>
+        <article class="context-step context-meaning">
+          <div class="context-step-label"><span>02</span><span>当前语境的义项</span></div>
+          <div class="context-word"><strong>shelve</strong><span>verb</span></div>
+          <p class="context-definition">搁置；暂缓处理</p>
+          <p>在优先词典中找到释义，只选择这句话需要的义项。</p>
+        </article>
+        <div class="context-arrow" aria-hidden="true"><span>→</span><small>添加闪卡</small></div>
+        <article class="context-step context-card">
+          <div class="context-step-label"><span>03</span><span>带原句的闪卡</span></div>
+          <strong class="context-card-word">shelve</strong>
+          <blockquote>The committee eventually <em>shelved</em> the proposal.</blockquote>
+          <p class="context-card-meaning">搁置；暂缓处理</p>
+          <div class="context-card-footer"><span>原句已附加</span><span>FSRS-6 安排复习</span></div>
+        </article>
+      </div>
+      <p class="context-caption">流程示意 · 浏览器取词需要安装扩展；其他 App 是否可用，取决于它是否支持系统分享或 macOS 服务。释义由排序最靠前且可用的 MDX 词典提供。</p>
     </section>
 
     <section class="detail-section wrap" id="features" aria-labelledby="detail-title">
       <div class="section-heading">
-        <div><div class="section-kicker"><span>01</span> 记住具体的意思</div><h2 id="detail-title">一个词有很多意思。<br><span class="muted">这次，只留下需要的那个。</span></h2></div>
-        <p>点一下释义旁的「+」，把这个义项和例句留在闪卡上。复习时，专注于当时想记住的内容。</p>
+        <div><div class="section-kicker"><span>02</span> 按义项制卡</div><h2 id="detail-title">选择一个义项，单独制卡。</h2></div>
+        <p>在已适配的词典中，点一下释义旁的「+」，就能用这个义项和例句创建闪卡。从原句查词时，原句也会一起保存。</p>
       </div>
-      <div class="sense-demo" aria-label="义项制卡交互示意">
-        <div class="sense-source">
-          <div class="demo-label"><span>词典中的义项</span><span>示例词典 · 英汉</span></div>
-          <h3>resonate <span>verb</span></h3><p class="demo-phonetic">/ˈrez.ə.neɪt/</p>
-          <div class="sense-option" data-sense="01">
-            <div class="sense-option-heading"><span class="sense-index">01</span><strong class="sense-meaning">发出共鸣；回响</strong><button class="sense-select" aria-label="将义项 01 发出共鸣、回响生成示例闪卡" aria-pressed="false"><span aria-hidden="true">+</span></button></div>
-            <p class="sense-example-en">Her voice resonated through the room.</p><p class="sense-example-zh">她的声音在房间里回响。</p>
-          </div>
-          <div class="sense-option" data-sense="02">
-            <div class="sense-option-heading"><span class="sense-index">02</span><strong class="sense-meaning">引起共鸣；产生共感</strong><button class="sense-select" aria-label="将义项 02 引起共鸣、产生共感生成示例闪卡" aria-pressed="false"><span aria-hidden="true">+</span></button></div>
-            <p class="sense-example-en">That story still resonates with me.</p><p class="sense-example-zh">那个故事至今仍让我产生共鸣。</p>
-          </div>
-        </div>
-        <div class="sense-connector" aria-hidden="true"><span>→</span></div>
-        <div class="sense-destination" id="sense-destination">
-          <div class="demo-label"><span>你的义项闪卡</span><span class="card-state" id="card-state">等待选择</span></div>
-          <div class="card-empty" id="card-empty"><span class="empty-card-symbol" aria-hidden="true">+</span><h3>从一个意思开始。</h3><p>点击任意义项旁的「+」<br>看看它会留下什么。</p></div>
-          <div class="generated-card" id="generated-card" hidden><span class="generated-label">义项 <span id="generated-index"></span></span><h3>resonate <span>verb</span></h3><p id="generated-meaning"></p><blockquote><p id="generated-example-en"></p><p id="generated-example-zh"></p></blockquote><div class="generated-footer"><span>释义与例句，放在一起。</span><span aria-hidden="true">✓</span></div></div>
-        </div>
-      </div>
-      <div class="demo-footer"><p id="sense-feedback" role="status">试试看：选择一个义项，生成你的示例闪卡。</p><span>交互示意 · 不会保存到 App</span></div>
-      <div class="detail-footnote"><span aria-hidden="true">☆</span><p>想保留整个词条？创建词典闪卡，复习时查阅对应词典。义项制卡需要词典已有提取适配。</p></div>
+      <figure class="sense-proof">
+        <button
+          class="sense-proof-preview screenshot-preview"
+          type="button"
+          data-lightbox-src={site.screenshots.lookup}
+          data-lightbox-alt="闪卡词典 Mac 查词界面，义项右侧显示单独的制卡按钮"
+          data-lightbox-title="按义项制卡"
+          aria-label="放大查看闪卡词典按义项制卡的实际界面"
+        >
+          <span class="sense-proof-viewport">
+            <img class="sense-proof-image" src={site.screenshots.lookup} alt="闪卡词典实际查词界面，不同义项右侧分别显示加号按钮" width="3024" height="1898" loading="lazy" />
+            <span class="sense-proof-target" aria-hidden="true"></span>
+            <span class="sense-proof-callout" aria-hidden="true"><span>为这个义项制卡</span><span class="sense-proof-line"></span></span>
+          </span>
+          <span class="screenshot-expand" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7.5 3.5h-4v4M12.5 3.5h4v4M7.5 16.5h-4v-4M12.5 16.5h4v-4"/></svg>
+            查看完整界面
+          </span>
+        </button>
+        <figcaption><p>高亮处是当前义项的制卡按钮。</p></figcaption>
+      </figure>
+      <div class="detail-footnote"><span aria-hidden="true">☆</span><p>也可以点击收藏按钮保存整个词条。按义项制卡需要词典已有适配。</p></div>
     </section>
 
     <section class="devices-section wrap" id="devices" aria-labelledby="devices-title">
-      <div class="section-kicker"><span>02</span> 在不同设备上接着学</div>
-      <div class="section-heading"><h2 id="devices-title">桌前查得深入。<br><span class="muted">出门也能接着复习。</span></h2><p>用 Mac 阅读和整理，用 iPhone 的片刻时间复习。你的词汇积累，跟着你走。</p></div>
+      <div class="section-kicker"><span>03</span> 多设备使用</div>
+      <div class="section-heading"><h2 id="devices-title">Mac、iPhone 和 iPad 都可以查词和复习。</h2><p>Mac 适合分栏查词和键盘操作；iPhone 与 iPad 方便随时查询和复习。</p></div>
       <div class="devices-grid">
-        <div class="device-details"><div class="device-feature"><span class="device-icon" aria-hidden="true">⌘</span><div><h3>Mac 上的专注空间</h3><p>分栏查词、键盘快捷操作、独立复习窗口。适合阅读、整理和沉浸学习。</p><span class="system-label">macOS 14 及以上</span></div></div><div class="device-feature"><span class="device-icon" aria-hidden="true">◫</span><div><h3>iPhone 与 iPad 上的随身词典</h3><p>iPhone 上轻松查词与复习，iPad 上利用分栏展开词典内容。</p><span class="system-label">iOS / iPadOS 17 及以上</span></div></div><div class="sync-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 17H5a4 4 0 0 1-.6-8A7 7 0 0 1 18 7a5 5 0 0 1 1 10h-1M8 17l4 4 4-4M12 21V11"/></svg><div><h3>闪卡与复习进度，通过 iCloud 同步。</h3><p>词典文件、图片和音频不随 iCloud 同步。请在各设备添加对应词典。</p></div></div></div>
+        <div class="device-details">
+          <div class="device-feature"><span class="device-icon" aria-hidden="true">⌘</span><div><h3>Mac 上查词和制卡</h3><p>使用分栏查词、键盘快捷操作和独立复习窗口。</p><span class="system-label">macOS 14 及以上</span></div></div>
+          <div class="device-feature"><span class="device-icon" aria-hidden="true">◫</span><div><h3>iPhone 与 iPad 上查词和复习</h3><p>iPhone 适合随手查询和复习；iPad 可以利用分栏查看词典内容。</p><span class="system-label">iOS / iPadOS 17 及以上</span></div></div>
+          <div class="sync-note"><span class="device-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 17H5a4 4 0 0 1-.6-8A7 7 0 0 1 18 7a5 5 0 0 1 1 10h-1M8 17l4 4 4-4M12 21V11"/></svg></span><div><h3>闪卡和复习进度通过 iCloud 同步</h3><p>词典文件、图片和音频不会同步，需要在各设备分别添加。</p></div></div>
+        </div>
         <figure class="mobile-showcase">
           <a class="mobile-frame" href={site.screenshots.mobile} target="_blank" rel="noopener" aria-label="在新标签页查看 iPhone 复习截图原图">
             <img class="mobile-screenshot" src={site.screenshots.mobile} alt="闪卡词典 iPhone 复习界面，展示 commodity 的答案和四个评分按钮" width="1206" height="2622" loading="lazy" />
@@ -99,17 +190,70 @@ const desktopScreenshots = [
       </div>
     </section>
 
-    <section class="essentials wrap" aria-label="更多功能"><div class="essential-item"><span class="essential-icon" aria-hidden="true">↙</span><h3>本地词典，离线可查。</h3><p>准备好词典和资源后，即使没有网络，也能继续查阅本地词条。</p></div><div class="essential-item"><span class="essential-icon" aria-hidden="true">文<span>A</span></span><h3>需要时，多一份翻译。</h3><p>Apple 系统翻译，以及可自行配置的 DeepL、OpenAI 兼容服务。</p></div><div class="essential-item"><span class="essential-icon" aria-hidden="true">⇄</span><h3>积累的内容，自由带走。</h3><p>以 FlashDict JSON 格式导入、导出闪卡，为自己的词汇积累保留副本。</p></div></section>
+    <section class="essentials-section wrap" aria-labelledby="essentials-title">
+      <div class="section-heading">
+        <div><div class="section-kicker"><span>04</span> 更多特性</div><h2 id="essentials-title">把本地词典用得更顺手。</h2></div>
+        <p>支持批量导入、HTML / JavaScript 渲染、夜间反色、正文双击查词和批量制卡。</p>
+      </div>
+      <div class="essentials">
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌘</span><h3>使用 SwiftUI 原生开发。</h3><p>面向 iPhone、iPad 和 Mac 原生开发，使用系统窗口、快捷键和分享能力，并持续优化查词速度与内存占用。</p></div>
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">◐</span><h3>词典页面支持夜间反色。</h3><p>遇到没有深色样式的词典，可以单独开启夜间反色；查词、卡片预览和复习时都会生效。</p></div>
+        <div class="essential-item"><span class="essential-icon essential-icon-code" aria-hidden="true">&lt;/&gt;</span><h3>兼容常见的 MDX 页面和脚本。</h3><p>查词页使用 WebKit 渲染，支持常见的 HTML、CSS、JavaScript，以及词典随附的图片和音频资源。</p></div>
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">↗</span><h3>词典正文里，双击继续查。</h3><p>在词典内容中遇到另一个陌生词，双击即可继续查询，不必来回复制。</p></div>
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌁</span><h3>选择目录，批量导入词典。</h3><p>扫描所选目录及子目录中的 MDX 词典和配套资源，减少逐本添加的操作。</p></div>
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">≡</span><h3>单词列表，也能批量制卡。</h3><p>导入每行一个词的文本列表，从指定词典批量生成卡片，并跳过已有项目。</p></div>
+      </div>
+    </section>
 
-    <section class="faq-section wrap" id="faq" aria-labelledby="faq-title"><div><div class="section-kicker"><span>03</span> 开始使用</div><h2 id="faq-title">准备好你的词典。<br><span class="muted">剩下的，从这里了解。</span></h2><a class="text-link" href="/support">查看使用支持 <span aria-hidden="true">↗</span></a></div><div class="faq-list">
+    <section class="access-section wrap" id="pricing" aria-labelledby="access-title">
+      <div class="section-heading">
+        <div><div class="section-kicker"><span>05</span> 免费版与会员</div><h2 id="access-title">功能都能用，额度按需升级。</h2></div>
+        <p>免费版只限制同时启用的外部词典数量和每日创建闪卡数量；会员会解除这两项限制。</p>
+      </div>
+      <div class="access-grid">
+        <article>
+          <div class="access-plan"><h3>免费版</h3><strong>¥0</strong></div>
+          <p class="access-summary">查词、原句制卡和复习都可以直接使用。</p>
+          <ul class="access-features">
+            <li><span>导入并管理本地 MDX 词典</span></li>
+            <li><span>Safari / Firefox 划词和原句提取</span></li>
+            <li><span>系统分享与 macOS 服务原句查词</span></li>
+            <li><span>词典夜间反色与正文双击查词</span></li>
+            <li><span>按义项制卡、FSRS-6 复习与 iCloud 同步</span></li>
+            <li><span>同时启用外部 MDX 词典</span><strong>2 本</strong></li>
+            <li><span>每台设备每日成功创建闪卡</span><strong>10 张</strong></li>
+          </ul>
+          <a class="access-action" href={appStoreURL} target={appStoreURL.startsWith('http') ? '_blank' : undefined} rel={appStoreURL.startsWith('http') ? 'noopener' : undefined}>在 App Store 免费下载 <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="access-member">
+          <div class="access-plan"><h3>会员</h3><strong>¥3 / 月起</strong></div>
+          <p class="access-summary">包含免费版全部功能，并解除两项使用额度。</p>
+          <ul class="access-features">
+            <li><span>免费版的全部功能</span></li>
+            <li><span>同时启用外部 MDX 词典</span><strong>不限</strong></li>
+            <li><span>每台设备每日成功创建闪卡</span><strong>不限</strong></li>
+          </ul>
+          <div class="access-options" aria-label="会员购买方案">
+            <div><span>全平台月度会员</span><strong>¥3 / 月</strong></div>
+            <div><span>全平台年度会员</span><strong>¥30 / 年</strong></div>
+            <div><span>全平台终身会员</span><strong>¥60</strong></div>
+            <div><span>移动端终身会员</span><strong>¥30</strong></div>
+          </div>
+          <a class="access-action access-action-primary" href={appStoreURL} target={appStoreURL.startsWith('http') ? '_blank' : undefined} rel={appStoreURL.startsWith('http') ? 'noopener' : undefined}>查看 App Store 当前方案 <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq-section wrap" id="faq" aria-labelledby="faq-title"><div><div class="section-kicker"><span>06</span> 使用支持</div><h2 id="faq-title">开始使用前，可能还想知道这些。</h2><a class="text-link" href="/support">查看使用支持 <span aria-hidden="true">↗</span></a></div><div class="faq-list">
+      <details><summary>如何从阅读原句创建闪卡？<span aria-hidden="true">+</span></summary><p>在 Safari 和 Firefox 中通过扩展查词时，FlashDict 会自动提取单词所在的句子。在其他 App 中，可以选中一句话，通过系统分享或 macOS 服务发送到 FlashDict。随后在原句窗口点选单词，并从释义中添加需要的义项。</p></details>
       <details><summary>可以使用自己的词典吗？<span aria-hidden="true">+</span></summary><p>可以。闪卡词典支持导入本地 MDX 词典，并管理词典顺序和启用状态。如果词典有配套图片、音频等资源，请一并准备对应资源文件。截图展示的是已导入的词典，词典内容需自行准备。</p></details>
       <details><summary>所有词典都支持按义项制卡吗？<span aria-hidden="true">+</span></summary><p>按义项生成精简闪卡，需要词典已有适配的义项提取支持。也可以通过“词典闪卡”收藏整个词条，在复习时查看对应词典内容。</p></details>
-      <details><summary>闪卡如何安排复习？<span aria-hidden="true">+</span></summary><p>先尝试回忆，再显示答案，并根据记忆情况评分。App 使用 FSRS 调度，根据每张卡片的学习状态和评分，安排下一次复习。</p></details>
+      <details><summary>闪卡如何安排复习？<span aria-hidden="true">+</span></summary><p>先尝试回忆，再显示答案，并根据记忆情况评分。App 使用 FSRS-6，根据每张卡片的学习状态和评分，安排下一次复习。</p></details>
       <details><summary>哪些内容会同步到其他设备？<span aria-hidden="true">+</span></summary><p>开启 iCloud 同步后，闪卡与复习进度会在设备间同步。词典文件及图片、音频资源不包含在内；请在其他设备上添加对应词典。同步开关的调整在下次启动 App 后生效。</p></details>
       <details><summary>翻译需要联网或额外配置吗？<span aria-hidden="true">+</span></summary><p>Apple 系统翻译需要 iOS 18 / macOS 15 或更新版本，语言支持和语言包由系统决定。DeepL 与 OpenAI 兼容服务需要自行配置、显式启用并联网使用；服务费用由相应服务商决定。</p></details>
       <details><summary>可以导入 Anki 卡片吗？<span aria-hidden="true">+</span></summary><p>当前闪卡导入、导出使用 FlashDict 自己的 JSON 格式，并不直接支持 Anki 的 APKG 文件。FSRS 是复习调度算法，不代表与 Anki 文件格式互通。</p></details>
     </div></section>
 
-    <section class="download-section wrap" id="download" aria-labelledby="download-title"><img src="/assets/app-icon.png" width="60" height="60" alt="" class="download-icon"><h2 id="download-title">从下一个好奇的词开始。</h2><p>带上你的词典，建立自己的闪卡库。</p><div class="download-links"><a class="download-link" data-download="mac" aria-disabled="true" tabindex="-1"><span class="download-platform-icon" aria-hidden="true">⌘</span><span><strong>Mac</strong><span>macOS 14+</span></span><span class="download-status">暂未开放</span></a><a class="download-link" data-download="ios" aria-disabled="true" tabindex="-1"><span class="download-platform-icon" aria-hidden="true">◫</span><span><strong>iPhone &amp; iPad</strong><span>iOS / iPadOS 17+</span></span><span class="download-status">暂未开放</span></a></div><p class="download-note" id="download-note">下载入口准备中。你可以先体验上方演示，或查看使用支持。</p></section>
+    <section class="download-section wrap" id="download" aria-labelledby="download-title"><img src="/assets/app-icon.png" width="60" height="60" alt="" class="download-icon"><h2 id="download-title">从下一次阅读开始。</h2><p>带上自己的词典，把原句和真正需要的意思留下来。</p><div class="download-links"><a class="download-link" href={site.downloads.mac || undefined} aria-disabled={!site.downloads.mac ? 'true' : undefined} tabindex={!site.downloads.mac ? '-1' : undefined} target={site.downloads.mac ? '_blank' : undefined} rel={site.downloads.mac ? 'noopener' : undefined}><span class="download-platform-icon" aria-hidden="true">⌘</span><span><strong>Mac</strong><span>macOS 14+</span></span><span class="download-status">{site.downloads.mac ? 'App Store ↗' : '暂未开放'}</span></a><a class="download-link" href={site.downloads.ios || undefined} aria-disabled={!site.downloads.ios ? 'true' : undefined} tabindex={!site.downloads.ios ? '-1' : undefined} target={site.downloads.ios ? '_blank' : undefined} rel={site.downloads.ios ? 'noopener' : undefined}><span class="download-platform-icon" aria-hidden="true">◫</span><span><strong>iPhone &amp; iPad</strong><span>iOS / iPadOS 17+</span></span><span class="download-status">{site.downloads.ios ? 'App Store ↗' : '暂未开放'}</span></a></div>{(!site.downloads.mac || !site.downloads.ios) && <p class="download-note">尚未开放的平台会在准备完成后更新入口。</p>}</section>
   </main>
 </Page>

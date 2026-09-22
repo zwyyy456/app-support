@@ -1,5 +1,3 @@
-import { site as config } from '../site.config.mjs';
-
 (() => {
   const tabs = [...document.querySelectorAll('[role="tab"]')];
 
@@ -25,6 +23,30 @@ import { site as config } from '../site.config.mjs';
     });
   });
 
+  const lightbox = document.querySelector('#screenshot-lightbox');
+  const lightboxImage = document.querySelector('#screenshot-lightbox-image');
+  const lightboxTitle = document.querySelector('#screenshot-lightbox-title');
+  const lightboxClose = document.querySelector('.lightbox-close');
+  let lightboxTrigger;
+
+  document.querySelectorAll('.screenshot-preview').forEach(button => {
+    button.addEventListener('click', () => {
+      lightboxTrigger = button;
+      lightboxImage.src = button.dataset.lightboxSrc;
+      lightboxImage.alt = button.dataset.lightboxAlt;
+      lightboxTitle.textContent = button.dataset.lightboxTitle;
+      lightbox.showModal();
+    });
+  });
+
+  lightboxClose.addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', event => {
+    const bounds = lightbox.getBoundingClientRect();
+    const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+    if (!inside) lightbox.close();
+  });
+  lightbox.addEventListener('close', () => lightboxTrigger?.focus());
+
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#nav-links');
   function closeMenu() { menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', '打开导航菜单'); nav.classList.remove('is-open'); }
@@ -42,38 +64,4 @@ import { site as config } from '../site.config.mjs';
   // Support and legal pages only need the shared navigation.
   if (!tabs.length) return;
 
-  const senseOptions = [...document.querySelectorAll('.sense-option')];
-  senseOptions.forEach(option => {
-    option.querySelector('button').addEventListener('click', () => {
-      senseOptions.forEach(item => {
-        const selected = item === option;
-        item.classList.toggle('is-selected', selected);
-        const button = item.querySelector('button');
-        button.setAttribute('aria-pressed', String(selected));
-        button.querySelector('span').textContent = selected ? '✓' : '+';
-      });
-      document.querySelector('#generated-index').textContent = option.dataset.sense;
-      document.querySelector('#generated-meaning').textContent = option.querySelector('.sense-meaning').textContent;
-      document.querySelector('#generated-example-en').textContent = option.querySelector('.sense-example-en').textContent;
-      document.querySelector('#generated-example-zh').textContent = option.querySelector('.sense-example-zh').textContent;
-      document.querySelector('#card-empty').hidden = true;
-      document.querySelector('#generated-card').hidden = false;
-      document.querySelector('#sense-destination').classList.add('is-generated');
-      document.querySelector('#card-state').textContent = '已生成示例';
-      document.querySelector('#sense-feedback').textContent = `已生成义项 ${option.dataset.sense} 的示例闪卡。可以选择另一个义项，再试一次。`;
-    });
-  });
-
-  document.querySelectorAll('[data-download]').forEach(link => {
-    const url = config.downloads[link.dataset.download];
-    if (!url) return;
-    const parsed = new URL(url, location.href);
-    if (!['https:', 'http:'].includes(parsed.protocol)) return;
-    link.href = parsed.href;
-    link.removeAttribute('aria-disabled');
-    link.removeAttribute('tabindex');
-    link.querySelector('.download-status').textContent = '获取 App ↗';
-  });
-  const downloadNote = document.querySelector('#download-note');
-  if (downloadNote && !document.querySelector('[data-download][aria-disabled="true"]')) downloadNote.hidden = true;
 })();

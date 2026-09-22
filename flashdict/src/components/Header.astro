@@ -1,5 +1,8 @@
 ---
+import { site } from '../site.config.mjs';
+
 const home = Astro.url.pathname === '/' ? '' : '/';
+const appStoreURL = site.downloads.ios || site.downloads.mac || `${home}#download`;
 ---
 <header class="site-header">
   <nav class="nav wrap" aria-label="主导航">
@@ -9,11 +12,12 @@ const home = Astro.url.pathname === '/' ? '' : '/';
     </a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="打开导航菜单"><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href={`${home}#experience`}>产品概览</a>
+      <a href={`${home}#context`}>原句制卡</a>
       <a href={`${home}#features`}>义项制卡</a>
       <a href={`${home}#devices`}>多端学习</a>
+      <a href={`${home}#pricing`}>免费与会员</a>
       <a href="/support">使用支持</a>
     </div>
-    <a class="button button-small nav-cta" href={`${home}#download`}>获取闪卡词典 <span aria-hidden="true">↗</span></a>
+    <a class="button button-small nav-cta" href={appStoreURL} target={appStoreURL.startsWith('http') ? '_blank' : undefined} rel={appStoreURL.startsWith('http') ? 'noopener' : undefined}>App Store 下载 <span aria-hidden="true">↗</span></a>
   </nav>
 </header>

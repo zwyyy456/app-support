@@ -24,7 +24,7 @@ npm run preview
 ```text
 src/
   pages/                 首页、支持、隐私与许可页面
-  layouts/Page.astro     页面元信息、共享导航与页脚
+  layouts/Page.astro     Canonical / 社交分享元信息、结构化数据、共享导航与页脚
   layouts/Document.astro 支持与法律页面的阅读布局
   components/            共享 Header、Footer
   scripts/site.js        标签切换、移动导航、义项制卡演示
@@ -38,6 +38,7 @@ public/
 
 ## 页面演示
 
+- 首页先说明原句的两种入口：Safari / Firefox 扩展自动提取，或从支持系统分享与 macOS 服务的其他 App 手动发送；后续流程示意解释“原句 → 当前义项 → 带原句的闪卡”。内容是概念演示，不会读取或保存访问者文本。
 - 产品概览的三个标签展示 Mac 实际截图，支持左右方向键及 Home / End；窄屏可横向查看完整界面，点击截图可打开原图。
 - 义项制卡示例中，点击任意义项旁的 `+`，只将该义项的释义与例句显示在示例闪卡上。
 - 义项制卡交互是页面内演示，不连接 App，不保存学习数据；复习区域展示 App 实际答案和评分界面。
@@ -65,20 +66,24 @@ public/
 
 ## 下载入口
 
-在 `src/site.config.mjs` 的 `downloads.mac` 和 `downloads.ios` 填入正式 HTTPS 下载地址或 App Store 地址。未配置的入口没有链接，明确显示“暂未开放”；配置后自动启用。支持两个入口使用同一条通用 App Store 链接。
+在 `src/site.config.mjs` 的 `downloads.mac` 和 `downloads.ios` 填入正式 HTTPS 下载地址或 App Store 地址。下载状态在构建时直接写入 HTML；未配置的入口没有链接并显示“暂未开放”。支持两个入口使用同一条通用 App Store 链接。
 
 ## 产品内容依据
 
-网站以 zdict 仓库当前功能与合同为依据；下面的代码路径均相对于 zdict 仓库根目录。产品核心表达为：**查词 → 义项或整词制卡 → FSRS 复习 → 多设备积累**。
+网站以 zdict 仓库当前功能与合同为依据；下面的代码路径均相对于 zdict 仓库根目录。产品核心表达为：**阅读原句 → 点词查释义 → 保存当前义项与原句 → FSRS-6 复习 → 多设备积累**。
 
 - 本地 MDX、多词典查询、查词历史及词典管理：`docs/overview.md`、`architecture.md`。
+- 原句查词、原句与来源保存：`FlashDict/Features/Search/ContextualLookup/`。
+- 词典正文双击查词：`FlashDict/Core/Web/WebBridgeScripts.swift`。
+- 目录与子目录批量扫描：`FlashDict/Core/Services/DictionaryAccess/DirectoryService.swift`。
+- 单词列表批量制卡：`FlashDict/Features/DictionaryManagement/`。
 - 义项快照卡、词典闪卡与先回忆再评分流程：`ui-layout.md`、`docs/contracts/flashcard-contracts.md`。
 - FSRS 调度：`FlashDict/Core/Study/FSRSScheduler.swift`。
 - 闪卡与复习进度的 iCloud 同步及资源边界：`architecture.md`、`ui-layout.md`。
 - Apple、DeepL、OpenAI 兼容翻译：`FlashDict/Features/Translation/`。系统翻译需要 iOS 18 / macOS 15 或更新系统；远程服务需用户配置、启用和联网。
 - 闪卡导入导出采用 FlashDict JSON，不宣传 Anki APKG 兼容。
 
-网站没有写入未确认的价格、销量、评价、性能数字或浏览器扩展商店上线承诺。免费层与会员条款由 `docs/contracts/membership-entitlement.md` 定义，页面未扩展为价格方案页。
+网站没有写入未确认的价格、销量、评价、性能数字或浏览器扩展商店上线承诺。免费层与会员条款由 `docs/contracts/membership-entitlement.md` 定义；首页只说明稳定额度与方案类型，实际价格引导到 App Store 查看。
 
 ## Vercel 部署配置
 

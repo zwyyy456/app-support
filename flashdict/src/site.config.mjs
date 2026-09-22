@@ -8,7 +8,7 @@ export const site = {
     mobile: "/assets/review-iphone.png", // 1206 × 2622
   },
   downloads: {
-    mac: "",
-    ios: "",
+    mac: "https://apps.apple.com/app/id6762287923",
+    ios: "https://apps.apple.com/app/id6762287923",
   },
 };
