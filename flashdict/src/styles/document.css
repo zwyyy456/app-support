@@ -7,13 +7,16 @@
 .document-content p, .document-content li { color: #aab3c2; font-size: .9375rem; line-height: 1.9; overflow-wrap: anywhere; }
 .document-content p { margin-block: 15px; }
 .document-content li + li { margin-top: 12px; }
-.document-content ul { padding-left: 22px; }
+.document-content ul, .document-content ol { padding-left: 22px; }
 .document-content strong { color: #dbe5f4; font-weight: 550; }
 .document-content a:not(.document-back) { color: #a1c6f7; text-decoration: underline; text-underline-offset: 4px; }
 .document-content a:hover { color: white; }
 .document-content > .muted { font-size: .8125rem; color: #9ca7b8; }
 .document-content .document-intro { margin-top: 18px; }
 .document-content .support-note { padding: 14px 18px; border-left: 2px solid #6c9cda; background: #699fec0a; font-size: .8125rem; }
+.document-content .support-steps { list-style: none; padding: 0; counter-reset: support-step; }
+.document-content .support-steps li { position: relative; padding-left: 44px; counter-increment: support-step; }
+.document-content .support-steps li::before { content: counter(support-step, decimal-leading-zero); position: absolute; left: 0; top: 2px; color: #91baff; font-size: .75rem; font-variant-numeric: tabular-nums; }
 @media (max-width: 600px) {
   .document-main { padding-block: 28px 45px; }
   .document-back { margin-bottom: 23px; }

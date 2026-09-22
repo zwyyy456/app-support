@@ -6,16 +6,46 @@ import Document from '../layouts/Document.astro';
   description="FlashDict 使用支持"
 >
 <h1>FlashDict 支持</h1>
-      <p class="document-intro">导入词典、同步闪卡、恢复购买。从这里找到答案。</p>
+      <p class="document-intro">从阅读原句查词，到导入词典、创建闪卡与跨设备复习。从这里找到对应步骤。</p>
 
-      <h2>常见问题</h2>
+      <h2>获取原句并创建闪卡</h2>
+      <ol class="support-steps">
+        <li><strong>获取原句。</strong> 在 Safari 和 Firefox 中通过扩展查词时，FlashDict 会自动提取单词所在的句子。在其他 App 中，可以选中一句话，通过系统分享或 macOS 服务发送到 FlashDict。</li>
+        <li><strong>点选单词。</strong> 原句窗口打开后，点击你关心的词。App 会使用词典管理中排序最靠前、已经启用并可用的 MDX 词典查询。</li>
+        <li><strong>选择义项。</strong> 对于已经适配义项提取的词典，点击具体释义旁的添加按钮。单词、原句、当前义项与可用的来源信息会一起保存到闪卡。</li>
+      </ol>
+      <p class="support-note">浏览器取词需要安装对应扩展。系统分享和 macOS 服务是否可用，取决于原 App 是否支持相应的系统功能。FlashDict 不会在后台读取其他 App 的阅读内容。</p>
+
+      <h2>导入与管理本地词典</h2>
       <ul>
-        <li><strong>如何导入词典？</strong> 在应用内按提示选择你已经合法拥有的 MDX/MDD 词典文件进行导入。</li>
-        <li><strong>免费版能导入多少本外部词典？</strong> 免费版最多可同时启用 2 本外部 MDX 词典。</li>
+        <li><strong>如何导入词典？</strong> 在词典管理中选择包含词典的目录。FlashDict 会扫描该目录及其子目录中的 MDX 词典与配套资源。请仅使用你合法拥有的文件。</li>
+        <li><strong>免费版能使用多少本外部词典？</strong> 导入数量不受此限制，但最多可同时启用 2 本用户导入的外部词典。</li>
+        <li><strong>为什么义项旁没有添加按钮？</strong> 按义项制卡依赖词典已有提取适配。未适配时仍可查阅词条，并使用收藏入口创建包含整个词典内容的词典闪卡。</li>
+        <li><strong>可以在词典正文里继续查词吗？</strong> 可以。在设置中启用对应选项后，双击词典正文中的单词即可继续查询。</li>
         <li><strong>为什么另一台 Mac 没有自动显示词典？</strong> 词典文件本身不会通过 iCloud 同步。你需要在每台设备上分别导入并授权访问本地词典文件。</li>
-        <li><strong>如何同步闪卡？</strong> 请确保两台设备登录同一个 iCloud 账号，并在应用中启用 iCloud 同步。</li>
+      </ul>
+
+      <h2>闪卡、复习与同步</h2>
+      <ul>
+        <li><strong>免费版每天可以创建多少闪卡？</strong> 每台设备按本地日历日计算，最多成功创建 10 张闪卡。查词和复习不受这个数量限制。</li>
+        <li><strong>闪卡如何安排复习？</strong> 先尝试回忆，再显示答案并根据记忆情况评分。App 使用 FSRS-6，根据每张卡片的学习状态安排下次复习。</li>
+        <li><strong>如何同步闪卡？</strong> 请确保设备登录同一个 iCloud 账号，并在应用中启用 iCloud 同步。闪卡和复习进度可以同步，词典文件及图片、音频资源不会同步。</li>
         <li><strong>为什么另一台设备能看到卡片但资源不完整？</strong> 如果该设备没有对应词典文件，文本内容可能仍可阅读，但图片、音频或部分资源会降级显示。</li>
-        <li><strong>如何恢复购买？</strong> 请在应用内会员相关页面使用“恢复购买”功能，并确保当前 Apple ID 与购买时一致。</li>
+        <li><strong>可以导入 Anki 卡片吗？</strong> 当前导入、导出使用 FlashDict 自己的 JSON 格式，不直接支持 APKG。FSRS 是复习调度算法，并不代表文件格式与 Anki 互通。</li>
+      </ul>
+
+      <h2>购买与恢复</h2>
+      <ul>
+        <li><strong>会员解锁什么？</strong> 解除外部词典同时启用数量和每日成功创建闪卡数量的免费额度限制。实际可购买方案与价格以 App Store 为准。</li>
+        <li><strong>如何恢复购买？</strong> 请在 App 内会员页面使用“恢复购买”，并确认当前 Apple ID 与购买时一致。</li>
+      </ul>
+
+      <h2>快速排查</h2>
+      <ul>
+        <li><strong>浏览器取词没有反应：</strong>确认已经安装并启用对应的 Safari 或 Firefox 扩展，并检查 FlashDict 是否正在运行。</li>
+        <li><strong>分享或服务菜单里没有 FlashDict：</strong>先确认来源 App 支持选择并分享文本；在系统扩展或服务设置中确认对应入口已启用。</li>
+        <li><strong>原句窗口没有查到释义：</strong>确认至少有一本 MDX 词典已经完成索引、处于启用状态，并将希望使用的词典排在可用词典的最前面。</li>
+        <li><strong>词典突然不可用：</strong>如果文件或目录被移动，请在词典管理中重新授权或重新选择它所在的目录。</li>
       </ul>
 
       <h2>还需要帮助？</h2>
@@ -36,5 +66,5 @@ import Document from '../layouts/Document.astro';
       </ul>
 
       <h2>English Summary</h2>
-      <p>For support, contact <a href="mailto:zwyyy456@foxmail.com">zwyyy456@foxmail.com</a>. Dictionary files must be imported separately on each device. Flashcard sync requires the same iCloud account and iCloud sync enabled in the app.</p>
+      <p>For support, contact <a href="mailto:zwyyy456@foxmail.com">zwyyy456@foxmail.com</a>. The Safari and Firefox extensions can extract the sentence containing a looked-up word. In other apps, send selected text to FlashDict through macOS Services or the iOS/iPadOS share sheet. Dictionary files must be imported separately on each device. Flashcard sync requires the same iCloud account and iCloud sync enabled in the app.</p>
 </Document>
