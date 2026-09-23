@@ -416,7 +416,7 @@ input::placeholder { color:#93939f; opacity:1; }
 .download-app-icon { width:80px; height:80px; margin:0 auto 29px; }
 .download-app-icon .brand-symbol { width:80px; height:80px; border-radius:19px; box-shadow:0 0 70px #086dfa26,0 10px 25px #0009; }
 .download-hero .eyebrow { justify-content:center; }
-.download-hero h1 { font-size:59px; margin-top:25px; letter-spacing:-2.5px; }
+.download-hero h1 { font-size:48px; margin-top:25px; letter-spacing:-1.9px; }
 .download-hero>.fine-print { margin-top:17px; }
 .download-card { max-width:465px; margin:35px auto 0; text-align:left; border:1px solid #303640; border-radius:12px; padding:25px; background:linear-gradient(135deg,#171a20,#111216); }
 .download-card-top { display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:12px; }
@@ -710,7 +710,7 @@ input::placeholder { color:#93939f; opacity:1; }
   .download-hero { padding-top:52px; }
   .download-app-icon { width:65px; height:65px; }
   .download-app-icon .brand-symbol { width:65px; height:65px; border-radius:19px; }
-  .download-hero h1 { font-size:41px; letter-spacing:-1.6px; }
+  .download-hero h1 { font-size:34px; letter-spacing:-1.2px; }
   .download-hero .eyebrow { font-size:9px; }
   .download-card { padding:20px; margin-top:28px; }
   .download-card h2 { font-size:20px; }
