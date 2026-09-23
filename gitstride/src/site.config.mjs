@@ -23,7 +23,7 @@ export const site = {
     fileSize: '',
   },
   appStoreUrl: '',
-  supportEmail: '',
+  supportEmail: 'zwyyy456@foxmail.com',
   minMacOS: '14',
   // Add real 1200×630 social cards to public/images and set these paths.
   socialImage: { en: '', 'zh-cn': '' },
