@@ -4,7 +4,7 @@ import { access } from 'node:fs/promises';
 import { join } from 'node:path';
 const problems=[];
 if(!site.release.url) problems.push('Set site.release.url to the real HTTPS installer URL.');
-if(!site.indexable) problems.push('After review, enable SITE_INDEXABLE=true for production.');
+if(!site.indexable) problems.push('Build with VERCEL_ENV=production, set SITE_INDEXABLE=true, or remove an explicit SITE_INDEXABLE=false.');
 for(const key of ['workspace','menubar','issue']) {
   for(const locale of ['en','zh-cn']) {
     const item=media[key][locale];

@@ -5,10 +5,9 @@ if (existsSync('.env') && typeof process.loadEnvFile === 'function') process.loa
 /** Public site configuration. Never place an OAuth secret or access token here. */
 export const site = {
   name: 'GitStride',
-  nameZh: '迹程',
   url: process.env.SITE_URL || 'https://gitstride.hyperseek.tech',
-  indexable: process.env.SITE_INDEXABLE === 'true',
-  privacyReviewed: false,
+  indexable: process.env.SITE_INDEXABLE === 'true' || (process.env.SITE_INDEXABLE !== 'false' && process.env.VERCEL_ENV === 'production'),
+  privacyReviewed: true,
   github: 'https://github.com/zwyyy456/gitstride',
   issues: 'https://github.com/zwyyy456/gitstride/issues',
   releases: 'https://github.com/zwyyy456/gitstride/releases',
@@ -17,9 +16,12 @@ export const site = {
   workerGuide: 'https://github.com/zwyyy456/gitstride/blob/main/Automation/README.md',
   license: 'https://github.com/zwyyy456/gitstride/blob/main/LICENSE',
   origin: 'https://github.com/yogesharc/GitBoard',
-  // Intentionally empty. The download page presents a labeled placeholder,
-  // never an invented installer or a misleading "download succeeded" message.
-  release: { url: '', version: '', date: '', fileSize: '' },
+  release: {
+    url: 'https://github.com/zwyyy456/GitStride/releases/download/v1.0.0/GitStride-1.0.zip',
+    version: '1.0',
+    date: '',
+    fileSize: '',
+  },
   appStoreUrl: '',
   supportEmail: '',
   minMacOS: '14',

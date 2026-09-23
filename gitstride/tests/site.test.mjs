@@ -64,11 +64,15 @@ test('Language switch keeps the document topic',()=>{
     assert.ok(html.includes(`href="${expected}" data-language-link`),route.path);
   }
 });
-test('Draft releases cannot claim a successful download',()=>{
+test('Release download matches configured availability',()=>{
+  const html=pages.get('/download');
   if(!site.release.url){
-    const html=pages.get('/download');
     assert.ok(html.includes('Download link not configured'));
     assert.ok(/<button[^>]*\bdisabled\b/.test(html));
+  } else {
+    assert.ok(html.includes(`href="${site.release.url}"`));
+    assert.ok(html.includes('unzip the archive'));
+    assert.ok(!html.includes('open the DMG'));
   }
   if(!site.indexable)assert.ok(robotsTxt().includes('Disallow: /'));
   assert.equal((sitemapXml().match(/<url>/g)||[]).length,22);

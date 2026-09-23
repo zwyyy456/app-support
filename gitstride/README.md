@@ -63,17 +63,17 @@ Put this directory at `app-support/gitstride/`, alongside `flashdict/` and `zend
 
 A zero-dependency deployment option is provided in `docs/vercel.static.json`: copy it over the project-level `vercel.json` to use the tested Node renderer instead of Astro. It does not modify the content or design.
 
-## Configure before publishing
+## Release and site configuration
 
 Edit `src/site.config.mjs`:
 
-- Confirm `site.url` or set `SITE_URL`.
-- Set `release.url` to the actual HTTPS installer. Optional version/date/file-size labels are only displayed when configured.
+- The canonical URL is `https://gitstride.hyperseek.tech`; override it with `SITE_URL` only for another domain.
+- The download button links to the GitHub Release ZIP for GitStride 1.0. Update `release.url` and `release.version` together for future releases. Optional date/file-size labels are displayed only when configured.
 - Optionally set `appStoreUrl`, `supportEmail`, and localized social images.
-- Review the privacy text, then set `privacyReviewed: true`.
-- Set `SITE_INDEXABLE=true` only after the provisional content is ready to publish. Preview mode defaults to noindex and robots Disallow.
+- Review the privacy text when product behavior changes; `privacyReviewed` reflects the current Release build.
+- Production builds are indexable by default. Preview builds remain noindex with robots Disallow. Set `SITE_INDEXABLE=false` to disable indexing explicitly.
 
-An unconfigured release is explicitly labeled on the download page. No dead `#` links, made-up version numbers, fake successful downloads, store badges, customer logos or testimonials are included.
+If the release URL is removed, the download page explicitly labels it as unconfigured. No dead `#` links, fake successful downloads, store badges, customer logos or testimonials are included.
 
 ## Replace product visuals
 

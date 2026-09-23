@@ -67,25 +67,25 @@ app-support/
 
 **零依赖部署备选**：把 `docs/vercel.static.json` 复制为本项目的 `vercel.json`，即可改用已验证的 Node 静态渲染器构建，页面内容保持一致。
 
-## 发布链接与域名在哪里改
+## 发布链接与域名
 
 统一编辑 `src/site.config.mjs`：
 
 ```js
 release: {
-  url: '',        // 填写真实 HTTPS 安装包链接
-  version: '',    // 不填写则不虚构版本号
+  url: 'https://github.com/zwyyy456/GitStride/releases/download/v1.0.0/GitStride-1.0.zip',
+  version: '1.0',
   date: '',
   fileSize: '',
 },
 appStoreUrl: '',  // 没有正式地址就不显示商店入口
 supportEmail: '',
-privacyReviewed: false,
+privacyReviewed: true,
 ```
 
-`release.url` 为空时，下载页显示明确的“发布链接占位”，按钮禁用，不会假装已经下载。GitHub 源码、Issues 和 Releases 页面仍有真实入口。
+下载按钮现已指向 GitStride 1.0 的 GitHub Release ZIP，安装说明也按 ZIP 解压后移动 App 到“应用程序”编写。后续发布时要同时更新 `release.url` 和 `release.version`。若将 `release.url` 清空，下载页会显示占位并禁用按钮。
 
-域名在 `site.url` 或 `SITE_URL` 中修改。站点默认 **noindex**，以免占位内容被误当成正式发布。上线前核对隐私文案，设置 `privacyReviewed: true`，再按需设置 `SITE_INDEXABLE=true`。
+正式域名是 `gitstride.hyperseek.tech`，可通过 `site.url` 或 `SITE_URL` 修改。生产环境默认允许索引，预览环境仍为 **noindex**；如需暂停索引，设置 `SITE_INDEXABLE=false`。产品行为变化时要重新核对隐私文案。
 
 `.env.example` 可复制为 `.env`；这些都是公开的构建设置，不是密钥。
 
