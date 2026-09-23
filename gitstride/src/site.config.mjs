@@ -5,7 +5,8 @@ if (existsSync('.env') && typeof process.loadEnvFile === 'function') process.loa
 /** Public site configuration. Never place an OAuth secret or access token here. */
 export const site = {
   name: 'GitStride',
-  url: process.env.SITE_URL || 'https://gitstride.zwyyy456.tech',
+  nameZh: '迹程',
+  url: process.env.SITE_URL || 'https://gitstride.hyperseek.tech',
   indexable: process.env.SITE_INDEXABLE === 'true',
   privacyReviewed: false,
   github: 'https://github.com/zwyyy456/gitstride',
