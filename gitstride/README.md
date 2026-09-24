@@ -68,7 +68,7 @@ A zero-dependency deployment option is provided in `docs/vercel.static.json`: co
 Edit `src/site.config.mjs`:
 
 - The canonical URL is `https://gitstride.hyperseek.tech`; override it with `SITE_URL` only for another domain.
-- The download button links to the GitHub Release ZIP for GitStride 1.0. Update `release.url` and `release.version` together for future releases. Optional date/file-size labels are displayed only when configured.
+- The download button links to the GitHub Release ZIP for GitStride 1.0.1. Update `release.url` and `release.version` together for future releases. Optional date/file-size labels are displayed only when configured.
 - Optionally set `appStoreUrl`, `supportEmail`, and localized social images.
 - Review the privacy text when product behavior changes; `privacyReviewed` reflects the current Release build.
 - Production builds are indexable by default. Preview builds remain noindex with robots Disallow. Set `SITE_INDEXABLE=false` to disable indexing explicitly.

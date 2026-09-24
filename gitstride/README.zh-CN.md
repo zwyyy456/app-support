@@ -73,8 +73,8 @@ app-support/
 
 ```js
 release: {
-  url: 'https://github.com/zwyyy456/GitStride/releases/download/v1.0.0/GitStride-1.0.zip',
-  version: '1.0',
+  url: 'https://github.com/zwyyy456/gitstride/releases/download/v1.0.1/GitStride-1.0.1.zip',
+  version: '1.0.1',
   date: '',
   fileSize: '',
 },
@@ -83,7 +83,7 @@ supportEmail: '',
 privacyReviewed: true,
 ```
 
-下载按钮现已指向 GitStride 1.0 的 GitHub Release ZIP，安装说明也按 ZIP 解压后移动 App 到“应用程序”编写。后续发布时要同时更新 `release.url` 和 `release.version`。若将 `release.url` 清空，下载页会显示占位并禁用按钮。
+下载按钮现已指向 GitStride 1.0.1 的 GitHub Release ZIP，安装说明也按 ZIP 解压后移动 App 到“应用程序”编写。后续发布时要同时更新 `release.url` 和 `release.version`。若将 `release.url` 清空，下载页会显示占位并禁用按钮。
 
 正式域名是 `gitstride.hyperseek.tech`，可通过 `site.url` 或 `SITE_URL` 修改。生产环境默认允许索引，预览环境仍为 **noindex**；如需暂停索引，设置 `SITE_INDEXABLE=false`。产品行为变化时要重新核对隐私文案。
 

@@ -17,8 +17,8 @@ export const site = {
   license: 'https://github.com/zwyyy456/gitstride/blob/main/LICENSE',
   origin: 'https://github.com/yogesharc/GitBoard',
   release: {
-    url: 'https://github.com/zwyyy456/GitStride/releases/download/v1.0.0/GitStride-1.0.zip',
-    version: '1.0',
+    url: 'https://github.com/zwyyy456/gitstride/releases/download/v1.0.1/GitStride-1.0.1.zip',
+    version: '1.0.1',
     date: '',
     fileSize: '',
   },
