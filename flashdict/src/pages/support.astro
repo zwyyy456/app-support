@@ -1,5 +1,6 @@
 ---
 import Document from '../layouts/Document.astro';
+import ProductVideo from '../components/ProductVideo.astro';
 ---
 <Document
   title="FlashDict 支持"
@@ -15,6 +16,23 @@ import Document from '../layouts/Document.astro';
         <li><strong>选择义项。</strong> 对于已经适配义项提取的词典，点击具体释义旁的添加按钮。单词、原句、当前义项与可用的来源信息会一起保存到闪卡。</li>
       </ol>
       <p class="support-note">浏览器取词需要安装对应扩展。系统分享和 macOS 服务是否可用，取决于原 App 是否支持相应的系统功能。FlashDict 不会在后台读取其他 App 的阅读内容。</p>
+
+      <h2 id="browser-setup">连接浏览器并开始取词</h2>
+      <p>下面以 macOS 上的 Helium 为例，演示扩展已安装后的连接与使用。请先安装对应浏览器扩展，并准备好可用的 MDX 词典。</p>
+      <ol class="support-steps">
+        <li><strong>连接浏览器。</strong>打开 FlashDict 设置中的「浏览器扩展」，点击 Helium 旁的「连接」。</li>
+        <li><strong>授权文件夹。</strong>按照弹窗提示选择 <code>net.imput.helium</code> 文件夹，点击「打开」。其他浏览器的授权目录以各自提示为准。</li>
+        <li><strong>尝试取词。</strong>在扩展设置中确认取词方式，再回到网页触发查询；出现带原句的查词窗口，即可继续选择义项制卡。</li>
+      </ol>
+      <ProductVideo
+        id="helium-video"
+        src="/videos/helium-setup.mp4"
+        poster="/videos/helium-setup.jpg"
+        title="Helium：连接授权与首次取词"
+        duration="64 秒"
+        description="包含文件夹授权、取词设置和原句制卡；不包含扩展安装过程。"
+      />
+      <p><a href="/#context">查看 Safari 原句制卡演示 →</a></p>
 
       <h2>导入与管理本地词典</h2>
       <ul>

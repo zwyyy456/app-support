@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string;
+  src: string;
+  poster: string;
+  title: string;
+  duration: string;
+  description: string;
+}
+const { id, src, poster, title, duration, description } = Astro.props;
+---
+<figure class="product-video" aria-labelledby={`${id}-title`}>
+  <div class="video-heading">
+    <strong id={`${id}-title`}>{title}</strong>
+    <span>实际录屏 · {duration}</span>
+  </div>
+  <video controls playsinline preload="none" poster={poster} width="1920" height="1248" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}>
+    <source src={src} type="video/mp4" />
+    <a href={src}>下载视频观看</a>
+  </video>
+  <figcaption id={`${id}-description`}>{description} <span>含中文字幕，可全屏观看。</span></figcaption>
+</figure>
+
+<style>
+  .product-video { margin: 28px 0 0; min-width: 0; }
+  .video-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .video-heading strong { color: #dbe5f4; font-size: .9375rem; font-weight: 550; }
+  .video-heading span { color: var(--muted); font-size: .75rem; white-space: nowrap; }
+  video { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: #101319; }
+  video:focus-visible { outline: 2px solid #91baff; outline-offset: 4px; }
+  figcaption { margin-top: 12px; color: #9ca7b8; font-size: .8125rem; line-height: 1.8; }
+  figcaption span { display: inline-block; }
+  @media (max-width: 600px) {
+    .video-heading { align-items: flex-start; flex-direction: column; gap: 5px; }
+    video { border-radius: 8px; }
+  }
+</style>

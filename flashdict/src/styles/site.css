@@ -67,28 +67,6 @@ h1 > span { color: #d9e8ff; }
 
 /* The first demo makes the reading context, selected meaning and saved card explicit. */
 .context-section { padding-block: 64px 72px; border-top: 1px solid var(--line); }
-.context-demo { display: grid; grid-template-columns: minmax(0, 1.08fr) 60px minmax(0, .92fr) 60px minmax(0, 1.05fr); align-items: stretch; margin-top: 38px; }
-.context-step { min-width: 0; padding: 24px; border: 1px solid #ffffff17; border-radius: 10px; background: #101319; }
-.context-step-label { display: flex; align-items: center; gap: 10px; color: #a5b2c4; font-size: .6875rem; letter-spacing: .02em; }
-.context-step-label > span:first-child { color: #85b6fa; font-variant-numeric: tabular-nums; }
-.context-source blockquote, .context-card blockquote { margin: 29px 0 20px; color: #dce8f8; font: 1.18rem/1.75 Georgia, serif; }
-.context-source mark { padding: 2px 5px 3px; border-radius: 4px; color: #e8f3ff; background: #316aa85e; }
-.context-step > p { font-size: .8125rem; }
-.context-entry-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 19px; }
-.context-entry-tags span { padding: 6px 9px; border: 1px solid #ffffff14; border-radius: 999px; color: #9eb3ce; background: #ffffff04; font-size: .6875rem; }
-.context-arrow { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #7caff0; }
-.context-arrow > span { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #75a9ef30; border-radius: 50%; background: #192b434d; }
-.context-arrow small { color: #8796a9; font-size: .625rem; white-space: nowrap; }
-.context-word { display: flex; align-items: baseline; gap: 10px; margin-top: 31px; }
-.context-word strong { font: 600 2rem/1.2 Georgia, serif; letter-spacing: -.02em; }
-.context-word span { color: #8aa8cf; font: italic .8125rem Georgia, serif; }
-.context-meaning .context-definition { margin: 25px 0 13px; color: #e1ebf8; font-size: 1rem; }
-.context-card { border-color: #75abf052; background: linear-gradient(145deg, #19283b, #121920); }
-.context-card-word { display: block; margin-top: 26px; font: 600 1.65rem/1.2 Georgia, serif; }
-.context-card blockquote { margin-block: 18px; padding-left: 13px; border-left: 2px solid #6b9ede6b; font-size: .9375rem; }
-.context-card blockquote em { color: #b9d6fb; }
-.context-card .context-card-meaning { color: #e1ebf8; font-size: .9375rem; }
-.context-card-footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 23px; padding-top: 15px; border-top: 1px solid var(--line); color: #9fb9db; font-size: .6875rem; }
 .context-caption { margin-top: 15px; color: #8996a8; font-size: .75rem; }
 .experience-header { display: flex; align-items: center; gap: 20px; padding-block: 0 16px; }
 .product-tabs { display: flex; gap: 5px; }
@@ -222,8 +200,6 @@ h1 > span { color: #d9e8ff; }
   .nav-links { gap: 20px; }
   .section-heading { gap: 30px; }
   .section-heading > p { max-width: 300px; }
-  .context-demo { grid-template-columns: minmax(0, 1.05fr) 42px minmax(0, .9fr) 42px minmax(0, 1fr); }
-  .context-step { padding: 19px; }
   .devices-grid { gap: 45px; }
   .faq-section { gap: 45px; }
   .site-footer > span { display: none; }
@@ -232,10 +208,6 @@ h1 > span { color: #d9e8ff; }
   .wrap { width: calc(100% - 48px); }
   .nav-cta { display: none; }
   .hero { padding-top: 54px; }
-  .context-demo { grid-template-columns: 1fr; }
-  .context-arrow { flex-direction: row; padding-block: 11px; }
-  .context-arrow > span { transform: rotate(90deg); }
-  .context-arrow small { min-width: 76px; }
   .section-heading { display: block; }
   .section-heading > p { margin-top: 20px; max-width: 540px; }
   .devices-grid { grid-template-columns: 1fr 270px; gap: 28px; }
@@ -268,10 +240,6 @@ h1 > span { color: #d9e8ff; }
   .hero-actions .button { padding-inline: 15px; gap: 12px; font-size: .8125rem; }
   .hero .platform-caption { margin-top: 13px; }
   .context-section { padding-block: 42px; }
-  .context-demo { margin-top: 27px; }
-  .context-step { padding: 19px; }
-  .context-source blockquote { margin-top: 23px; font-size: 1.05rem; }
-  .context-card-footer { align-items: start; flex-direction: column; }
   .context-caption { line-height: 1.7; }
   .experience-header { padding-bottom: 13px; }
   .product-tabs { width: 100%; gap: 8px; }

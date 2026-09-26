@@ -1,5 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
+import ProductVideo from '../components/ProductVideo.astro';
 import { site } from '../site.config.mjs';
 
 const desktopScreenshots = [
@@ -117,30 +118,15 @@ const softwareSchema = {
         <div><div class="section-kicker"><span>01</span> 原句从哪里来</div><h2 id="context-title">浏览器取词时，自动提取原句。<br><span class="muted">其他 App 中，选中句子后发送到 FlashDict。</span></h2></div>
         <p>在弹出的原句查词窗口里，点一下想查的单词，再选择这次用到的释义，就能把单词、原句和释义一起做成闪卡。</p>
       </div>
-      <div class="context-demo" aria-label="从阅读原句到闪卡的流程示意">
-        <article class="context-step context-source">
-          <div class="context-step-label"><span>01</span><span>获取原句</span></div>
-          <blockquote>The committee eventually <mark>shelved</mark> the proposal.</blockquote>
-          <p>浏览器扩展可以自动提取原句；其他 App 可以通过系统分享或 macOS 服务发送。</p>
-          <div class="context-entry-tags"><span>Safari / Firefox 扩展</span><span>系统分享 / macOS 服务</span></div>
-        </article>
-        <div class="context-arrow" aria-hidden="true"><span>→</span><small>点选词语</small></div>
-        <article class="context-step context-meaning">
-          <div class="context-step-label"><span>02</span><span>当前语境的义项</span></div>
-          <div class="context-word"><strong>shelve</strong><span>verb</span></div>
-          <p class="context-definition">搁置；暂缓处理</p>
-          <p>在优先词典中找到释义，只选择这句话需要的义项。</p>
-        </article>
-        <div class="context-arrow" aria-hidden="true"><span>→</span><small>添加闪卡</small></div>
-        <article class="context-step context-card">
-          <div class="context-step-label"><span>03</span><span>带原句的闪卡</span></div>
-          <strong class="context-card-word">shelve</strong>
-          <blockquote>The committee eventually <em>shelved</em> the proposal.</blockquote>
-          <p class="context-card-meaning">搁置；暂缓处理</p>
-          <div class="context-card-footer"><span>原句已附加</span><span>FSRS-6 安排复习</span></div>
-        </article>
-      </div>
-      <p class="context-caption">流程示意 · 浏览器取词需要安装扩展；其他 App 是否可用，取决于它是否支持系统分享或 macOS 服务。释义由排序最靠前且可用的 MDX 词典提供。</p>
+      <ProductVideo
+        id="context-video"
+        src="/videos/contextual-flashcard.mp4"
+        poster="/videos/contextual-flashcard.jpg"
+        title="从网页中的一个词，到带原句的闪卡"
+        duration="45 秒"
+        description="Safari 实际操作：取词时自动带入原句，选择当前义项，再查看保存后的闪卡。"
+      />
+      <p class="context-caption">浏览器取词需要安装对应扩展；按义项制卡需要词典已有适配。<a class="text-link" href="/support#browser-setup">查看浏览器连接教程 →</a></p>
     </section>
 
     <section class="detail-section wrap" id="features" aria-labelledby="detail-title">
