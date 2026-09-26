@@ -8,9 +8,10 @@ Hyperseek 应用的静态产品、隐私政策、支持和第三方许可页面�
 | --- | --- | --- |
 | `flashdict/` | `app-support-flashdict` | `flashdict.hyperseek.tech` |
 | `zendo/` | `app-support-zendo` | `zendo.hyperseek.tech` |
+| `water/` | `app-support-water` | `water.hyperseek.tech` |
 
-同一个 GitHub 仓库需要在 Vercel 中导入两次，每个目录对应一个独立的
-Vercel Project。页面为纯 HTML/CSS，不需要 Node.js 或构建步骤。
+同一个 GitHub 仓库按产品分别导入 Vercel，每个目录对应一个独立的
+Vercel Project。Zendo 与 water 页面为纯 HTML/CSS，不需要 Node.js 或构建步骤。
 
 正式页面：
 
@@ -19,6 +20,9 @@ Vercel Project。页面为纯 HTML/CSS，不需要 Node.js 或构建步骤。
 - <https://flashdict.hyperseek.tech/licenses>
 - <https://zendo.hyperseek.tech/privacy>
 - <https://zendo.hyperseek.tech/support>
+- <https://water.hyperseek.tech/>
+- <https://water.hyperseek.tech/privacy>
+- <https://water.hyperseek.tech/support>
 
 ## 1. 推送到 GitHub
 
@@ -26,7 +30,7 @@ Vercel Project。页面为纯 HTML/CSS，不需要 Node.js 或构建步骤。
 `.gitignore` 或 License。然后在本地执行：
 
 ```bash
-cd /Users/zwyyy/code/app-support
+cd /Users/zwyyy/code/ts/app-support
 git remote add origin git@github.com:zwyyy456/app-support.git
 git push -u origin main
 ```
@@ -79,9 +83,19 @@ git push -u origin main
 7. 在 **Settings → Domains** 添加 `zendo.hyperseek.tech`。
 8. 按 Vercel 页面提示，在 DNS 服务商中添加对应 CNAME 记录。
 
-## 5. 上线验收
+## 5. 部署 water
 
-两个域名生效后检查：
+从同一个 GitHub 仓库创建 `app-support-water` Vercel Project，Root Directory 选择
+`water`。Framework Preset 选择 `Other`，Build Command 和 Install Command 留空，
+Output Directory 填写 `.`。部署后在 **Settings → Domains** 添加
+`water.hyperseek.tech`，按 Vercel 页面提示配置 DNS。中文页面位于 `/`、
+`/privacy`、`/support`；英文页面位于 `/en`、`/en/privacy`、`/en/support`。
+
+向 App Store Connect 提交审核前，确认六个页面均可公开访问。
+
+## 6. 上线验收
+
+各域名生效后检查：
 
 ```bash
 curl -I https://flashdict.hyperseek.tech/privacy
@@ -89,6 +103,10 @@ curl -I https://flashdict.hyperseek.tech/support
 curl -I https://flashdict.hyperseek.tech/licenses
 curl -I https://zendo.hyperseek.tech/privacy
 curl -I https://zendo.hyperseek.tech/support
+curl -I https://water.hyperseek.tech/
+curl -I https://water.hyperseek.tech/privacy
+curl -I https://water.hyperseek.tech/support
+curl -I https://water.hyperseek.tech/en/privacy
 ```
 
 预期返回 `200`。还应在浏览器中检查：
@@ -102,7 +120,7 @@ curl -I https://zendo.hyperseek.tech/support
 
 ## 后续发布
 
-两个 Vercel Project 都连接 `main` 分支后，后续只需提交并推送：
+各 Vercel Project 都连接 `main` 分支后，后续只需提交并推送：
 
 ```bash
 git add .
@@ -110,8 +128,7 @@ git commit -m "docs: update support pages"
 git push
 ```
 
-Vercel 会为两个 Project 分别创建部署。由于这是不带 JavaScript workspace
-配置的纯静态仓库，一次仓库提交可能触发两个 Project 都重新部署。
+Vercel 会为各 Project 分别创建部署。一次仓库提交可能触发多个 Project 重新部署。
 
 每个产品目录中的 `vercel.json` 启用了 `cleanUrls`，所以
 `privacy.html` 会以 `/privacy` 形式访问。
