@@ -1,0 +1,32 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>zendo app icon mark - content centered layered transparent source</title>
+  <desc>Layered transparent source for the zendo ledger icon. This version gives the ledger page a taller proportion and separates the audit marker from the value bars.</desc>
+
+  <!-- Optional preview background, intentionally disabled to keep the SVG transparent:
+  <rect id="app-icon-background" width="1024" height="1024" rx="228" fill="#F6F8F8"/>
+  -->
+
+  <g id="page-stack">
+    <rect id="back-page" x="238" y="220" width="620" height="632" rx="54" fill="#DCE6E7"/>
+    <rect id="middle-page" x="212" y="192" width="642" height="654" rx="56" fill="#F0F4F4"/>
+    <rect id="front-page" x="187" y="164" width="650" height="666" rx="56" fill="#FFFFFF"/>
+  </g>
+
+  <g id="header-marks">
+    <rect id="header-line-primary" x="264" y="252" width="156" height="17" rx="8.5" fill="#E5EDEE"/>
+    <rect id="header-line-secondary" x="264" y="286" width="96" height="15" rx="7.5" fill="#F0F4F4"/>
+  </g>
+
+  <g id="value-bars">
+    <rect id="investment-bar" x="264" y="346" width="382" height="76" rx="38" fill="#173B59"/>
+    <rect id="maintenance-bar" x="264" y="452" width="338" height="76" rx="38" fill="#6FA7A9"/>
+    <rect id="recovery-bar" x="264" y="558" width="404" height="76" rx="38" fill="#D9A441"/>
+    <rect id="drain-bar" x="264" y="664" width="286" height="76" rx="38" fill="#C96F5F"/>
+  </g>
+
+  <g id="audit-marker">
+    <circle id="audit-outer-ring" cx="744" cy="394" r="66" fill="#173B59"/>
+    <circle id="audit-inner-cutout" cx="744" cy="394" r="42" fill="#FFFFFF"/>
+    <circle id="audit-value-dot" cx="744" cy="394" r="18" fill="#D9A441"/>
+  </g>
+</svg>
