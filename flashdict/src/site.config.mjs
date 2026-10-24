@@ -11,4 +11,23 @@ export const site = {
     mac: "https://apps.apple.com/app/id6762287923",
     ios: "https://apps.apple.com/app/id6762287923",
   },
+  // Browser extension store listings. Leave a value empty to show the browser
+  // name without a link. The Safari extension ships inside the App Store app.
+  extensions: {
+    chrome: "",
+    edge: "",
+    firefox: "",
+    safari: "https://apps.apple.com/app/id6762287923",
+  },
+  ogImage: {
+    zh: "/assets/og-zh.jpg",
+    en: "/assets/og-en.jpg",
+  },
 };
+
+export const browsers = [
+  { key: "chrome", name: "Chrome" },
+  { key: "edge", name: "Edge" },
+  { key: "firefox", name: "Firefox" },
+  { key: "safari", name: "Safari" },
+];
