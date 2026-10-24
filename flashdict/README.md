@@ -112,9 +112,9 @@ public/
 
 `src/content/dictionaries.mjs` 按系列汇总 zdict `FlashDict/Resources/DictExtractors/simple-src/specs/registry.json` 中的适配词典，并列出 `BundledDictionaries/manifest.json` 中的内置词典。新增适配后同步更新数量与系列。
 
-## 录屏与隐私
+## 录屏
 
-`public/videos/` 中的两段教程录屏已裁掉 macOS 菜单栏和浏览器标签栏，Helium 录屏的侧边栏做了模糊处理。重新录制时请使用干净的浏览器配置，避免出现个人标签页、账号名和通知。
+`public/videos/hero-loop.mp4` 是从 `contextual-flashcard.mp4` 中剪出的 8 秒片段（弹窗与卡片部分），用于首屏循环播放。重新录制教程视频时，建议使用干净的浏览器配置，避免出现个人标签页、账号名和通知。
 
 ## 分享预览图
 
