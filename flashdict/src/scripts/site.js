@@ -39,27 +39,36 @@
     });
   });
 
-  lightboxClose.addEventListener('click', () => lightbox.close());
-  lightbox.addEventListener('click', event => {
-    const bounds = lightbox.getBoundingClientRect();
-    const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
-    if (!inside) lightbox.close();
-  });
-  lightbox.addEventListener('close', () => lightboxTrigger?.focus());
+  // Support and legal pages have no lightbox; skip its wiring so the menu still works there.
+  if (lightbox) {
+    lightboxClose.addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('click', event => {
+      const bounds = lightbox.getBoundingClientRect();
+      const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+      if (!inside) lightbox.close();
+    });
+    lightbox.addEventListener('close', () => lightboxTrigger?.focus());
+  }
 
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#nav-links');
-  function closeMenu() { menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', '打开导航菜单'); nav.classList.remove('is-open'); }
+  function closeMenu() { menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', menu.dataset.openLabel); nav.classList.remove('is-open'); }
   menu.addEventListener('click', () => {
     const open = menu.getAttribute('aria-expanded') !== 'true';
     menu.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
+    menu.setAttribute('aria-label', open ? menu.dataset.closeLabel : menu.dataset.openLabel);
     nav.classList.toggle('is-open', open);
   });
   nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); } });
   const mobileLayout = matchMedia('(max-width: 600px)');
   mobileLayout.addEventListener('change', closeMenu);
+
+  // Respect reduced-motion preferences for the looping hero recording.
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll('video[data-autoplay]').forEach(video => {
+    if (reduceMotion.matches) { video.removeAttribute('autoplay'); video.pause(); video.controls = true; }
+  });
 
   // Support and legal pages only need the shared navigation.
   if (!tabs.length) return;
