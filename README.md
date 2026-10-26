@@ -9,6 +9,7 @@ Hyperseek 应用的静态产品、隐私政策、支持和第三方许可页面�
 | `flashdict/` | `app-support-flashdict` | `flashdict.hyperseek.tech` |
 | `zendo/` | `app-support-zendo` | `zendo.hyperseek.tech` |
 | `water/` | `app-support-water` | `water.hyperseek.tech` |
+| `zeepass/` | `app-support-zeepass` | `zeepass.hyperseek.tech` |
 
 同一个 GitHub 仓库按产品分别导入 Vercel，每个目录对应一个独立的
 Vercel Project。Zendo 与 water 页面为纯 HTML/CSS，不需要 Node.js 或构建步骤。
@@ -155,3 +156,7 @@ Vercel 会为各 Project 分别创建部署。一次仓库提交可能触发多�
 - [Deploying Git Repositories](https://vercel.com/docs/git)
 - [Static sites without a build step](https://vercel.com/docs/builds#skipping-the-build-step)
 - [Adding a custom domain](https://vercel.com/kb/guide/how-do-i-add-a-custom-domain-to-my-vercel-project)
+
+## ZeePass
+
+ZeePass 的中英文宣传、隐私政策和支持页面位于 `zeepass/`。使用 Node.js 22+，无第三方依赖。Vercel Root Directory 选择 `zeepass`，Build Command 为 `npm run build`，Output Directory 为 `dist`。详细运行、配置和部署说明见 [zeepass/README.md](zeepass/README.md)。当前 App 尚未发布，网站标注“即将发布”。
