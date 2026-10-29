@@ -6,7 +6,7 @@ import Document from '../layouts/Document.astro';
   description="FlashDict 隐私政策"
 >
 <h1>FlashDict 隐私政策</h1>
-      <p class="muted">最后更新：2026-08-23</p>
+      <p class="muted">最后更新：2026-10-29</p>
 
       <p>FlashDict 是由 Hyperseek 提供的词典与闪卡应用。本政策说明我们如何处理与你使用 FlashDict 相关的信息。</p>
 
@@ -30,36 +30,42 @@ import Document from '../layouts/Document.astro';
 
       <h2>4. 浏览器扩展与网页内容</h2>
       <ul>
-        <li><strong>查词：</strong>当你在网页中主动触发查词时，浏览器扩展会读取所选单词和它所在的原句，并在当前网页浮层中显示原句。普通查词只把所选单词通过 Native Messaging 发送给同一台 Mac 上已运行的 FlashDict。</li>
-        <li><strong>原句翻译：</strong>只有你点击“翻译”时，扩展才会把当前原句发送给本机 FlashDict。FlashDict 使用已安装的 Apple 本机翻译模型返回译文，不会为此保存原句或译文，也不会调用你在 FlashDict 中配置的远程翻译来源。</li>
-        <li><strong>添加闪卡：</strong>只有你点击添加义项时，扩展才会把当前原句和完整网页 URL 发送给本机 FlashDict，并作为该闪卡的来源上下文保存。如果你启用 iCloud，该闪卡可同步到你自己的 CloudKit 私有数据库。</li>
-        <li><strong>扩展设置：</strong>双击、Alt 或双击 Alt 等触发方式保存在浏览器同步存储中，可能由浏览器厂商同步到你自己的浏览器账户。</li>
-        <li><strong>连接记录：</strong>Native Host 只记录浏览器、扩展 ID、扩展版本和连接时间，不记录选词、原句、URL 或其他网页内容。</li>
+        <li><strong>查词：</strong>当你通过已启用的双击、划动或光标取词方式触发查词时，扩展会读取所选文本或鼠标所在词语、所在原句（最多 1000 字符）和可获取的网页来源地址，并通过 Native Messaging 发送给同一台 Mac 上已运行的 FlashDict，用于原句查词和后续建卡。来源地址可能包含查询参数和片段标识；临时 blob 或 data 文档使用可获取的 HTTP/HTTPS 来源地址，无法取得时不附带地址。扩展不会把每个访问页面发送给 App，也不会持续收集浏览历史。</li>
+        <li><strong>微信读书：</strong>为支持 Canvas 正文取词，专用脚本在已获网站访问授权的微信读书阅读页加载时，记录正文 Canvas 绘制的文字和位置。这些记录仅保留在当前页面内存，不写入扩展存储或上传到开发者服务器；页面卸载后释放。触发查词时，扩展只将命中的词语、原句和来源地址交给本机 App。关闭单项取词开关不会卸载已注入的绘制记录脚本；如需停止页面内的记录，可撤销网站访问权限或停用扩展，并关闭或刷新已打开的阅读页。</li>
+        <li><strong>原句翻译：</strong>原句进入 App 后，翻译按 App 中已启用的服务和设置进行，可能自动开始。使用 Apple 翻译时由系统翻译框架处理；使用已启用的 DeepL 或 OpenAI 兼容远程服务时，待翻译文本会发送给相应服务。详见下方“第三方服务”。</li>
+        <li><strong>添加闪卡：</strong>浏览器触发的原句查词不加入 App 的持久化查词历史。只有你主动创建闪卡时，App 才将该卡片及其原句和可用来源地址保存为闪卡数据；启用 iCloud 后可同步到你自己的 CloudKit 私有数据库。</li>
+        <li><strong>扩展设置：</strong>三种取词方式的开关、触发模式和自定义快捷键保存在浏览器同步存储中，可能由浏览器厂商同步到你自己的浏览器账户。词语、原句、来源地址和 Canvas 文字记录不会写入扩展的同步设置存储。</li>
+        <li><strong>连接记录：</strong>本机连接组件保存浏览器家族、扩展 ID、扩展版本和连接时间，用于建立和显示连接状态；连接记录不包含词语、原句或网页地址。</li>
       </ul>
-      <p>浏览器扩展不包含广告、分析、跟踪或远程代码，也不会把网页内容发送给 Hyperseek 运营的服务器。Native Messaging 只连接同一台 Mac 上随 FlashDict 安装的签名组件，不开放网络端口。</p>
+      <p>浏览器扩展不包含广告、分析追踪或远程遥测，不会把网页内容发送给 Hyperseek 运营的服务器。Native Messaging 连接同一台 Mac 上随 FlashDict 安装的本机组件，不开放网络端口。</p>
 
       <h2>5. iCloud 与 CloudKit</h2>
       <p>如果你启用同步，FlashDict 会使用 Apple 提供的 CloudKit 将部分数据同步到你的 iCloud 私有数据库。该数据由 Apple 代表你存储并与你的 Apple ID 关联。</p>
 
       <h2>6. 第三方服务</h2>
-      <p>FlashDict 依赖 Apple 提供的系统服务，例如 iCloud、CloudKit、App Store、StoreKit 和本机翻译。浏览器触发方式可能通过浏览器厂商的同步存储同步。你使用这些功能时，也可能受到 Apple 或对应浏览器厂商隐私政策的约束。</p>
+      <p>FlashDict 使用 Apple 提供的 iCloud、CloudKit、App Store、StoreKit 和系统翻译服务。浏览器扩展设置可能通过浏览器厂商的同步服务同步。</p>
+      <p>如果你配置并启用了 DeepL 或 OpenAI 兼容的远程翻译服务，App 会按照你的服务设置，将待翻译文本和完成请求所需的信息发送给相应服务，包括必要的认证信息；服务也会收到 IP 地址等网络信息。远程翻译设置保存在本机，API 凭据保存在系统钥匙串中，不随闪卡通过 CloudKit 同步。你可以在 App 中停用或删除远程翻译服务。相关服务对收到的信息的使用、保留和删除由其隐私政策约束。</p>
 
       <h2>7. 数据保留与删除</h2>
       <ul>
-        <li>本地数据：你可以通过删除应用或清除相关数据来移除本地保存的信息。</li>
-        <li>iCloud 同步数据：如果你启用了 iCloud，同步数据可能保存在你的 iCloud 私有数据库中。你可以停用同步，或联系我们协助说明可行的删除路径。</li>
+        <li>你可以在扩展设置中关闭取词方式，或在浏览器中限制网站访问权限、停用或卸载扩展。停用或撤销权限后，关闭或刷新已打开的页面，以释放其中的 Canvas 记录并停止已注入脚本。</li>
+        <li>你可以在 App 中删除闪卡；启用 iCloud 同步时，删除操作会在网络和同步状态允许时传播到其他设备。停用同步本身不会删除已有数据。</li>
+        <li>浏览器设置同步与 App 的 iCloud 同步相互独立，可分别管理。卸载扩展不会删除 App 中已有的闪卡。</li>
+        <li>停用远程翻译服务会停止后续使用该服务；已经发送给服务的信息按其保留和删除政策处理。</li>
       </ul>
 
       <h2>8. 联系我们</h2>
       <p>如果你对本隐私政策或数据处理方式有任何疑问，请联系：<a href="mailto:zwyyy456@foxmail.com">zwyyy456@foxmail.com</a></p>
 
       <h2>9. English Summary</h2>
-      <p>FlashDict stores imported dictionary access permissions locally on your device, may sync flashcards and study progress through Apple CloudKit when iCloud sync is enabled, and reads purchase status through Apple StoreKit when applicable. We do not upload user-imported dictionary files to our own servers, do not sell personal data, and do not use third-party advertising trackers.</p>
+      <p>Last updated: October 29, 2026. FlashDict stores imported dictionary access permissions locally, may sync flashcards and study progress to your private Apple CloudKit database when iCloud is enabled, and reads purchase status through StoreKit. We do not upload imported dictionaries to our servers, sell personal information, or use third-party advertising trackers.</p>
       <ul>
-        <li>When you invoke lookup on a webpage, the extension reads the selected word and its sentence and displays the sentence in the current-page overlay. Ordinary lookup sends only the selected word to FlashDict running on the same Mac through Native Messaging.</li>
-        <li>The sentence is sent to the local FlashDict app for translation only after you choose Translate. FlashDict uses an installed Apple on-device model, does not persist the sentence or translation for this action, and does not use configured remote translation providers.</li>
-        <li>The sentence and full page URL are sent to the local FlashDict app only after you choose to add a flashcard. They are stored as source context for that card and may sync to your private CloudKit database if iCloud sync is enabled.</li>
-        <li>The trigger preference is stored in browser sync storage and may be synchronized to your own browser account. Native Host connection records contain only browser and extension identity, version, and connection time.</li>
+        <li>When you trigger an enabled lookup method, the extension sends the selected text or word under the pointer, its surrounding sentence (up to 1000 characters), and an available source URL to FlashDict running on the same Mac through Native Messaging. URLs may include query parameters and fragments. Generated blob or data documents use an available HTTP/HTTPS source URL, or omit the URL. The extension does not continuously collect browsing history or send every visited page to the app.</li>
+        <li>On authorized WeRead reader pages, a dedicated script records text and positions drawn on the reader’s canvases from page load. These records stay in page memory, are not written to extension storage or uploaded to developer servers, and are released when the page unloads. A lookup passes only the matched text, sentence, and source URL to the local app. Turning off an individual lookup method does not unload this capture script; revoke site access or disable the extension and close or reload open reader pages to stop capture.</li>
+        <li>Translation in the app follows your enabled services and settings and may start automatically. Apple translation uses the system framework. Enabled DeepL or OpenAI-compatible services receive the text to translate and necessary request and authentication information, as well as network information such as your IP address. Provider settings remain local and API credentials are stored in the system Keychain, not in CloudKit. Providers’ privacy policies govern information they receive.</li>
+        <li>Browser-triggered contextual lookups are not added to persistent lookup history. When you choose to create a flashcard, its content, sentence, and available source URL are saved and may sync through your private CloudKit database if iCloud is enabled.</li>
+        <li>Lookup switches, modes, and shortcuts are saved in browser sync storage and may sync through your browser account. Selected text, sentences, source URLs, and Canvas records are not saved in that preference storage. Local connection records contain browser family, extension identity, version, and connection time, not webpage content.</li>
+        <li>You can disable lookup methods, restrict site access, or disable or uninstall the extension. Close or reload open pages after disabling it or revoking access. You can delete flashcards in the app; deletions sync when iCloud and connectivity allow. Disabling sync does not delete existing data, and uninstalling the extension does not delete app flashcards. You can disable remote translation services; data already received by a provider remains subject to its retention and deletion policies.</li>
       </ul>
-      <p>The browser extension contains no advertising, analytics, tracking, or remote code. It does not send webpage content to Hyperseek-operated servers, and its Native Messaging connection does not expose a network port.</p>
+      <p>The extension has no advertising, analytics tracking, or remote telemetry. It does not send webpage content to Hyperseek-operated servers. Native Messaging connects to the local companion component without opening a network port.</p>
 </Document>
