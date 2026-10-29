@@ -1,0 +1,202 @@
+---
+import Page from '../../layouts/Page.astro';
+import ProductVideo from '../../components/ProductVideo.astro';
+import { site, browsers } from '../../site.config.mjs';
+import { adaptedDictionaries, adaptedDictionaryCount } from '../../content/dictionaries.mjs';
+
+const appStoreURL = site.downloads.ios || site.downloads.mac || '#download';
+const external = (url) => (url && url.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Flashcard Dict',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'iOS 17+, iPadOS 17+, macOS 14+',
+  description: 'A native sentence-mining app for Mac, iPhone and iPad. Double-click a word in your browser to see the sentence, its translation and dictionary senses split apart; one click turns the sense you need into a flashcard scheduled with FSRS-6.',
+  downloadUrl: appStoreURL,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Page
+  title="Flashcard Dict — look up a word, keep the sentence"
+  description="A native sentence-mining app for Mac, iPhone and iPad. Double-click a word in Chrome, Edge, Firefox or Safari, pick the sense used in that sentence, and get a flashcard with the original sentence on the front. Works with your own MDX dictionaries."
+  ogTitle="Flashcard Dict — look up a word, keep the sentence"
+  ogDescription="Double-click a word, keep the sentence, pick the one sense you need. Native sentence mining with your own MDX dictionaries and FSRS-6."
+  schema={softwareSchema}
+  lang="en"
+  alternates={{ zh: '/', en: '/en' }}
+>
+<main id="main" class="lang-en">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="little-mark" aria-hidden="true"></span> MDX dictionaries × sentence cards × FSRS-6</div>
+      <h1 id="hero-title">Look up a word.<br><span>Keep the sentence.</span></h1>
+      <p class="hero-description">Double-click a word while you browse. A pop-up shows the sentence, its translation and the dictionary entry already split into senses. Click “+” next to the sense used in that sentence, and the word, the sentence and that one sense become a flashcard.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href={appStoreURL} {...external(appStoreURL)}>Download on the App Store <span aria-hidden="true">↗</span></a>
+        <a class="button button-quiet" href="#context">Watch the full demo <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="browser-line">
+        <span>Browser extensions</span>
+        {browsers.map(({ key, name }) => site.extensions[key]
+          ? <a href={site.extensions[key]} {...external(site.extensions[key])}>{name}</a>
+          : <span class="browser-name">{name}</span>)}
+        <span class="browser-more">From other apps, send a sentence with the share sheet or macOS Services.</span>
+      </p>
+    </div>
+    <figure class="hero-demo">
+      <div class="hero-demo-frame">
+        <video data-autoplay autoplay muted loop playsinline preload="auto" poster="/videos/hero-loop.jpg" width="712" height="742" aria-label="Screen recording: after a double-click, a pop-up shows the sentence, its translation and dictionary senses; picking a sense creates a flashcard that keeps the sentence">
+          <source src="/videos/hero-loop.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <figcaption>Screen recording · sentence and translation → pick a sense → flashcard. The app is also available in English.</figcaption>
+    </figure>
+  </section>
+
+  <section class="context-section wrap" id="context" aria-labelledby="context-title">
+    <div class="section-heading">
+      <div><div class="section-kicker"><span>01</span> Where the sentence comes from</div><h2 id="context-title">In the browser, the sentence comes along automatically.<br><span class="muted">In other apps, select it and send it to Flashcard Dict.</span></h2></div>
+      <p>In the lookup window, tap the word you want, choose the sense that fits, and the word, the sentence and that sense are saved together.</p>
+    </div>
+    <ProductVideo
+      id="context-video"
+      src="/videos/contextual-flashcard.mp4"
+      poster="/videos/contextual-flashcard.jpg"
+      title="From a word on a web page to a flashcard with its sentence"
+      duration="45 s"
+      description="Recorded in Safari: the sentence is captured on lookup, the current sense is picked, and the saved card is shown."
+      lang="en"
+    />
+    <p class="context-caption">Works with Chrome, Edge, Firefox and Safari. Helium and other Chromium browsers, and Firefox-based browsers such as Zen and Floorp 12+, can connect too. Sense cards need a supported dictionary.</p>
+  </section>
+
+  <section class="why-section wrap" id="why" aria-labelledby="why-title">
+    <div class="section-heading">
+      <div><div class="section-kicker"><span>02</span> Why it works</div><h2 id="why-title">One sentence, one sense, one card.</h2></div>
+      <p>The front of each card is the word in the sentence you actually read. The back is only the sense you picked. Both ideas come from well-tested study habits.</p>
+    </div>
+    <div class="why-grid">
+      <article class="why-item">
+        <span class="why-index" aria-hidden="true">A</span>
+        <h3>The sentence keeps the context</h3>
+        <p>Seeing the sentence you read makes it easier to recall what the word meant there, along with how it is used. This is the core of sentence mining.</p>
+      </article>
+      <article class="why-item">
+        <span class="why-index" aria-hidden="true">B</span>
+        <h3>One sense per card</h3>
+        <p>Common words have several senses. Putting all of them on the back makes it hard to tell whether you remembered. One sense per card follows the <a class="inline-link" href="https://www.supermemo.com/en/blog/twenty-rules-of-formulating-knowledge" target="_blank" rel="noopener">minimum information principle</a>.</p>
+      </article>
+      <article class="why-item">
+        <span class="why-index" aria-hidden="true">C</span>
+        <h3>FSRS-6 schedules reviews</h3>
+        <p>Rate each review Again, Hard, Good or Easy. FSRS-6 uses the card’s history to schedule the next review shortly before you would forget.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="detail-section wrap" id="features" aria-labelledby="detail-title">
+    <div class="section-heading">
+      <div><div class="section-kicker"><span>03</span> Sense cards</div><h2 id="detail-title">Pick one sense, make one card.</h2></div>
+      <p>In a supported dictionary, click “+” next to a sense to create a card from that sense and its examples. When you look up from a sentence, the sentence is saved too.</p>
+    </div>
+    <figure class="sense-proof">
+      <button class="sense-proof-preview screenshot-preview" type="button" data-lightbox-src={site.screenshots.lookup} data-lightbox-alt="Flashcard Dict on Mac: each sense has its own add button" data-lightbox-title="Sense cards" aria-label="Open the full lookup screenshot">
+        <span class="sense-proof-viewport">
+          <img class="sense-proof-image" src={site.screenshots.lookup} alt="Flashcard Dict lookup on Mac with an add button next to each sense" width="3024" height="1898" loading="lazy" />
+          <span class="sense-proof-target" aria-hidden="true"></span>
+          <span class="sense-proof-callout" aria-hidden="true"><span>Card for this sense</span><span class="sense-proof-line"></span></span>
+        </span>
+        <span class="screenshot-expand" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7.5 3.5h-4v4M12.5 3.5h4v4M7.5 16.5h-4v-4M12.5 16.5h4v-4"/></svg>
+          Full screenshot
+        </span>
+      </button>
+      <figcaption><p>The highlighted button adds the current sense. Screenshot shown with the Chinese interface.</p></figcaption>
+    </figure>
+
+    <div class="dict-support" id="dictionaries" aria-labelledby="dict-title">
+      <div class="dict-support-intro">
+        <h3 id="dict-title">Dictionaries with sense splitting</h3>
+        <p>Sense splitting currently supports {adaptedDictionaryCount} common MDX editions from the families below. Support is matched to specific dictionary files, so other builds of the same title may not be supported yet. If a “+” appears next to each sense, it is.</p>
+      </div>
+      <ul class="dict-list">
+        {adaptedDictionaries.map(({ en }) => <li>{en}</li>)}
+      </ul>
+      <div class="dict-notes">
+        <p><strong>Built in</strong>: Webster’s 1913, WordNet 3.1 and an English–Chinese dictionary are ready to use and do not count toward the free-tier limit.</p>
+        <p><strong>Everything else</strong>: any MDX dictionary can be imported and looked up, and whole entries can be saved as cards. Want a dictionary supported? <a class="inline-link" href="mailto:zwyyy456@foxmail.com">Email me</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="essentials-section wrap" aria-labelledby="essentials-title">
+    <div class="section-heading">
+      <div><div class="section-kicker"><span>04</span> More</div><h2 id="essentials-title">Native on Mac, iPhone and iPad.</h2></div>
+      <p>Built with SwiftUI. Cards and review progress sync through iCloud; dictionary files stay on each device.</p>
+    </div>
+    <div class="essentials">
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">&lt;/&gt;</span><h3>Your MDX dictionaries, rendered properly.</h3><p>Lookups render with WebKit, so dictionary HTML, CSS, JavaScript, images and audio work as their authors intended.</p></div>
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">◐</span><h3>Dark mode for any dictionary.</h3><p>Dictionaries without a dark style can be inverted at night, in lookup, card preview and review.</p></div>
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">↗</span><h3>Double-click inside an entry.</h3><p>Look up another word right from the dictionary text without copying and pasting.</p></div>
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌁</span><h3>Import a whole folder.</h3><p>Scan a folder and its subfolders for MDX dictionaries and their resources.</p></div>
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">≡</span><h3>Cards from a word list.</h3><p>Import a list with one word per line and create cards from a chosen dictionary, skipping duplicates.</p></div>
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">文</span><h3>Sentence translation.</h3><p>Use Apple Translation (iOS 18 / macOS 15 or later), or connect DeepL or an OpenAI-compatible service yourself.</p></div>
+    </div>
+  </section>
+
+  <section class="access-section wrap" id="pricing" aria-labelledby="access-title">
+    <div class="section-heading">
+      <div><div class="section-kicker"><span>05</span> Free &amp; Pro</div><h2 id="access-title">Every feature is free. Pro lifts two limits.</h2></div>
+      <p>The free version limits only how many imported dictionaries are enabled at once and how many cards you create per day.</p>
+    </div>
+    <div class="access-grid">
+      <article>
+        <div class="access-plan"><h3>Free</h3><strong>Free</strong></div>
+        <p class="access-summary">Lookup, sentence cards and review all work out of the box.</p>
+        <ul class="access-features">
+          <li><span>Import and manage MDX dictionaries</span></li>
+          <li><span>Browser lookup with sentence capture</span></li>
+          <li><span>Sense cards, FSRS-6 and iCloud sync</span></li>
+          <li><span>Imported dictionaries enabled at once</span><strong>2</strong></li>
+          <li><span>New cards per device per day</span><strong>10</strong></li>
+        </ul>
+        <a class="access-action" href={appStoreURL} {...external(appStoreURL)}>Download free <span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="access-member">
+        <div class="access-plan"><h3>Pro</h3><strong>Monthly, yearly or lifetime</strong></div>
+        <p class="access-summary">Everything in Free, without the two limits.</p>
+        <ul class="access-features">
+          <li><span>Imported dictionaries enabled at once</span><strong>Unlimited</strong></li>
+          <li><span>New cards per day</span><strong>Unlimited</strong></li>
+        </ul>
+        <div class="access-options" aria-label="Plans">
+          <div><span>All platforms</span><strong>Monthly · Yearly · Lifetime</strong></div>
+          <div><span>iPhone &amp; iPad only</span><strong>Lifetime</strong></div>
+        </div>
+        <a class="access-action access-action-primary" href={appStoreURL} {...external(appStoreURL)}>See prices in the App Store <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+    <p class="access-footnote">Built-in dictionaries do not count toward the limit of 2.</p>
+  </section>
+
+  <section class="faq-section wrap" id="faq" aria-labelledby="faq-title"><div><div class="section-kicker"><span>06</span> FAQ</div><h2 id="faq-title">Questions before you start.</h2><a class="text-link" href="mailto:zwyyy456@foxmail.com">Email support <span aria-hidden="true">↗</span></a></div><div class="faq-list">
+    <details><summary>Do I need my own dictionaries?<span aria-hidden="true">+</span></summary><p>No. Webster’s 1913, WordNet 3.1 and an English–Chinese dictionary are built in. You can also import any MDX dictionary you legally own. Dictionaries shown in screenshots were imported by the user and are not included.</p></details>
+    <details><summary>Is this only for Chinese speakers?<span aria-hidden="true">+</span></summary><p>The app is available in English and Simplified Chinese. Many supported dictionaries are bilingual English–Chinese, but monolingual learner’s dictionaries and the built-in English dictionaries work as well.</p></details>
+    <details><summary>Can I export cards to Anki?<span aria-hidden="true">+</span></summary><p>Not yet. Cards are imported and exported in Flashcard Dict’s own JSON format. FSRS is a scheduling algorithm and does not imply Anki file compatibility.</p></details>
+    <details><summary>What syncs between devices?<span aria-hidden="true">+</span></summary><p>With iCloud sync on, cards and review progress sync. Dictionary files, images and audio do not; add dictionaries on each device.</p></details>
+  </div></section>
+
+  <section class="download-section wrap" id="download" aria-labelledby="download-title"><img src="/assets/app-icon.png" width="60" height="60" alt="" class="download-icon"><h2 id="download-title">Start with your next read.</h2><p>Bring your dictionaries. Keep the sentence and the meaning you actually needed.</p><div class="download-links"><a class="download-link" href={site.downloads.mac} {...external(site.downloads.mac)}><span class="download-platform-icon" aria-hidden="true">⌘</span><span><strong>Mac</strong><span>macOS 14+</span></span><span class="download-status">App Store ↗</span></a><a class="download-link" href={site.downloads.ios} {...external(site.downloads.ios)}><span class="download-platform-icon" aria-hidden="true">◫</span><span><strong>iPhone &amp; iPad</strong><span>iOS / iPadOS 17+</span></span><span class="download-status">App Store ↗</span></a></div></section>
+
+  <dialog class="screenshot-lightbox" id="screenshot-lightbox" aria-labelledby="screenshot-lightbox-title">
+    <div class="lightbox-shell">
+      <header class="lightbox-header">
+        <p id="screenshot-lightbox-title"></p>
+        <button class="lightbox-close" type="button" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </header>
+      <div class="lightbox-body"><img id="screenshot-lightbox-image" alt="" /></div>
+    </div>
+  </dialog>
+</main>
+</Page>

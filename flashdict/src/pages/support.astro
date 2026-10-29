@@ -11,14 +11,15 @@ import ProductVideo from '../components/ProductVideo.astro';
 
       <h2>获取原句并创建闪卡</h2>
       <ol class="support-steps">
-        <li><strong>获取原句。</strong> 在 Safari 和 Firefox 中通过扩展查词时，FlashDict 会自动提取单词所在的句子。在其他 App 中，可以选中一句话，通过系统分享或 macOS 服务发送到 FlashDict。</li>
+        <li><strong>获取原句。</strong> 在 Chrome、Edge、Firefox 和 Safari 中通过扩展查词时，FlashDict 会自动提取单词所在的句子。在其他 App 中，可以选中一句话，通过系统分享或 macOS 服务发送到 FlashDict。</li>
         <li><strong>点选单词。</strong> 原句窗口打开后，点击你关心的词。App 会使用词典管理中排序最靠前、已经启用并可用的 MDX 词典查询。</li>
         <li><strong>选择义项。</strong> 对于已经适配义项提取的词典，点击具体释义旁的添加按钮。单词、原句、当前义项与可用的来源信息会一起保存到闪卡。</li>
       </ol>
       <p class="support-note">浏览器取词需要安装对应扩展。系统分享和 macOS 服务是否可用，取决于原 App 是否支持相应的系统功能。FlashDict 不会在后台读取其他 App 的阅读内容。</p>
 
       <h2 id="browser-setup">连接浏览器并开始取词</h2>
-      <p>下面以 macOS 上的 Helium 为例，演示扩展已安装后的连接与使用。请先安装对应浏览器扩展，并准备好可用的 MDX 词典。</p>
+      <p>FlashDict 支持 Chrome、Edge、Firefox 和 Safari；Helium 等 Chromium 内核浏览器，以及 Zen、Floorp 12+ 等 Firefox 内核浏览器也可以连接。Safari 扩展随 App 一起安装，其他浏览器需要先从对应的扩展商店安装。</p>
+      <p>下面以 macOS 上的 Helium 为例，演示扩展已安装后的连接与使用。App 内置了 Webster’s 1913、WordNet 3.1 和英汉双解词典，也可以先导入自己的 MDX 词典。</p>
       <ol class="support-steps">
         <li><strong>连接浏览器。</strong>打开 FlashDict 设置中的「浏览器扩展」，点击 Helium 旁的「连接」。</li>
         <li><strong>授权文件夹。</strong>按照弹窗提示选择 <code>net.imput.helium</code> 文件夹，点击「打开」。其他浏览器的授权目录以各自提示为准。</li>
@@ -37,7 +38,7 @@ import ProductVideo from '../components/ProductVideo.astro';
       <h2>导入与管理本地词典</h2>
       <ul>
         <li><strong>如何导入词典？</strong> 在词典管理中选择包含词典的目录。FlashDict 会扫描该目录及其子目录中的 MDX 词典与配套资源。请仅使用你合法拥有的文件。</li>
-        <li><strong>免费版能使用多少本外部词典？</strong> 导入数量不受此限制，但最多可同时启用 2 本用户导入的外部词典。</li>
+        <li><strong>免费版能使用多少本外部词典？</strong> 导入数量不受此限制，但最多可同时启用 2 本用户导入的外部词典。内置词典不计入这个限制。</li>
         <li><strong>为什么义项旁没有添加按钮？</strong> 按义项制卡依赖词典已有提取适配。未适配时仍可查阅词条，并使用收藏入口创建包含整个词典内容的词典闪卡。</li>
         <li><strong>可以在词典正文里继续查词吗？</strong> 可以。在设置中启用对应选项后，双击词典正文中的单词即可继续查询。</li>
         <li><strong>为什么另一台 Mac 没有自动显示词典？</strong> 词典文件本身不会通过 iCloud 同步。你需要在每台设备上分别导入并授权访问本地词典文件。</li>
@@ -60,7 +61,7 @@ import ProductVideo from '../components/ProductVideo.astro';
 
       <h2>快速排查</h2>
       <ul>
-        <li><strong>浏览器取词没有反应：</strong>确认已经安装并启用对应的 Safari 或 Firefox 扩展，并检查 FlashDict 是否正在运行。</li>
+        <li><strong>浏览器取词没有反应：</strong>确认已经安装并启用对应浏览器的扩展、已在 FlashDict 设置的「浏览器扩展」中完成连接，并检查 FlashDict 是否正在运行。</li>
         <li><strong>分享或服务菜单里没有 FlashDict：</strong>先确认来源 App 支持选择并分享文本；在系统扩展或服务设置中确认对应入口已启用。</li>
         <li><strong>原句窗口没有查到释义：</strong>确认至少有一本 MDX 词典已经完成索引、处于启用状态，并将希望使用的词典排在可用词典的最前面。</li>
         <li><strong>词典突然不可用：</strong>如果文件或目录被移动，请在词典管理中重新授权或重新选择它所在的目录。</li>
@@ -84,5 +85,5 @@ import ProductVideo from '../components/ProductVideo.astro';
       </ul>
 
       <h2>English Summary</h2>
-      <p>For support, contact <a href="mailto:zwyyy456@foxmail.com">zwyyy456@foxmail.com</a>. The Safari and Firefox extensions can extract the sentence containing a looked-up word. In other apps, send selected text to FlashDict through macOS Services or the iOS/iPadOS share sheet. Dictionary files must be imported separately on each device. Flashcard sync requires the same iCloud account and iCloud sync enabled in the app.</p>
+      <p>For support, contact <a href="mailto:zwyyy456@foxmail.com">zwyyy456@foxmail.com</a>. The Chrome, Edge, Firefox, and Safari extensions can extract the sentence containing a looked-up word. In other apps, send selected text to FlashDict through macOS Services or the iOS/iPadOS share sheet. Dictionary files must be imported separately on each device. Flashcard sync requires the same iCloud account and iCloud sync enabled in the app.</p>
 </Document>

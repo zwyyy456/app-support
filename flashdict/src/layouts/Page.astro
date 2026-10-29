@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { site } from '../site.config.mjs';
 import '../styles/site.css';
 
 interface Props {
@@ -11,35 +12,46 @@ interface Props {
   ogImage?: string;
   schema?: Record<string, unknown>;
   bodyClass?: string;
+  lang?: 'zh' | 'en';
+  alternates?: { zh: string; en: string };
 }
 const {
   title,
   description,
   ogTitle = title,
   ogDescription = description,
-  ogImage = '/assets/lookup-mac.png',
+  lang = 'zh',
+  ogImage = lang === 'en' ? site.ogImage.en : site.ogImage.zh,
   schema,
   bodyClass,
+  alternates,
 } = Astro.props;
+const isEn = lang === 'en';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
+const siteName = isEn ? 'Flashcard Dict' : '闪卡词典 FlashDict';
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang={isEn ? 'en' : 'zh-CN'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#08090b" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {alternates && <link rel="alternate" hreflang="zh-CN" href={new URL(alternates.zh, Astro.site)} />}
+    {alternates && <link rel="alternate" hreflang="en" href={new URL(alternates.en, Astro.site)} />}
+    {alternates && <link rel="alternate" hreflang="x-default" href={new URL(alternates.zh, Astro.site)} />}
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:site_name" content="闪卡词典 FlashDict" />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={isEn ? 'en_US' : 'zh_CN'} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:image:alt" content="闪卡词典 FlashDict 产品界面" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={isEn ? 'Flashcard Dict: look up a word, keep the sentence' : '闪卡词典：查词时，同时保存原句'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
@@ -52,9 +64,9 @@ const ogImageURL = new URL(ogImage, Astro.site);
     </script>
   </head>
   <body class={bodyClass}>
-    <a class="skip-link" href="#main">跳转到主要内容</a>
-    <Header />
+    <a class="skip-link" href="#main">{isEn ? 'Skip to main content' : '跳转到主要内容'}</a>
+    <Header lang={lang} />
     <slot />
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

@@ -6,19 +6,25 @@ interface Props {
   title: string;
   duration: string;
   description: string;
+  width?: number;
+  height?: number;
+  lang?: 'zh' | 'en';
 }
-const { id, src, poster, title, duration, description } = Astro.props;
+const { id, src, poster, title, duration, description, width = 1920, height = 1248, lang = 'zh' } = Astro.props;
+const copy = lang === 'en'
+  ? { recording: 'Screen recording', download: 'Download the video', subtitles: 'Chinese subtitles, full screen available.' }
+  : { recording: '实际录屏', download: '下载视频观看', subtitles: '含中文字幕，可全屏观看。' };
 ---
 <figure class="product-video" aria-labelledby={`${id}-title`}>
   <div class="video-heading">
     <strong id={`${id}-title`}>{title}</strong>
-    <span>实际录屏 · {duration}</span>
+    <span>{copy.recording} · {duration}</span>
   </div>
-  <video controls playsinline preload="none" poster={poster} width="1920" height="1248" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}>
+  <video controls playsinline preload="none" poster={poster} width={width} height={height} aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}>
     <source src={src} type="video/mp4" />
-    <a href={src}>下载视频观看</a>
+    <a href={src}>{copy.download}</a>
   </video>
-  <figcaption id={`${id}-description`}>{description} <span>含中文字幕，可全屏观看。</span></figcaption>
+  <figcaption id={`${id}-description`}>{description} <span>{copy.subtitles}</span></figcaption>
 </figure>
 
 <style>

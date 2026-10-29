@@ -1,6 +1,6 @@
 # 闪卡词典宣传网站
 
-基于 Astro 7.3.2 的中文静态网站，与同仓库 `gitstride/` 使用相同版本。Astro 在构建时生成 HTML、CSS 和浏览器脚本，页面不需要服务器运行时。
+基于 Astro 7.3.2 的中英文静态网站（中文 `/`，英文 `/en`），与同仓库 `gitstride/` 使用相同版本。Astro 在构建时生成 HTML、CSS 和浏览器脚本，页面不需要服务器运行时。
 
 ## 本地开发
 
@@ -38,7 +38,9 @@ public/
 
 ## 页面演示
 
-- 首页先说明原句的两种入口：Safari / Firefox 扩展自动提取，或从支持系统分享与 macOS 服务的其他 App 手动发送；后续 Safari 实际录屏展示“网页取词 → 当前义项 → 带原句的闪卡”，并链接到支持页的 Helium 连接教程。
+- 首屏左侧是标题与浏览器扩展入口，右侧是 8 秒静音循环录屏 `public/videos/hero-loop.mp4`（原句与翻译 → 选择义项 → 生成闪卡），用户开启“减少动态效果”时不自动播放。
+- 首页说明原句的两种入口：Chrome / Edge / Firefox / Safari 扩展自动提取，或从支持系统分享与 macOS 服务的其他 App 手动发送；后续 Safari 实际录屏展示“网页取词 → 当前义项 → 带原句的闪卡”，并链接到支持页的 Helium 连接教程。
+- 「设计理念」区块说明原句法、一卡一义（最少信息原则）和 FSRS-6；「已适配义项拆分的词典」列表来自 `src/content/dictionaries.mjs`。
 - 产品概览的三个标签展示 Mac 实际截图，支持左右方向键及 Home / End；窄屏可横向查看完整界面，点击截图可打开原图。
 - 按义项制卡区域使用真实截图与按钮位置标注；复习区域展示 App 实际答案和评分界面。
 - 两条字幕视频与 JPEG 封面位于 `public/videos/`，由 `ProductVideo.astro` 共享组件展示，使用原生播放控件、`playsinline` 与 `preload="none"`，不自动播放。支持页保留对应文字步骤；Helium 教程演示扩展已安装后的授权与取词，不包含安装过程。
@@ -83,7 +85,7 @@ public/
 - Apple、DeepL、OpenAI 兼容翻译：`FlashDict/Features/Translation/`。系统翻译需要 iOS 18 / macOS 15 或更新系统；远程服务需用户配置、启用和联网。
 - 闪卡导入导出采用 FlashDict JSON，不宣传 Anki APKG 兼容。
 
-网站没有写入未确认的价格、销量、评价、性能数字或浏览器扩展商店上线承诺。免费层与会员条款由 `docs/contracts/membership-entitlement.md` 定义；首页只说明稳定额度与方案类型，实际价格引导到 App Store 查看。
+网站没有写入未确认的价格、销量、评价或性能数字。浏览器扩展商店链接在 `src/site.config.mjs` 的 `extensions` 中配置，留空时只显示浏览器名称、不显示链接。免费层与会员条款由 `docs/contracts/membership-entitlement.md` 定义；首页只说明稳定额度与方案类型，实际价格引导到 App Store 查看。
 
 ## Vercel 部署配置
 
@@ -101,3 +103,19 @@ public/
 `vercel.json` 已声明 Astro 构建与输出目录，保留 `cleanUrls` 和无尾斜杠地址。现有 Vercel 项目如果设置了旧的静态站点覆盖值，需要同步改为上表配置。无需 Vercel adapter、后端或环境变量。
 
 网站没有统计追踪、表单提交、网络字体或前端框架运行时。截图与下载地址由 `src/site.config.mjs` 配置；当前四张截图已提供，下载地址留空时显示不可点击的下载入口。
+
+## 浏览器扩展入口
+
+`src/site.config.mjs` 的 `extensions` 保存 Chrome、Edge、Firefox、Safari 的商店地址。Safari 扩展随 App 安装，因此指向 App Store。其余地址填入正式 listing URL 后重新构建即可出现在首屏和英文页。
+
+## 适配词典列表
+
+`src/content/dictionaries.mjs` 按系列汇总 zdict `FlashDict/Resources/DictExtractors/simple-src/specs/registry.json` 中的适配词典，并列出 `BundledDictionaries/manifest.json` 中的内置词典。新增适配后同步更新数量与系列。
+
+## 录屏
+
+`public/videos/hero-loop.mp4` 是从 `contextual-flashcard.mp4` 中剪出的 8 秒片段（弹窗与卡片部分），用于首屏循环播放。重新录制教程视频时，建议使用干净的浏览器配置，避免出现个人标签页、账号名和通知。
+
+## 分享预览图
+
+`public/assets/og-zh.jpg` 与 `og-en.jpg` 为 1200 × 630 的社交分享图，由 `Page.astro` 按页面语言选择。
