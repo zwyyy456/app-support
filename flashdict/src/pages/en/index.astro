@@ -36,6 +36,7 @@ const softwareSchema = {
         <a class="button button-primary" href={appStoreURL} {...external(appStoreURL)}>Download on the App Store <span aria-hidden="true">↗</span></a>
         <a class="button button-quiet" href="#context">Watch the full demo <span aria-hidden="true">↓</span></a>
       </div>
+      <p class="platform-caption">Native SwiftUI · Millisecond lookups · Low memory usage<br>Around 50ms on average in developer testing · MDX HTML / CSS / JavaScript support</p>
       <p class="browser-line">
         <span>Browser extensions</span>
         {browsers.map(({ key, name }) => site.extensions[key]
@@ -133,10 +134,10 @@ const softwareSchema = {
   <section class="essentials-section wrap" aria-labelledby="essentials-title">
     <div class="section-heading">
       <div><div class="section-kicker"><span>04</span> More</div><h2 id="essentials-title">Native on Mac, iPhone and iPad.</h2></div>
-      <p>Built with SwiftUI. Cards and review progress sync through iCloud; dictionary files stay on each device.</p>
+      <p>Built natively with SwiftUI for fast lookups and low memory usage, averaging around 50ms in developer testing. Cards and review progress sync through iCloud; dictionary files stay on each device.</p>
     </div>
     <div class="essentials">
-      <div class="essential-item"><span class="essential-icon" aria-hidden="true">&lt;/&gt;</span><h3>Your MDX dictionaries, rendered properly.</h3><p>Lookups render with WebKit, so dictionary HTML, CSS, JavaScript, images and audio work as their authors intended.</p></div>
+      <div class="essential-item"><span class="essential-icon" aria-hidden="true">&lt;/&gt;</span><h3>Your MDX dictionaries, rendered properly.</h3><p>WebKit renders dictionary HTML, CSS and JavaScript, preserving rich layouts, interactive content, images and audio.</p></div>
       <div class="essential-item"><span class="essential-icon" aria-hidden="true">◐</span><h3>Dark mode for any dictionary.</h3><p>Dictionaries without a dark style can be inverted at night, in lookup, card preview and review.</p></div>
       <div class="essential-item"><span class="essential-icon" aria-hidden="true">↗</span><h3>Double-click inside an entry.</h3><p>Look up another word right from the dictionary text without copying and pasting.</p></div>
       <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌁</span><h3>Import a whole folder.</h3><p>Scan a folder and its subfolders for MDX dictionaries and their resources.</p></div>

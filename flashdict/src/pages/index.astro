@@ -68,6 +68,7 @@ const external = (url) => (url && url.startsWith('http') ? { target: '_blank', r
           <a class="button button-primary" href={appStoreURL} {...external(appStoreURL)}>在 App Store 下载 <span aria-hidden="true">↗</span></a>
           <a class="button button-quiet" href="#context">查看完整演示 <span aria-hidden="true">↓</span></a>
         </div>
+        <p class="platform-caption">SwiftUI 原生开发 · 毫秒级查词 · 低内存占用<br>开发者实测平均约 50ms 出结果 · 兼容 MDX 的 HTML / CSS / JavaScript</p>
         <p class="browser-line">
           <span>浏览器扩展</span>
           {browsers.map(({ key, name }) => site.extensions[key]
@@ -239,9 +240,9 @@ const external = (url) => (url && url.startsWith('http') ? { target: '_blank', r
         <p>支持批量导入、HTML / JavaScript 渲染、夜间反色、正文双击查词和批量制卡。</p>
       </div>
       <div class="essentials">
-        <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌘</span><h3>使用 SwiftUI 原生开发。</h3><p>面向 iPhone、iPad 和 Mac 原生开发，使用系统窗口、快捷键和分享能力，并持续优化查词速度与内存占用。</p></div>
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌘</span><h3>使用 SwiftUI 原生开发。</h3><p>面向 iPhone、iPad 和 Mac 原生开发，使用系统窗口、快捷键和分享能力。毫秒级查词、低内存占用；开发者实测平均约 50ms 出结果。</p></div>
         <div class="essential-item"><span class="essential-icon" aria-hidden="true">◐</span><h3>词典页面支持夜间反色。</h3><p>遇到没有深色样式的词典，可以单独开启夜间反色；查词、卡片预览和复习时都会生效。</p></div>
-        <div class="essential-item"><span class="essential-icon essential-icon-code" aria-hidden="true">&lt;/&gt;</span><h3>兼容常见的 MDX 页面和脚本。</h3><p>查词页使用 WebKit 渲染，支持常见的 HTML、CSS、JavaScript，以及词典随附的图片和音频资源。</p></div>
+        <div class="essential-item"><span class="essential-icon essential-icon-code" aria-hidden="true">&lt;/&gt;</span><h3>丰富的 MDX 排版，完整呈现。</h3><p>使用 WebKit 呈现词典的 HTML、CSS 与 JavaScript，保留原有排版、动态交互、图片和音频，让自己的词典继续发挥价值。</p></div>
         <div class="essential-item"><span class="essential-icon" aria-hidden="true">↗</span><h3>词典正文里，双击继续查。</h3><p>在词典内容中遇到另一个陌生词，双击即可继续查询，不必来回复制。</p></div>
         <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌁</span><h3>选择目录，批量导入词典。</h3><p>扫描所选目录及子目录中的 MDX 词典和配套资源，减少逐本添加的操作。</p></div>
         <div class="essential-item"><span class="essential-icon" aria-hidden="true">≡</span><h3>单词列表，也能批量制卡。</h3><p>导入每行一个词的文本列表，从指定词典批量生成卡片，并跳过已有项目。</p></div>
