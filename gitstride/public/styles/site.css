@@ -754,3 +754,16 @@ input::placeholder { color:#93939f; opacity:1; }
   html { scroll-behavior:auto; }
   *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
+
+/* Optional demo follows the real product image; native details works without JS. */
+.interactive-preview { margin:24px 0 0; }
+.interactive-preview > summary { cursor:pointer; width:fit-content; padding:12px 0; color:var(--text); font-weight:600; }
+.interactive-preview > summary:focus-visible { outline:2px solid currentColor; outline-offset:4px; }
+.interactive-preview > .fine-print { max-width:72ch; margin:8px 0 20px; }
+.interactive-preview .workspace-preview { border:1px solid var(--line-soft); border-radius:16px; overflow:hidden; }
+.workflow-section { padding-top:80px; }
+.mobile-intro { padding-top:64px; padding-bottom:64px; border-top:1px solid var(--line-soft); }
+.mobile-intro h2 { margin:16px 0; }
+.mobile-intro > p:not(.eyebrow) { max-width:72ch; line-height:1.8; }
+.mobile-download { padding-bottom:48px; }
+.mobile-download .download-card { margin:0 auto; }

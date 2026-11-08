@@ -1,12 +1,12 @@
 # Content sources and scope
 
-Reviewed for this delivery: 2026-09-13.
+Product content reconciled: 2026-11-08. Technical reference links below are retained references, not a claim of a new documentation review.
 
 ## Product facts
 
-- GitStride README.zh-CN.md, default branch; fetched blob SHA `0cede5b849ba42814c5c2bcca0a52a3f5c905ae2`.
+- GitStride README.zh-CN.md and the v1.0.5 usage guide.
   https://github.com/zwyyy456/gitstride/blob/main/README.zh-CN.md
-- Workspace reference already provided in the conversation:
+- Desktop behavior:
   https://github.com/zwyyy456/gitstride/blob/main/docs/usage.md
 - Worker operations stay in the application repository:
   https://github.com/zwyyy456/gitstride/blob/main/Automation/README.md
@@ -14,6 +14,11 @@ Reviewed for this delivery: 2026-09-13.
   https://github.com/zwyyy456/app-support/blob/main/README.md
 
 Important preserved boundaries: desktop personal/organization Projects versus personal-only PR automation; desktop and automation authorization separation; repo scope breadth; unencrypted local snapshot; menu-bar quick-create opens a form rather than directly creating; reminders require the desktop app; all closing PRs must be merged for Done; switching service addresses does not shut down the old service.
+
+- Mobile behavior and limitations:
+  https://github.com/zwyyy456/gitstride/blob/v1.0.5/docs/ios.md
+- Download asset verified through GitHub Releases: `v1.0.5/GitStride-1.0.5.zip`.
+- My Work automatically queries personal issues and PRs; Followed Projects owns manual project aggregation and desktop monitoring. Roadmap configuration and saved views remain local. Mobile App Store release is in preparation.
 
 ## Design and implementation references
 
@@ -32,6 +37,6 @@ Important preserved boundaries: desktop personal/organization Projects versus pe
 
 ## Editorial choices, not established product claims
 
-The workspace, menu bar popover, and issue detail images are user-provided screenshots captured in the real GitStride app, with separate English and Chinese interfaces. The bilingual headline, layout, automation example, provisional mark, and optional HTML/CSS placeholders are created for the website. Those illustrations are not screenshots, customer endorsements, or measured productivity outcomes. Installer links, prices, App Store availability, and release version numbers are not assumed.
+The workspace, menu bar popover, and issue detail images are user-provided screenshots captured in the real GitStride app, with separate English and Chinese interfaces. The bilingual headline, layout, automation example, provisional mark, and optional HTML/CSS placeholders are created for the website. Those illustrations are not screenshots, customer endorsements, or measured productivity outcomes. Existing Mac screenshots show an earlier interface and are labeled accordingly; refreshed Mac screenshots are still needed. The optional Board/Table demo uses sample data and does not represent the complete app. Social cards are website artwork. The GitHub download is v1.0.5; mobile App Store availability is not claimed.
 
 The website’s docs are a curated starting point, not a new source of product truth. Reconcile them with the app repository when behavior changes. The privacy page is explicitly a publication draft until the maintainer sets `privacyReviewed` after review.

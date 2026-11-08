@@ -50,6 +50,7 @@ async def main():
         await page.set_viewport_size({'width': 1440, 'height': 1000})
         for locale, prefix in [('en', ''), ('zh-cn', '/zh-cn')]:
             await load(page, prefix or '/')
+            await page.locator('.interactive-preview > summary').click()
             await page.locator('[data-view="table"]').click()
             assert await page.locator('[data-table]').is_visible()
             await page.locator('[data-my-work]').click()

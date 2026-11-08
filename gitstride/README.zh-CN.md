@@ -10,7 +10,7 @@
 
 ```sh
 cd gitstride
-npm install
+npm ci
 npm run dev
 ```
 
@@ -22,7 +22,7 @@ npm run build
 npm run preview
 ```
 
-**本次环境无法解析 npm registry，未成功安装 Astro，也未验证 `astro build`。** Astro 固定为 7.3.2，没有伪造 lockfile。在可联网的电脑上执行 `npm install`，检查并提交生成的 `package-lock.json`，后续使用 `npm ci`。详细检查范围见 `docs/VALIDATION.md`。
+Astro 固定为 `7.3.2`，仓库已提交 `package-lock.json`。使用 `npm ci` 安装，再运行 `npm run build`。本次验证结果及限制见 `docs/VALIDATION.md`。
 
 ### 不安装依赖，先看页面
 
@@ -31,7 +31,7 @@ node scripts/build-static.mjs
 node scripts/serve.mjs
 ```
 
-这条路径仅使用 Node 内置模块，已实际运行。它与 Astro 使用**同一份页面渲染代码**，不是另一套需要同步维护的网站；但不能把它的通过当成 Astro 构建已经通过。
+这条路径仅使用 Node 内置模块，与 Astro 使用同一份页面渲染代码。正式 Astro 构建使用 `npm run build`；本次验证结果见 `docs/VALIDATION.md`。
 
 不要直接双击 HTML 来判断站点是否工作：静态站使用根相对路径，请通过本地服务器预览。
 
@@ -56,7 +56,7 @@ app-support/
 |---|---|
 | Root Directory | `gitstride` |
 | Framework Preset | Astro |
-| Install Command | 初次 `npm install`；提交 lockfile 后可用 `npm ci` |
+| Install Command | `npm ci` |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 | Node.js | 24.x |
@@ -73,8 +73,8 @@ app-support/
 
 ```js
 release: {
-  url: 'https://github.com/zwyyy456/gitstride/releases/download/v1.0.1/GitStride-1.0.1.zip',
-  version: '1.0.1',
+  url: 'https://github.com/zwyyy456/gitstride/releases/download/v1.0.5/GitStride-1.0.5.zip',
+  version: '1.0.5',
   date: '',
   fileSize: '',
 },
@@ -83,7 +83,7 @@ supportEmail: '',
 privacyReviewed: true,
 ```
 
-下载按钮现已指向 GitStride 1.0.1 的 GitHub Release ZIP，安装说明也按 ZIP 解压后移动 App 到“应用程序”编写。后续发布时要同时更新 `release.url` 和 `release.version`。若将 `release.url` 清空，下载页会显示占位并禁用按钮。
+下载按钮现已指向 GitStride 1.0.5 的 GitHub Release ZIP，安装说明也按 ZIP 解压后移动 App 到“应用程序”编写。后续发布时要同时更新 `release.url` 和 `release.version`。若将 `release.url` 清空，下载页会显示占位并禁用按钮。
 
 正式域名是 `gitstride.hyperseek.tech`，可通过 `site.url` 或 `SITE_URL` 修改。生产环境默认允许索引，预览环境仍为 **noindex**；如需暂停索引，设置 `SITE_INDEXABLE=false`。产品行为变化时要重新核对隐私文案。
 
@@ -134,3 +134,9 @@ npm run check:release
 后一个命令检查安装包、真实截图、隐私确认和索引配置。截图已接入，其余发布设置仍需补充。它不能代替安装包签名、App 登录和自动化的验收。
 
 完整测试范围及限制见 `docs/VALIDATION.md`，内容来源见 `docs/SOURCES.md`。本次未修改 GitStride 仓库 README，未提交 GitHub，未执行 Vercel 部署。
+
+## 产品素材
+
+当前 Mac 实机截图展示早期界面，页面已明确标注。后续使用维护者提供的新截图替换，不将旧图作为当前界面证据。首页可展开的交互预览使用示例数据，仅演示简化的看板与表格。
+
+双语 1200 × 630 分享图已在 `src/site.config.mjs` 配置。在 macOS 的网站根目录运行 `swift scripts/generate-social.swift` 可重新生成。

@@ -9,7 +9,7 @@ A bilingual, static product website for GitStride, organized for `app-support/gi
 Use Node.js 24 (see `.nvmrc`). From this directory:
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
@@ -21,7 +21,7 @@ npm run build
 npm run preview
 ```
 
-Astro is pinned to `7.3.2`. The delivery environment could not resolve the npm registry, so the Astro installation/build was **not run successfully** and there is no invented lockfile. On a connected machine, run `npm install`, review and commit the generated `package-lock.json`, then use `npm ci` for reproducible installs. See [validation notes](docs/VALIDATION.md).
+Astro is pinned to `7.3.2`; `package-lock.json` is committed. Use `npm ci` followed by `npm run build`. Current validation results and limitations are in `docs/VALIDATION.md`.
 
 ## Offline preview, without installing dependencies
 
@@ -32,7 +32,7 @@ node scripts/build-static.mjs
 node scripts/serve.mjs
 ```
 
-This produces a complete `dist/` and serves it at port 4321. It is not a second implementation or an Astro compiler substitute: both paths use the exact same author-controlled page renderers, but the Astro integration still needs a connected-machine build check.
+This produces a complete `dist/` and serves it at port 4321. Both paths use the same page renderers. Use `npm run build` to validate the production Astro integration; `build:static` is the optional Node renderer.
 
 ## Pages
 
@@ -54,7 +54,7 @@ Put this directory at `app-support/gitstride/`, alongside `flashdict/` and `zend
 |---|---|
 | Root Directory | `gitstride` |
 | Framework Preset | Astro |
-| Install Command | `npm install` initially; `npm ci` once a lockfile is committed |
+| Install Command | `npm ci` |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 | Node.js | 24.x |
@@ -68,7 +68,7 @@ A zero-dependency deployment option is provided in `docs/vercel.static.json`: co
 Edit `src/site.config.mjs`:
 
 - The canonical URL is `https://gitstride.hyperseek.tech`; override it with `SITE_URL` only for another domain.
-- The download button links to the GitHub Release ZIP for GitStride 1.0.1. Update `release.url` and `release.version` together for future releases. Optional date/file-size labels are displayed only when configured.
+- The download button links to the GitHub Release ZIP for GitStride 1.0.5. Update `release.url` and `release.version` together for future releases. Optional date/file-size labels are displayed only when configured.
 - Optionally set `appStoreUrl`, `supportEmail`, and localized social images.
 - Review the privacy text when product behavior changes; `privacyReviewed` reflects the current Release build.
 - Production builds are indexable by default. Preview builds remain noindex with robots Disallow. Set `SITE_INDEXABLE=false` to disable indexing explicitly.
@@ -126,3 +126,9 @@ npm run check:release
 Optional browser checks: install Python Playwright, run the local preview, then `python tests/browser.py`. The default test mode uses real browser navigation; an explicitly labeled offline mode is included for restricted render environments.
 
 See [SOURCES.md](docs/SOURCES.md) for content provenance. Do not silently create a second long-form product manual: reconcile behavioral changes against the GitStride repository. This delivery does not edit the app README, push commits, or deploy a live website.
+
+## Product media
+
+Real Mac screenshots currently show an earlier interface and are labeled accordingly. Replace them with updated maintainer-provided captures before treating them as current UI evidence. The expandable homepage demo is a simplified Board/Table illustration with sample data.
+
+Bilingual 1200 × 630 social cards are configured in `src/site.config.mjs`. On macOS, regenerate them from the website root with `swift scripts/generate-social.swift`.

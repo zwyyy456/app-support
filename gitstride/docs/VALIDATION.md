@@ -1,46 +1,35 @@
-# Validation report
+# Website validation
 
-Date: 2026-09-13.
+Date: 2026-11-08.
 
-## Passed
+## Completed
 
-- Zero-dependency build: generated 22 localized HTML pages, a 404 page, robots.txt and sitemap.xml.
-- `npm test`: 8 Node test suites passed. Checked locale parity, one h1/main per page, unique IDs, metadata, all internal routes and fragments, asset existence, safe release placeholders, and selected product boundaries.
-- HTTP checks: all 22 localized page routes returned 200 from the local preview server.
-- Chromium DOM rendering at 360, 390, 768 and 1440 pixels: no document-level horizontal overflow across all 22 pages. The sample board intentionally supports internal horizontal scrolling.
-- Both languages: Board/Table switch, assignee filter, search, empty search state, issue dialog, Escape dismissal.
-- Both languages: Draft / Ready / Merged illustration and both review policies.
-- Mobile navigation opens and closes with Escape.
-- Language links target the equivalent topic. A shared section hash is preserved by the client code; its native-navigation behavior still needs normal-browser confirmation.
-- FAQ filtering and empty state; disabled installer placeholder.
-- Copy-code interaction provides an honest manual-copy fallback when clipboard access is denied.
-- No page-level JavaScript exceptions during the above render/interaction checks.
-- Desktop home, mobile home, automation, documentation and download screenshots were produced; desktop and mobile home layouts were visually inspected.
+- `npm ci` succeeded with the committed lockfile; dependency versions were not changed.
+- `npm run build` succeeded using Astro 7.3.2: 22 bilingual content pages plus the 404 page, robots.txt and sitemap.xml.
+- `npm test`: all 8 checks passed, covering route and locale parity, metadata, unique IDs, internal links and fragments, referenced page assets, release links, and product boundaries.
+- `SITE_INDEXABLE=true npm run check:release` passed. This checks the production indexing configuration; it does not change local or deployed environment variables.
+- `git diff --check` passed.
+- GitHub Releases returned the v1.0.5 ZIP asset used by the download button.
+- English and Chinese social cards were generated at 1200 × 630 and visually inspected.
+- Local browser spot checks: the English homepage demo expands; Table selection updates its state; searching `#51` shows the matching example. The Chinese homepage was inspected at 390 px with no document overflow; the desktop Chinese download page shows version 1.0.5.
 
-## Limits — not claimed as passed
+## Remaining checks and limitations
 
-1. npm registry access failed with `EAI_AGAIN registry.npmjs.org`. `npm install` and `astro build` were not completed. A top-level Astro version is pinned; no transitive lockfile is fabricated.
-2. Chromium in the delivery environment blocks URL navigation by policy. Browser rendering tests therefore used built HTML/CSS/JS injected into a blank page. This does not test actual browser navigation, redirects, cache semantics, or Vercel routing. HTTP responses and HTML link resolution were checked separately.
-3. No live Vercel deployment, custom-domain setup, DNS change, repository commit or push was performed.
-4. No real installer, app signature, Apple architecture compatibility, App Store publication, device-code login, or backend automation was exercised by these website tests.
-5. No Safari/Firefox/device hardware test or independent accessibility/security audit was run.
+- `tests/browser.py` was updated to open the optional demo before operating it. The full browser test suite was not run; the spot checks above are not a substitute for its full route/viewport coverage.
+- Existing Mac screenshots still show an earlier interface. Updated maintainer-provided Mac captures are needed. No application was launched or captured for this website task.
+- The reported long-screenshot stitching artifact has not been reproduced. No speculative sticky-header or feature-layout fix was applied.
+- `npm ci` reported 8 dependency advisories (1 low, 1 moderate, 6 high). Dependency remediation was not part of this content update and has not been applied.
+- No deployment, commit, push, App Store publication, installer execution, or live GitHub account operation was performed. Mobile App Store availability is not claimed.
+- No Safari/Firefox/hardware-device coverage or accessibility audit was performed.
 
 ## Reproduce
 
 ```sh
-node scripts/build-static.mjs
+npm ci
+npm run build
 npm test
+SITE_INDEXABLE=true npm run check:release
 node scripts/serve.mjs
 ```
 
-In another terminal, optionally install Python Playwright and run:
-
-```sh
-python tests/browser.py
-```
-
-The default browser test uses real navigation. Only use `GITSTRIDE_OFFLINE_RENDER=1` for clearly labeled offline DOM checks. On a normal machine, also run `npm install && npm run build`, commit the resulting lockfile, and check a Vercel Preview Deployment before publishing.
-
-## Expected failing gate
-
-`npm run check:release` should fail at this stage: real installer, product screenshots, privacy review and indexing configuration are intentionally not yet supplied. This is a release-readiness check, not a broken build.
+The optional browser suite uses real navigation by default. Run `python tests/browser.py` only when browser-test execution is requested and Playwright is installed. `GITSTRIDE_OFFLINE_RENDER=1` is explicitly limited to DOM injection, not normal browser navigation.

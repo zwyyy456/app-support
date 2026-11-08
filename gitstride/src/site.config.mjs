@@ -17,8 +17,8 @@ export const site = {
   license: 'https://github.com/zwyyy456/gitstride/blob/main/LICENSE',
   origin: 'https://github.com/yogesharc/GitBoard',
   release: {
-    url: 'https://github.com/zwyyy456/gitstride/releases/download/v1.0.1/GitStride-1.0.1.zip',
-    version: '1.0.1',
+    url: 'https://github.com/zwyyy456/gitstride/releases/download/v1.0.5/GitStride-1.0.5.zip',
+    version: '1.0.5',
     date: '',
     fileSize: '',
   },
@@ -26,7 +26,7 @@ export const site = {
   supportEmail: 'zwyyy456@foxmail.com',
   minMacOS: '14',
   // Add real 1200×630 social cards to public/images and set these paths.
-  socialImage: { en: '', 'zh-cn': '' },
+  socialImage: { en: '/images/social-en.png', 'zh-cn': '/images/social-zh-cn.png' },
 };
 
 // Fail clearly instead of emitting broken canonical links or unsafe URLs.

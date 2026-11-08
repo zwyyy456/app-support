@@ -10,7 +10,7 @@ import { downloadPage, supportPage, privacyPage, licensesPage, notFound } from '
 export function pageMeta({locale,id}) {
   const t=(en,zh)=>pick(locale,en,zh);
   const meta={
-    home:[t('GitHub Projects. At home on your Mac.','GitHub Projects，在 Mac 上更顺手。'),t('A native macOS workspace for GitHub Projects. Explore boards, tables, issue editing, and optional PR automation.','GitHub Projects 的原生 macOS 工作区。从菜单栏查看项目，用看板、表格和 Issue 编辑推进工作，按需开启 PR 自动化。')],
+    home:[t('GitHub Projects. At home on your Mac.','GitHub Projects，在 Mac 上更顺手。'),t('A native macOS workspace for GitHub Projects. Explore Board, Table, Roadmap, My Work, and optional PR automation.','GitHub Projects 的原生 macOS 工作区。从菜单栏查看项目，用看板、表格、路线图与我的工作推进事项，按需开启 PR 自动化。')],
     automation:[t('Pull request automation','PR 自动化'),t('Let linked pull requests update issue status in matching personal GitHub Projects.','让关联 PR 自动更新 Issue 在匹配个人 GitHub Projects 中的状态。')],
     docs:[t('Documentation','使用文档'),t('Connect GitHub, open an existing Project, and learn the workspace and optional PR automation.','连接 GitHub、打开现有 Project，并了解工作区与可选的 PR 自动化。')],
     download:[t('Get GitStride for Mac','获取 GitStride macOS 版'),t('Download information, system requirements, and installation guidance for GitStride.','GitStride 下载信息、系统要求与安装指南。')],
@@ -58,7 +58,10 @@ ${alternates}
 <meta property="og:url" content="${esc(canonical)}" />
 <meta property="og:locale" content="${language==='en'?'en_US':'zh_CN'}" />
 <meta property="og:locale:alternate" content="${language==='en'?'zh_CN':'en_US'}" />
-${image?`<meta property="og:image" content="${esc(new URL(image,site.url).href)}" />`:''}
+${image?`<meta property="og:image" content="${esc(new URL(image,site.url).href)}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content="${esc(new URL(image,site.url).href)}" />`:''}
 <meta name="twitter:card" content="${image?'summary_large_image':'summary'}" />
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" sizes="any" />
 <link rel="stylesheet" href="/styles/site.css" />

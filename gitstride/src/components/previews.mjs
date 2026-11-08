@@ -27,7 +27,7 @@ function card(task, locale, row = false) {
 export function mediaFrame(slot, locale, fallback, cls = '') {
   const image = media[slot]?.[locale];
   const alt = image?.alt || '';
-  const caption = image ? pick(locale, 'GitStride on macOS', 'GitStride macOS 应用') : ui[locale].placeholder;
+  const caption = image ? pick(locale, 'Earlier macOS interface · see the guide for current features', '早期 macOS 界面 · 当前功能请参阅指南') : ui[locale].placeholder;
   return `<figure class="media-frame ${cls}" data-media-slot="${slot}">${image
     ? `<img src="${esc(image.src)}" alt="${esc(alt)}" width="${Number(image.width) || 2400}" height="${Number(image.height) || 1480}" ${slot === 'workspace' ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" />`
     : fallback}<figcaption><span class="caption-dot"></span>${caption}</figcaption></figure>`;
@@ -65,7 +65,7 @@ export function workspace(locale) {
     <div class="app-statusbar"><span data-result-count aria-live="polite">${t('8 sample issues','8 个示例事项')}</span><span>${t('Try switching views or opening an issue','试试切换视图，或打开一个事项')} ${icon('arrow')}</span></div>
     <dialog class="issue-dialog" aria-labelledby="sample-issue-title"><form method="dialog"><button class="icon-button dialog-close" aria-label="${ui[locale].close}">${icon('close')}</button></form><p class="eyebrow">${t('SAMPLE ISSUE','示例事项')} <span data-detail-number></span></p><h2 id="sample-issue-title"></h2><p>${t('This is an illustrative preview of an issue detail view. The website does not access or modify your GitHub data.','这是 Issue 详情的交互示意。官网不会访问或修改你的 GitHub 数据。')}</p><div class="detail-properties"><span>Status</span><strong data-detail-state></strong><span>${t('Assignee','负责人')}</span><strong data-detail-owner></strong></div><p class="fine-print">${ui[locale].demoOnly}</p></dialog>
   </div>`;
-  return mediaFrame('workspace',locale,app,'workspace-frame');
+  return `${mediaFrame('workspace',locale,'','workspace-frame')}<details class="interactive-preview"><summary>${t('Try the interactive preview','体验交互预览')}</summary><p class="fine-print">${t('A simplified Board and Table demo with sample data. Search, filter, and open issues. It does not connect to GitHub or reproduce the complete app.','使用示例数据体验简化的看板与表格，试试搜索、筛选和打开事项。预览不连接 GitHub，也不包含完整 App 功能。')}</p>${app}</details>`;
 }
 export function menubar(locale) {
   const t = (en,zh)=>pick(locale,en,zh);
