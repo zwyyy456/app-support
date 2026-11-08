@@ -68,7 +68,7 @@ const external = (url) => (url && url.startsWith('http') ? { target: '_blank', r
           <a class="button button-primary" href={appStoreURL} {...external(appStoreURL)}>在 App Store 下载 <span aria-hidden="true">↗</span></a>
           <a class="button button-quiet" href="#context">查看完整演示 <span aria-hidden="true">↓</span></a>
         </div>
-        <p class="platform-caption">SwiftUI 原生开发 · 毫秒级查词 · 低内存占用<br>开发者实测平均约 50ms 出结果 · 兼容 MDX 的 HTML / CSS / JavaScript</p>
+        <p class="platform-caption">SwiftUI 原生开发 · 毫秒级查词 · 低内存占用 · MDX 完美兼容</p>
         <p class="browser-line">
           <span>浏览器扩展</span>
           {browsers.map(({ key, name }) => site.extensions[key]
@@ -153,7 +153,7 @@ const external = (url) => (url && url.startsWith('http') ? { target: '_blank', r
     <section class="why-section wrap" id="why" aria-labelledby="why-title">
       <div class="section-heading">
         <div><div class="section-kicker"><span>02</span> 设计理念</div><h2 id="why-title">为什么是「原句 + 单个义项」。</h2></div>
-        <p>闪卡的正面是单词和你读到的原句，背面只有你选的那一个义项。这个设计来自两条被很多人验证过的做法。</p>
+        <p>闪卡的正面是单词和你读到的原句，背面只有你选的那一个义项。</p>
       </div>
       <div class="why-grid">
         <article class="why-item">
@@ -203,12 +203,13 @@ const external = (url) => (url && url.startsWith('http') ? { target: '_blank', r
 
       <div class="dict-support" id="dictionaries" aria-labelledby="dict-title">
         <div class="dict-support-intro">
-          <h3 id="dict-title">已适配义项拆分的词典</h3>
-          <p>目前已为 {adaptedDictionaryCount} 个常见 MDX 词典版本适配义项拆分，涵盖下面这些系列。适配按具体词典文件识别，同一系列的其他制作版本可能还没有适配，以查词时义项旁是否出现「+」为准。</p>
+          <h3 id="dict-title"><strong>{adaptedDictionaryCount}</strong> 个词典版本，支持按义项制卡</h3>
+          <p>覆盖多个词典系列与制作版本。下面列举的是代表系列，每个系列可包含多个已适配版本。</p>
         </div>
-        <ul class="dict-list">
+        <ul class="dict-list" aria-label="已适配词典的代表系列">
           {adaptedDictionaries.map(({ zh }) => <li>{zh}</li>)}
         </ul>
+        <p class="dict-compatibility">具体版本是否支持，以查词时义项旁的「+」为准；同名词典的其他制作版本可能需要另行适配。</p>
         <div class="dict-notes">
           <p><strong>内置词典</strong>：{bundledDictionaries.map(({ name }) => name).join('、')}，安装后即可查词，不占免费版的外部词典额度。</p>
           <p><strong>其他词典</strong>：没有适配的词典也能正常查词，并可以整条收藏为闪卡。希望适配某本词典，欢迎<a class="inline-link" href="mailto:zwyyy456@foxmail.com">发邮件告诉我</a>。</p>
@@ -240,7 +241,7 @@ const external = (url) => (url && url.startsWith('http') ? { target: '_blank', r
         <p>支持批量导入、HTML / JavaScript 渲染、夜间反色、正文双击查词和批量制卡。</p>
       </div>
       <div class="essentials">
-        <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌘</span><h3>使用 SwiftUI 原生开发。</h3><p>面向 iPhone、iPad 和 Mac 原生开发，使用系统窗口、快捷键和分享能力。毫秒级查词、低内存占用；开发者实测平均约 50ms 出结果。</p></div>
+        <div class="essential-item"><span class="essential-icon" aria-hidden="true">⌘</span><h3>使用 SwiftUI 原生开发。</h3><p>面向 iPhone、iPad 和 Mac 原生开发，使用系统窗口、快捷键和分享能力。毫秒级查词，低内存占用。</p></div>
         <div class="essential-item"><span class="essential-icon" aria-hidden="true">◐</span><h3>词典页面支持夜间反色。</h3><p>遇到没有深色样式的词典，可以单独开启夜间反色；查词、卡片预览和复习时都会生效。</p></div>
         <div class="essential-item"><span class="essential-icon essential-icon-code" aria-hidden="true">&lt;/&gt;</span><h3>丰富的 MDX 排版，完整呈现。</h3><p>使用 WebKit 呈现词典的 HTML、CSS 与 JavaScript，保留原有排版、动态交互、图片和音频，让自己的词典继续发挥价值。</p></div>
         <div class="essential-item"><span class="essential-icon" aria-hidden="true">↗</span><h3>词典正文里，双击继续查。</h3><p>在词典内容中遇到另一个陌生词，双击即可继续查询，不必来回复制。</p></div>

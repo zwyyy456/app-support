@@ -36,7 +36,7 @@ const softwareSchema = {
         <a class="button button-primary" href={appStoreURL} {...external(appStoreURL)}>Download on the App Store <span aria-hidden="true">↗</span></a>
         <a class="button button-quiet" href="#context">Watch the full demo <span aria-hidden="true">↓</span></a>
       </div>
-      <p class="platform-caption">Native SwiftUI · Millisecond lookups · Low memory usage<br>Around 50ms on average in developer testing · MDX HTML / CSS / JavaScript support</p>
+      <p class="platform-caption">Native SwiftUI · Millisecond lookups · Low memory usage · Full MDX compatibility</p>
       <p class="browser-line">
         <span>Browser extensions</span>
         {browsers.map(({ key, name }) => site.extensions[key]
@@ -75,7 +75,7 @@ const softwareSchema = {
   <section class="why-section wrap" id="why" aria-labelledby="why-title">
     <div class="section-heading">
       <div><div class="section-kicker"><span>02</span> Why it works</div><h2 id="why-title">One sentence, one sense, one card.</h2></div>
-      <p>The front of each card is the word in the sentence you actually read. The back is only the sense you picked. Both ideas come from well-tested study habits.</p>
+      <p>The front of each card is the word in the sentence you actually read. The back is only the sense you picked.</p>
     </div>
     <div class="why-grid">
       <article class="why-item">
@@ -118,12 +118,13 @@ const softwareSchema = {
 
     <div class="dict-support" id="dictionaries" aria-labelledby="dict-title">
       <div class="dict-support-intro">
-        <h3 id="dict-title">Dictionaries with sense splitting</h3>
-        <p>Sense splitting currently supports {adaptedDictionaryCount} common MDX editions from the families below. Support is matched to specific dictionary files, so other builds of the same title may not be supported yet. If a “+” appears next to each sense, it is.</p>
+        <h3 id="dict-title"><strong>{adaptedDictionaryCount}</strong> dictionary editions with sense cards</h3>
+        <p>Support spans multiple dictionary families and builds. The examples below are families, each of which may include several supported editions.</p>
       </div>
-      <ul class="dict-list">
+      <ul class="dict-list" aria-label="Examples of supported dictionary families">
         {adaptedDictionaries.map(({ en }) => <li>{en}</li>)}
       </ul>
+      <p class="dict-compatibility">A “+” next to each sense indicates support for your edition. Other builds of the same title may need a separate adapter.</p>
       <div class="dict-notes">
         <p><strong>Built in</strong>: Webster’s 1913, WordNet 3.1 and an English–Chinese dictionary are ready to use and do not count toward the free-tier limit.</p>
         <p><strong>Everything else</strong>: any MDX dictionary can be imported and looked up, and whole entries can be saved as cards. Want a dictionary supported? <a class="inline-link" href="mailto:zwyyy456@foxmail.com">Email me</a>.</p>
@@ -134,7 +135,7 @@ const softwareSchema = {
   <section class="essentials-section wrap" aria-labelledby="essentials-title">
     <div class="section-heading">
       <div><div class="section-kicker"><span>04</span> More</div><h2 id="essentials-title">Native on Mac, iPhone and iPad.</h2></div>
-      <p>Built natively with SwiftUI for fast lookups and low memory usage, averaging around 50ms in developer testing. Cards and review progress sync through iCloud; dictionary files stay on each device.</p>
+      <p>Built natively with SwiftUI for fast lookups and low memory usage. Cards and review progress sync through iCloud; dictionary files stay on each device.</p>
     </div>
     <div class="essentials">
       <div class="essential-item"><span class="essential-icon" aria-hidden="true">&lt;/&gt;</span><h3>Your MDX dictionaries, rendered properly.</h3><p>WebKit renders dictionary HTML, CSS and JavaScript, preserving rich layouts, interactive content, images and audio.</p></div>

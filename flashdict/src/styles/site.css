@@ -97,25 +97,28 @@ h1 > span { color: #d9e8ff; }
 .inline-link:hover { color: white; }
 
 /* Which dictionaries can be split into senses. */
-.dict-support { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 20px 56px; margin-top: 44px; padding-top: 36px; border-top: 1px solid var(--line); scroll-margin-top: 100px; }
-.dict-support-intro h3 { font-size: 1.25rem; font-weight: 570; margin-bottom: 14px; }
+.dict-support { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); scroll-margin-top: 100px; }
+.dict-support-intro h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; font-size: 1.25rem; font-weight: 570; margin-bottom: 12px; }
+.dict-support-intro h3 strong { color: #bed6f8; font-size: 2.5rem; line-height: 1; font-weight: 600; }
 .dict-support-intro p { font-size: .875rem; }
-.dict-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
-.dict-list li { padding: 12px 14px; border: 1px solid #ffffff14; border-radius: 8px; background: #0f1319; color: #d0dbea; font-size: .8125rem; line-height: 1.6; }
-.dict-notes { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 56px; }
+.dict-list { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 22px 0 16px; padding: 0; list-style: none; }
+.dict-list li { color: #d0dbea; font-size: .8125rem; line-height: 1.7; }
+.dict-list li::before { content: "·"; color: #7594ba; margin-right: 8px; }
+.dict-compatibility { color: #8996a8; font-size: .8125rem; }
+.dict-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 32px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
 .dict-notes p { font-size: .8125rem; }
 .dict-notes strong { color: #dbe5f4; font-weight: 550; }
 .access-footnote { margin-top: 18px; font-size: .75rem; }
 .nav-links .lang-switch { padding: 4px 10px; border: 1px solid #ffffff20; border-radius: 6px; }
 @media (max-width: 800px) {
   .why-grid { grid-template-columns: 1fr; }
-  .dict-support, .dict-notes { grid-template-columns: 1fr; }
+  .dict-notes { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .why-section { padding-block: 42px; }
   .why-grid { margin-top: 28px; gap: 12px; }
   .why-item { padding: 22px 20px 24px; }
-  .dict-list { grid-template-columns: 1fr; }
+  .dict-list { gap: 8px 18px; }
   .nav-links .lang-switch { align-self: flex-start; margin-top: 6px; }
 }
 
