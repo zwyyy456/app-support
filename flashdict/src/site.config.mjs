@@ -14,9 +14,9 @@ export const site = {
   // Browser extension store listings. Leave a value empty to show the browser
   // name without a link. The Safari extension ships inside the App Store app.
   extensions: {
-    chrome: "",
+    chrome: "https://chromewebstore.google.com/detail/ikbpdlnfjofmdmoobhpmnpoknionaimj",
     edge: "",
-    firefox: "",
+    firefox: "https://addons.mozilla.org/firefox/addon/闪卡词典-flashdict/",
     safari: "https://apps.apple.com/app/id6762287923",
   },
   ogImage: {
