@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256">
+  <title>winornot · 双运动计分牌</title>
+  <desc>蓝橙双色计分牌，左侧白色羽毛球，右侧白色乒乓球拍和球。</desc>
+
+  <g id="score-cards">
+    <rect x="28" y="48" width="96" height="164" rx="20" fill="#1677F0"/>
+    <path d="M28 129H124V192A20 20 0 0 1 104 212H48A20 20 0 0 1 28 192Z" fill="#1269DB"/>
+    <rect x="132" y="48" width="96" height="164" rx="20" fill="#FF8926"/>
+    <path d="M132 129H228V192A20 20 0 0 1 208 212H152A20 20 0 0 1 132 192Z" fill="#F27819"/>
+  </g>
+  <g id="flip-details">
+    <path d="M28 129H124" stroke="#0C58BD" stroke-width="3"/>
+    <path d="M132 129H228" stroke="#D96512" stroke-width="3"/>
+    <rect x="71" y="38" width="10" height="24" rx="5" fill="#C1CAD7"/>
+    <rect x="175" y="38" width="10" height="24" rx="5" fill="#C1CAD7"/>
+  </g>
+  <g id="badminton" fill="#FFFFFF">
+    <path d="M48 88H63L69 145H60Z"/>
+    <path d="M69 88H83L80 145H72Z"/>
+    <path d="M89 88H104L92 145H83Z"/>
+    <path d="M62 151H90V155A14 14 0 0 1 62 155Z"/>
+  </g>
+  <g id="table-tennis" fill="#FFFFFF">
+    <rect x="172" y="137" width="14" height="36" rx="6"/>
+    <circle cx="179" cy="117" r="28"/>
+    <circle cx="210" cy="83" r="8"/>
+  </g>
+</svg>

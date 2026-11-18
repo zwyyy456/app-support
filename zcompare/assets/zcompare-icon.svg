@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="100%" height="100%">
+  <defs>
+    <!-- 01. 底座渐变：顶部微亮、底部沉稳的 macOS 系统蓝，突出白色前景 -->
+    <linearGradient id="bg-blue-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2E93FF" />
+      <stop offset="50%" stop-color="#007AFF" />
+      <stop offset="100%" stop-color="#0051CC" />
+    </linearGradient>
+
+    <clipPath id="squircle-clip">
+      <rect x="100" y="100" width="824" height="824" rx="185" />
+    </clipPath>
+
+    <!-- 02. 左卡片：高不透明度冷白（彻底去掉原来的蓝色调） -->
+    <linearGradient id="left-card-white" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E8EEF5" />
+    </linearGradient>
+
+    <!-- 03. 右卡片：100% 纯净高光白 -->
+    <linearGradient id="right-card-white" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F5F8FC" />
+    </linearGradient>
+
+<!-- 阴影滤镜 -->
+    <filter id="squircle-shadow" x="-12%" y="-10%" width="124%" height="126%">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#001840" flood-opacity="0.35" />
+    </filter>
+
+    <filter id="left-card-shadow" x="-18%" y="-14%" width="136%" height="136%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#001F52" flood-opacity="0.32" />
+    </filter>
+
+    <!-- 右卡片左向+下向投影，把左右两张白卡清晰剥离开 -->
+    <filter id="right-card-shadow" x="-22%" y="-14%" width="144%" height="138%">
+      <feDropShadow dx="-8" dy="18" stdDeviation="22" flood-color="#001E4D" flood-opacity="0.28" />
+    </filter>
+
+
+    <!-- 纯净饱满的系统蓝渐变 -->
+    <linearGradient id="z-uniform-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A88FF" />
+      <stop offset="50%" stop-color="#007AFF" />
+      <stop offset="100%" stop-color="#005CE6" />
+    </linearGradient>
+
+    <!-- 全向环绕型立体阴影：dy 缩减至 4，确保 Z 顶部上沿也有清晰的边界衬托，不与底层白卡融合 -->
+    <filter id="z-balanced-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <!-- 1. 全向环境光包裹阴影 (dy=2)，专门负责把 Z 的顶部白边从白卡片上剥离出来 -->
+      <feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="#001E4D" flood-opacity="0.22" result="ambient" />
+      <!-- 2. 主悬浮投影 (dy=8)，提供自然重力感 -->
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#002259" flood-opacity="0.20" in="SourceGraphic" result="drop" />
+      <feMerge>
+        <feMergeNode in="ambient" />
+        <feMergeNode in="drop" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    </defs>
+
+  <!-- ================================================================== -->
+  <!-- 01-background: 蓝色底座层                                           -->
+  <!-- ================================================================== -->
+  <g id="01-background">
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg-blue-grad)" filter="url(#squircle-shadow)" />
+
+    <g clip-path="url(#squircle-clip)">
+      <!-- 顶部柔和天光 -->
+      <ellipse cx="512" cy="110" rx="440" ry="170" fill="#70B8FF" opacity="0.25" />
+      <!-- 左半屏极轻微加深，保留双栏隐喻但绝不抢戏 -->
+      <rect x="100" y="100" width="412" height="824" fill="#001840" opacity="0.07" />
+      <line x1="512" y1="100" x2="512" y2="924" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2" />
+    </g>
+
+    <rect x="101.5" y="101.5" width="821" height="821" rx="183.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="3" />
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- 02-left-document: 左侧冷白大卡片 + 粗体红色删除块（无遮挡）           -->
+  <!-- ================================================================== -->
+  <g id="02-left-document" transform="translate(512 512) scale(0.92) translate(-512 -512) rotate(-8 375 480)" filter="url(#left-card-shadow)">
+    <!-- 放大后的纯白左卡片 (400x520)，大幅增加白色占比 -->
+    <rect x="180" y="210" width="400" height="520" rx="60" fill="url(#left-card-white)" stroke="#FFFFFF" stroke-width="3" />
+
+    <!-- 核心视觉点 1：加粗到 54px 的珊瑚红 Diff 删除块 (完全位于 Z 上方暴露区) -->
+    <rect x="234" y="280" width="236" height="54" rx="27" fill="#FF3B30" />
+
+    <!-- 精简后的中性灰背景代码条 (不再用浅蓝色) -->
+    <rect x="234" y="362" width="180" height="32" rx="16" fill="#D5DFEB" />
+    <rect x="234" y="608" width="210" height="32" rx="16" fill="#D5DFEB" />
+  </g>
+
+  <!-- ================================================================== -->
+  <!-- 03-right-document: 右侧纯白大卡片 + 粗体亮绿新增块（100% 避开 Z 遮挡）-->
+  <!-- ================================================================== -->
+  <g id="03-right-document" transform="translate(512 512) scale(0.92) translate(-512 -512) rotate(7 645 535)" filter="url(#right-card-shadow)">
+    <!-- 放大后的纯白右卡片 (400x520) -->
+    <rect x="444" y="275" width="400" height="520" rx="60" fill="url(#right-card-white)" stroke="#FFFFFF" stroke-width="4" />
+
+    <!-- 精简后的中性灰背景代码条 -->
+    <rect x="504" y="350" width="210" height="32" rx="16" fill="#DCE5F0" />
+    <rect x="504" y="592" width="180" height="32" rx="16" fill="#DCE5F0" />
+
+    <!-- 核心视觉点 2：加粗到 54px 的高明度荧光翠绿 Diff 新增块 (完全位于 Z 下方 55px 处，零遮挡！) -->
+    <rect x="550" y="652" width="236" height="54" rx="27" fill="#24D649" />
+  </g>
+
+  <g id="04-z-emblem" transform="translate(512 512) scale(0.92) translate(-512 -512) rotate(-2 512 495)" filter="url(#z-balanced-shadow)">
+
+    <!-- 1. 最外层 2px 半透明微米级冷灰护边：防止顶部白边与后方纯白文档卡片融成一片 -->
+    <path d="M 406 408 H 586 Q 620 408 596 432 L 428 552 Q 404 576 438 576 H 618" fill="none" stroke="#003680" stroke-opacity="0.16" stroke-width="108" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- 2. 白色等距边框层 (stroke-width="104"，四周恒定露出 (104-68)/2 = 18px 白边) -->
+    <path d="M 406 408 H 586 Q 620 408 596 432 L 428 552 Q 404 576 438 576 H 618" fill="none" stroke="#FFFFFF" stroke-width="104" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- 3. 核心蓝色 Z 主体层 (stroke-width="68"，与白边共享完全一致的 Q 圆弧折角中心线) -->
+    <path d="M 406 408 H 586 Q 620 408 596 432 L 428 552 Q 404 576 438 576 H 618" fill="none" stroke="url(#z-uniform-grad)" stroke-width="68" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

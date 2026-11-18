@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="zento 是 macOS 的原生命令中心。用键盘打开应用、整理窗口、截图、查询剪贴板和运行自动化。">
+  <meta property="og:title" content="zento · 让 Mac 听键盘指挥">
+  <meta property="og:description" content="用一个命令面板打开应用、控制窗口、截图和运行常用工具。">
+  <meta property="og:type" content="website">
+  <title>zento · 让 Mac 听键盘指挥</title>
+  <link rel="icon" type="image/png" href="assets/zento-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip">跳到正文</a>
+  <header class="header">
+    <div class="shell header-inner">
+      <a href="#" class="wordmark" aria-label="zento 首页">
+        <img src="assets/zento-icon.png" alt="" width="30" height="30"> zento
+      </a>
+      <nav aria-label="站点导航">
+        <a href="#command">命令搜索</a>
+        <a href="#desktop">窗口与桌面</a>
+        <a href="#tools">内置工具</a>
+      </nav>
+      <a class="header-link" href="https://github.com/zwyyy456/zbox">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="command" aria-labelledby="title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span aria-hidden="true"></span> macOS 原生命令中心</p>
+        <h1 id="title">让 Mac 听<br><em>键盘指挥。</em></h1>
+        <p class="hero-intro">在当前桌面唤出 zento，打开应用、整理窗口、搜索文件。给常用命令设个快捷键，按键即可执行。</p>
+        <div class="actions">
+          <a class="button button-gold" href="#command-query" data-focus-command>试试命令搜索 <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" href="https://github.com/zwyyy456/zbox">查看项目 <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="requirements">适用于 macOS 15 及以上</p>
+      </div>
+
+      <div class="hero-product">
+        <div class="command-stage">
+          <div class="stage-grid" aria-hidden="true"></div>
+          <div class="stage-orbit" aria-hidden="true"></div>
+          <div class="stage-top">
+            <span class="demo-caption"><i aria-hidden="true"></i> 命令搜索演示</span>
+            <span class="stage-hotkeys" aria-label="默认快捷键 Control Option 空格"><span aria-hidden="true">默认</span><kbd>⌃</kbd><kbd>⌥</kbd><kbd>Space</kbd></span>
+          </div>
+          <div class="command-panel">
+            <div class="command-input">
+              <span class="search-icon" aria-hidden="true"></span>
+              <label class="visually-hidden" for="command-query">筛选演示命令</label>
+              <input id="command-query" type="search" placeholder="搜索应用和命令…" autocomplete="off" spellcheck="false" maxlength="60">
+            </div>
+            <p class="command-label">示例命令</p>
+            <ul class="command-rows">
+              <li><a href="#file-search" data-keywords="file search finder wenjian"><span class="glyph sage" aria-hidden="true">⌕</span><span>搜索文件</span><small>文件搜索</small></a></li>
+              <li><a href="#desktop" data-keywords="left half window layout"><span class="glyph gold" aria-hidden="true">◧</span><span>移动到左半屏</span><small>窗口管理</small></a></li>
+              <li><a href="#capture" data-keywords="screenshot capture ocr jietu"><span class="glyph plum" aria-hidden="true">⌗</span><span>区域截图</span><small>截图</small></a></li>
+              <li><a href="#clipboard" data-keywords="clipboard history copy paste"><span class="glyph blue" aria-hidden="true">▤</span><span>剪贴板历史</span><small>剪贴板</small></a></li>
+              <li><a href="#developer" data-keywords="developer tools json uuid url base64"><span class="glyph clay" aria-hidden="true">⌘</span><span>开发者工具</span><small>转换工具</small></a></li>
+            </ul>
+            <p class="command-empty" hidden>没有匹配的示例命令。</p>
+            <div class="command-footer">
+              <span class="command-brand"><img src="assets/zento-icon.png" alt="" width="16" height="16"> zento</span>
+              <span><kbd>↑</kbd> <kbd>↓</kbd> 选择 <kbd>↵</kbd> 查看功能</span>
+            </div>
+            <p id="search-status" class="visually-hidden" role="status"></p>
+          </div>
+          <div class="stage-bottom">
+            <span>当前桌面 <b aria-hidden="true">✦</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-facts">
+        <div><strong><span aria-hidden="true">⌘</span> 统一命令入口</strong><p>应用、内置工具和自动化都从这里找。</p></div>
+        <div><strong><span aria-hidden="true">↵</span> 直接快捷键</strong><p>常用应用和命令可以绑定自己的按键。</p></div>
+        <div><strong><span aria-hidden="true">◉</span> 本机处理</strong><p>文件索引和剪贴板历史保存在 Mac 上。</p></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="desktop" aria-labelledby="desktop-heading">
+      <div class="section-head">
+        <p class="eyebrow"><span aria-hidden="true"></span> 窗口与桌面</p>
+        <h2 id="desktop-heading">把窗口摆到位。</h2>
+        <p>让前台窗口贴边、居中或移到另一块显示器。把一组应用窗口的位置保存成工作区，下次用命令恢复。</p>
+      </div>
+
+      <div class="window-card">
+        <div class="window-copy">
+          <p class="demo-caption"><i aria-hidden="true"></i> 窗口布局演示</p>
+          <h3>一个命令，<br>移动当前窗口。</h3>
+          <p>选择一个布局，看看前台的 Safari 窗口如何在显示器上移动。</p>
+          <div class="layout-controls" role="group" aria-label="选择窗口布局">
+            <button type="button" data-layout="left" aria-pressed="true"><span aria-hidden="true">◧</span> 左半屏</button>
+            <button type="button" data-layout="right" aria-pressed="false"><span aria-hidden="true">◨</span> 右半屏</button>
+            <button type="button" data-layout="max" aria-pressed="false"><span aria-hidden="true">□</span> 最大化</button>
+          </div>
+          <p class="layout-note">实际使用时需启用窗口管理并授予辅助功能权限。</p>
+        </div>
+        <div class="desktop-demo">
+          <div class="desktop-top"><span>◈ &nbsp; Safari</span><span>显示器</span></div>
+          <div class="desktop-area" data-position="left">
+            <div class="desktop-split" aria-hidden="true"></div>
+            <div class="desktop-window" aria-hidden="true">
+              <div class="desktop-window-bar"><span class="traffic-lights"><i></i><i></i><i></i></span><b>Safari</b></div>
+              <div class="desktop-window-body"><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <p class="desktop-status" role="status"><span aria-hidden="true">↳</span> <span id="layout-status">Safari 已移到显示器左半边</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tools-section shell" id="tools" aria-labelledby="tools-heading">
+      <div class="section-head">
+        <p class="eyebrow"><span aria-hidden="true"></span> 内置工具</p>
+        <h2 id="tools-heading">截下来，查清楚，接着做。</h2>
+        <p>从屏幕上取走需要的内容，找回刚复制的东西，把重复动作交给命令。</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card capture-card" id="capture">
+          <div class="feature-copy">
+            <span class="glyph plum" aria-hidden="true">⌗</span>
+            <h3>截图与录制</h3>
+            <p>截区域、窗口或滚动页面。截图后可标注、遮挡、识别文字或贴在桌面上，也可以录制 MP4 和 GIF。</p>
+          </div>
+          <figure class="capture-art">
+            <div class="capture-page" aria-hidden="true">
+              <span class="capture-page-label">RELEASE NOTES</span>
+              <strong>Ready for review.</strong>
+              <span class="document-line"></span><span class="document-line"></span><span class="document-line"></span>
+            </div>
+            <div class="capture-box" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="capture-result" aria-hidden="true"><span>识别文字</span><strong>Ready for review.</strong></div>
+            <figcaption>示意 · 从截图提取文字</figcaption>
+          </figure>
+        </article>
+        <article class="feature-card lookup-card" id="lookup">
+          <div class="feature-copy">
+            <span class="glyph sage" aria-hidden="true">Aa</span>
+            <h3>光标取词与翻译</h3>
+            <p>划选文字或把光标停在词上，按配置的方式查词。用 macOS 词典在本机看释义，也可选用 FlashDict 或配置原句翻译。</p>
+          </div>
+          <figure class="lookup-art">
+            <p class="reading-line" aria-hidden="true">Work at your own <mark>pace</mark>.</p>
+            <div class="lookup-result" aria-hidden="true">
+              <div><strong>pace</strong><span>/peɪs/</span></div>
+              <p>名词 · 步调，节奏</p>
+              <p class="lookup-context">原文语境<br>Work at your own pace.</p>
+            </div>
+            <figcaption>示意 · 在阅读时查看词义和原句</figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <div class="tool-list">
+        <article id="file-search"><span class="glyph sage" aria-hidden="true">⌕</span><div><h3>文件搜索</h3><p>索引选定的目录，按名称、路径或扩展名筛选，用快速查看预览文件。</p></div></article>
+        <article id="clipboard"><span class="glyph blue" aria-hidden="true">▤</span><div><h3>剪贴板历史</h3><p>搜索复制过的文字、链接、图片和文件引用，置顶常用内容，再复制或粘贴。</p></div></article>
+        <article><span class="glyph gold" aria-hidden="true">↗</span><div><h3>快速链接与文本片段</h3><p>用命令打开常用链接，插入带日期、选区等变量的文字模板。</p></div></article>
+        <article id="developer"><span class="glyph clay" aria-hidden="true">⌘</span><div><h3>开发者工具与计算器</h3><p>格式化 JSON、转换时间戳和 Base64、生成 UUID，或计算整数表达式。</p></div></article>
+        <article><span class="glyph plum" aria-hidden="true">›_</span><div><h3>脚本与扩展</h3><p>运行本地脚本和 Apple 快捷指令，也可导入自己信任的本地扩展。</p></div></article>
+        <article><span class="glyph blue" aria-hidden="true">◫</span><div><h3>系统控制</h3><p>搜索前台应用的菜单命令，切换音频设备，应用显示器预设。</p></div></article>
+      </div>
+    </section>
+
+    <section class="section closing shell" aria-labelledby="closing-heading">
+      <div class="closing-inner">
+        <img src="assets/zento-icon.png" width="64" height="64" alt="" loading="lazy">
+        <h2 id="closing-heading">从一个快捷键开始。</h2>
+        <p>zento 适用于 macOS 15 及以上。按需启用窗口管理、截图等功能，并授予相应的系统权限。</p>
+        <div class="actions">
+          <a class="button button-gold" href="https://github.com/zwyyy456/zbox">在 GitHub 查看项目 <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <a href="#" class="wordmark" aria-label="zento 回到顶部">
+      <img src="assets/zento-icon.png" alt="" width="25" height="25"> zento
+    </a>
+    <span>为 macOS 打造的原生命令中心</span>
+    <a href="https://github.com/zwyyy456/zbox">GitHub <span aria-hidden="true">↗</span></a>
+  </footer>
+</body>
+</html>

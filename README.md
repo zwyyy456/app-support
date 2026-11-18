@@ -25,6 +25,16 @@ Vercel Project。Zendo 与 water 页面为纯 HTML/CSS，不需要 Node.js 或�
 - <https://water.hyperseek.tech/privacy>
 - <https://water.hyperseek.tech/support>
 
+## 宣传网站源码
+
+这三个站点为静态页面，无需安装依赖或构建。
+
+| 站点 | 首页 |
+| --- | --- |
+| winornot | [winornot/index.html](winornot/index.html) |
+| zcompare | [zcompare/index.html](zcompare/index.html) |
+| zento | [zento/dist/index.html](zento/dist/index.html) |
+
 ## 1. 推送到 GitHub
 
 先在 GitHub 创建空仓库 `app-support`，不要让 GitHub 自动添加 README、

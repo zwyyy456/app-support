@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0c10">
+  <meta name="description" content="winornot 是 iPhone 和 iPad 上的乒乓球、羽毛球单打计分工具，支持现场计分、赛后补录和球友档案。">
+  <title>winornot · 乒乓球与羽毛球单打计分</title>
+  <link rel="icon" href="assets/winornot.svg" type="image/svg+xml">
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <img src="assets/winornot.svg" width="28" height="28" alt="">
+        <span>winornot</span>
+      </a>
+      <nav aria-label="站内导航">
+        <a href="#scoring">现场计分</a>
+        <a href="#history">战绩与球友</a>
+      </nav>
+      <div class="header-actions">
+        <button class="button button-outline theme-toggle" type="button" hidden><span aria-hidden="true"></span></button>
+        <a class="button button-outline" href="#availability">适用平台 <span class="arrow" aria-hidden="true">↘</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow">乒乓球 <span aria-hidden="true">/</span> 羽毛球 · 单打计分</p>
+        <h1 id="hero-title">每一分，<br>都算数<span class="hero-period">。</span></h1>
+        <p class="hero-description">比分、发球和局数，一眼看清。赛后确认结果，下次和球友约球，还能翻出上次的比分。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#scoring">了解现场计分 <span class="arrow" aria-hidden="true">↓</span></a>
+          <span class="hero-platforms">iPhone 和 iPad</span>
+        </div>
+      </div>
+
+      <figure class="hero-visual">
+        <div class="court" aria-hidden="true"></div>
+        <div class="media-slot media-score">
+          <!-- 现场计分截图放在这里，使用横屏画面。 -->
+        </div>
+        <figcaption><span class="caption-mark" aria-hidden="true"></span>iPhone 横屏计分</figcaption>
+      </figure>
+    </section>
+
+    <div class="rules">
+      <div class="container rules-inner">
+        <div class="rule rule-orange">
+          <p><strong>乒乓球</strong><span>10 平后每分换发球</span></p>
+          <div class="rule-value">11 <small>分制</small></div>
+        </div>
+        <div class="rule rule-blue">
+          <p><strong>羽毛球</strong><span>得分方获得发球权</span></p>
+          <div class="rule-value">15<span class="rule-divider">/</span>21 <small>分制</small></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="container section scoring" id="scoring" aria-labelledby="scoring-title">
+      <div class="section-intro">
+        <p class="eyebrow section-label">现场计分</p>
+        <h2 id="scoring-title">抬眼看比分，<br>接着打下一球。</h2>
+      </div>
+      <dl class="scoring-list">
+        <div>
+          <dt>大字比分和发球提示</dt>
+          <dd>iPhone 横屏显示双方比分，按赛制提示下一分由谁发球。换边时可以交换左右显示。</dd>
+        </div>
+        <div>
+          <dt>点错了，随时撤销</dt>
+          <dd>撤销刚才的操作或手动纠正发球方。达到赢场条件后，还能在确认赛果前核对比分。</dd>
+        </div>
+        <div>
+          <dt>收起计分，稍后继续</dt>
+          <dd>每次得分都会保存。比赛中断时可以收起计分，从「开赛」页找回未完成的比赛。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="history section" id="history" aria-labelledby="history-title">
+      <div class="container">
+        <div class="section-intro">
+          <p class="eyebrow section-label">战绩与球友</p>
+          <h2 id="history-title">打过的球，回头还能看。</h2>
+        </div>
+        <div class="history-grid">
+          <article class="feature feature-history" aria-labelledby="results-title">
+            <div class="feature-copy">
+              <h3 id="results-title">翻战绩，也能补录比赛</h3>
+              <p>按运动、时间或姓名查比分和胜率。之前没用 App 计分的比赛，也可以补上大比分或每局比分。</p>
+            </div>
+            <div class="feature-visual">
+              <div class="media-slot media-history">
+                <!-- 战绩截图放在这里，适合 iPad 的横屏画面。 -->
+              </div>
+            </div>
+          </article>
+          <article class="feature feature-players" aria-labelledby="players-title">
+            <div class="feature-copy">
+              <h3 id="players-title">查和球友的交手记录</h3>
+              <p>打开球友档案，就能看到你们打过的比赛。给常一起打球的人加上「常打」标记，下次选人更好找。</p>
+            </div>
+            <div class="feature-visual">
+              <div class="media-slot media-players">
+                <!-- 球友档案截图放在这里，适合 iPhone 的竖屏画面。 -->
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="availability" aria-labelledby="availability-title">
+      <div class="availability">
+        <div class="availability-copy">
+          <p class="eyebrow section-label">适用平台</p>
+          <h2 id="availability-title">一份战绩，<br>随你换设备。</h2>
+          <p>用 iPhone 在场边记分，也能在 iPad 上看战绩。使用同一 Apple 账户并开启 iCloud，即可同步比赛和球友资料。</p>
+        </div>
+        <div class="platform-card">
+          <strong>iPhone 和 iPad</strong>
+          <span class="platform-requirements">支持 iOS 27、iPadOS 27 及更新版本</span>
+          <!-- 开放下载后，在此接入正式下载地址。 -->
+          <p class="release-status"><span aria-hidden="true"></span>开发中 · 下载暂未开放</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top">
+        <img src="assets/winornot.svg" width="24" height="24" alt="">
+        <span>winornot</span>
+      </a>
+      <a href="#top">回到顶部 <span class="arrow" aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+</body>
+</html>

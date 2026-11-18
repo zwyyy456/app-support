@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-Hans" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="在同一个 macOS 工作台比较文本、图片和二进制文件，定位变化、逐项审阅，再应用改动或保存进度。">
+  <title>zcompare — macOS 原生文件比较</title>
+  <link rel="icon" href="assets/zcompare-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="preview.js" defer></script>
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="zcompare 首页">
+        <img src="assets/zcompare-icon.svg" alt="" width="34" height="34">
+        zcompare
+      </a>
+      <nav aria-label="主导航">
+        <a href="#compare">比较示例</a>
+        <a href="#review">审阅与合并</a>
+        <a class="nav-external" href="https://github.com/zwyyy456/zcompare">GitHub <span aria-hidden="true">↗</span></a>
+        <button class="theme-toggle" type="button" aria-label="切换到浅色模式" hidden>浅色</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="headline">
+      <div class="hero-intro">
+        <p class="eyebrow"><span class="signal" aria-hidden="true"></span> macOS 原生比较工具</p>
+        <h1 id="headline"><span>比较文本、</span><span>图片和二进制<span class="period">。</span></span></h1>
+        <p class="hero-description">在同一个工作台定位变化、逐项审阅，再应用改动或保存进度。</p>
+        <a class="button" href="#compare">查看比较示例 <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <section class="showcase" id="compare" aria-label="比较示例" tabindex="-1">
+        <div class="showcase-bar">
+          <div class="mode-picker" aria-label="比较方式">
+            <a id="tab-text" href="#mode-text"><span class="mode-glyph" aria-hidden="true">±</span> 文本</a>
+            <a id="tab-image" href="#mode-image"><span class="mode-glyph" aria-hidden="true">▧</span> 图片</a>
+            <a id="tab-binary" href="#mode-binary"><span class="mode-glyph" aria-hidden="true">0x</span> 二进制</a>
+          </div>
+          <span class="showcase-label">App 截图</span>
+        </div>
+
+        <section class="mode" id="mode-text" aria-labelledby="tab-text">
+          <figure class="mode-figure">
+            <img class="product-shot" src="assets/text.webp" width="3024" height="1898" alt="zcompare 并排显示文本差异。左侧有空白行和行尾空格，右侧用未编号的占位对齐。">
+            <figcaption>
+              <strong>定位到具体改动。</strong>
+              <span>并排查看行内差异，按块应用需要的修改。</span>
+              <a href="assets/text.webp" target="_blank" rel="noopener">查看大图 <span aria-hidden="true">↗</span></a>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="mode" id="mode-image" aria-labelledby="tab-image">
+          <figure class="mode-figure">
+            <img class="product-shot" src="assets/image.webp" width="3024" height="1898" loading="lazy" alt="zcompare 并排比较两张图片，同编号虚线框标出蓝色方块的透明度变化。">
+            <figcaption>
+              <strong>看到画面哪里变了。</strong>
+              <span>并排定位变化区域，也可以切到差异图查看像素变化。</span>
+              <a href="assets/image.webp" target="_blank" rel="noopener">查看大图 <span aria-hidden="true">↗</span></a>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="mode" id="mode-binary" aria-labelledby="tab-binary">
+          <figure class="mode-figure">
+            <img class="product-shot" src="assets/binary.webp" width="3024" height="1898" loading="lazy" alt="zcompare 按偏移并排对照两个文件的十六进制字节，橙色高亮标出变化。">
+            <figcaption>
+              <strong>追到变化的字节。</strong>
+              <span>查看 Hex / ASCII，按固定偏移或内容对齐检查差异。</span>
+              <a href="assets/binary.webp" target="_blank" rel="noopener">查看大图 <span aria-hidden="true">↗</span></a>
+            </figcaption>
+          </figure>
+        </section>
+      </section>
+    </section>
+
+    <section class="formats container" aria-labelledby="formats-heading">
+      <div class="section-intro">
+        <h2 id="formats-heading">按文件的结构看差异。</h2>
+      </div>
+      <dl class="format-list">
+        <div>
+          <dt>配置</dt>
+          <dd>
+            <span class="format-types"><code>JSON</code><code>Plist</code><code>TOML</code><code>YAML</code></span>
+            <p>定位改动的字段和值，按规则配对数组元素。</p>
+          </dd>
+        </div>
+        <div>
+          <dt>表格</dt>
+          <dd>
+            <span class="format-types"><code>CSV</code><code>TSV</code><code>XLSX</code></span>
+            <p>按行序或指定键配对记录。XLSX 可分别比较公式与已保存的值。</p>
+          </dd>
+        </div>
+        <div>
+          <dt>文档</dt>
+          <dd>
+            <span class="format-types"><code>PDF</code></span>
+            <p>分别检查页面的视觉变化和提取文本，必要时手动配对页面。</p>
+          </dd>
+        </div>
+        <div>
+          <dt>归档</dt>
+          <dd>
+            <span class="format-types"><code>ZIP</code><code>TAR</code><code>TAR.GZ</code></span>
+            <p>直接比较包内条目、文件内容和元数据，按需提取文件。</p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="review" id="review" aria-labelledby="review-heading">
+      <div class="container review-inner">
+        <div class="section-intro">
+          <h2 id="review-heading">看完差异，<br>接着做完手上的事。</h2>
+          <p>在比较工作台里完成审阅、选择修改，或把当前比较留到下一次。</p>
+        </div>
+        <div class="workflow">
+          <article>
+            <h3><span class="workflow-symbol" aria-hidden="true">⇄</span>处理合并冲突</h3>
+            <p>对照共同原版和两侧修改，逐处采用内容并编辑合并结果。</p>
+          </article>
+          <article>
+            <h3><span class="workflow-symbol" aria-hidden="true">↳</span>逐项审阅目录</h3>
+            <p>从目录差异打开文件比较，逐项检查变化，再预览要应用的更新。</p>
+          </article>
+          <article>
+            <h3><span class="workflow-symbol" aria-hidden="true">◫</span>保存比较，稍后继续</h3>
+            <p>把比较进度保存为会话，或将结果导出为离线报告。</p>
+          </article>
+        </div>
+        <article class="review-example" aria-labelledby="review-example-heading">
+          <h3 id="review-example-heading">审阅两版发布目录</h3>
+          <ol>
+            <li><strong>打开两个版本</strong><p>打开上一版发布目录和待发布目录，筛出有变化的文件。</p></li>
+            <li><strong>检查并标注</strong><p>查看 <code>config.json</code> 的超时字段变化。回到目录将该文件标为「待跟进」，备注「发布前确认超时设置」。</p></li>
+            <li><strong>保存或交接</strong><p>保存比较会话，下次从原处继续，或导出带审阅状态的 HTML 报告。</p></li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="endcap container" aria-labelledby="end-heading">
+      <img src="assets/zcompare-icon.svg" alt="" width="76" height="76" loading="lazy">
+      <h2 id="end-heading">在 zcompare 里看差异</h2>
+      <a class="button" href="#compare">查看比较示例 <span aria-hidden="true">↑</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>zcompare <span class="muted">for macOS</span></span>
+      <a href="https://github.com/zwyyy456/zcompare">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </footer>
+</body>
+</html>
