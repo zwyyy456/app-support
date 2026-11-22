@@ -27,12 +27,12 @@ Vercel Project。Zendo 与 water 页面为纯 HTML/CSS，不需要 Node.js 或�
 
 ## 宣传网站源码
 
-这三个站点为静态页面，无需安装依赖或构建。
+winornot 和 zento 可直接打开下表中的 HTML。zcompare 使用 Astro 生成静态页面，本地预览和构建命令见站点说明。
 
-| 站点 | 首页 |
+| 站点 | 首页或预览说明 |
 | --- | --- |
 | winornot | [winornot/index.html](winornot/index.html) |
-| zcompare | [zcompare/index.html](zcompare/index.html) |
+| zcompare | [本地预览与构建](zcompare/README.md) |
 | zento | [zento/dist/index.html](zento/dist/index.html) |
 
 ## 1. 推送到 GitHub

@@ -1,0 +1,19 @@
+---
+import Page from './Page.astro';
+
+interface Props {
+  lang: 'zh-Hans' | 'en';
+  page: 'support' | 'privacy';
+  title: string;
+  description: string;
+}
+
+const { lang, page, title, description } = Astro.props;
+---
+<Page lang={lang} page={page} title={`${title} — zcompare`} description={description}>
+  <article class="container document" aria-labelledby="document-title">
+    <h1 id="document-title">{title}</h1>
+    <p class="document-intro">{description}</p>
+    <slot />
+  </article>
+</Page>

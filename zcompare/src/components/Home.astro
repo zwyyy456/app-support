@@ -1,0 +1,118 @@
+---
+import Page from '../layouts/Page.astro';
+import { homeCopy } from '../home-copy';
+
+interface Props {
+  lang: 'zh-Hans' | 'en';
+}
+
+const { lang } = Astro.props;
+const copy = homeCopy[lang];
+const modes = ['text', 'image', 'binary'] as const;
+const formatImages = [
+  { id: 'folders', height: 473 },
+  { id: 'workbook', height: 323 },
+  { id: 'pdf', height: 527 },
+  { id: 'config', height: 473 },
+];
+---
+<Page lang={lang} page="home" title={copy.title} description={copy.description}>
+  <section class="hero container" aria-labelledby="headline">
+    <div class="hero-intro">
+      <p class="eyebrow"><span class="signal" aria-hidden="true"></span> {copy.eyebrow}</p>
+      <h1 id="headline">{copy.headline[0]}<span>{copy.headline[1]}</span></h1>
+      <p class="hero-description">{copy.intro}</p>
+      <div class="hero-actions">
+        <a class="button" href="#compare">{copy.examplesLink}</a>
+        <a class="button button-secondary" href="#formats">{copy.formatsLink}</a>
+      </div>
+    </div>
+
+    <section class="showcase" id="compare" aria-label={copy.examplesLabel} tabindex="-1">
+      <div class="showcase-bar">
+        <div class="mode-picker" aria-label={copy.modeLabel}>
+          {modes.map((id) => <a id={`tab-${id}`} href={`#mode-${id}`}>{copy.modes[id].label}</a>)}
+        </div>
+      </div>
+
+      {modes.map((id) => {
+        const mode = copy.modes[id];
+        const screenshot = `/assets/${id}.webp`;
+        return (
+          <section class="mode" id={`mode-${id}`} aria-labelledby={`tab-${id}`}>
+            <figure class="mode-figure">
+              <a class="comparison-photo" href={screenshot} target="_blank" rel="noopener" aria-label={`${mode.label} · ${copy.fullSize}`}>
+                <img class="product-shot" src={screenshot} width="2160" height="1480" loading={id === 'text' ? undefined : 'lazy'} alt={mode.alt} />
+                <span class="photo-action" aria-hidden="true">{copy.zoom}</span>
+              </a>
+              <figcaption>{mode.description}</figcaption>
+            </figure>
+          </section>
+        );
+      })}
+    </section>
+  </section>
+
+  <section class="home-section container" id="formats" aria-labelledby="formats-heading">
+    <div class="section-intro">
+      <h2 id="formats-heading">{copy.formatsTitle}</h2>
+    </div>
+    <div class="format-grid">
+      {copy.formats.map(({ title, description, alt }, index) => {
+        const { id, height } = formatImages[index];
+        return (
+          <article class="feature-card format-card">
+            <h3>{title}</h3>
+            <a class="format-photo" href={`/assets/${id}.webp`} target="_blank" rel="noopener" aria-label={`${title} · ${copy.fullSize}`}>
+              <img src={`/assets/${id}-detail.webp`} width="1440" height={height} loading="lazy" alt={alt} />
+            </a>
+            <p>{description}</p>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="home-section container" id="review" aria-labelledby="review-heading">
+    <div class="section-intro">
+      <h2 id="review-heading">{copy.reviewTitle}</h2>
+      <p>{copy.reviewIntro}</p>
+    </div>
+    <a class="review-photo" href="/assets/folder-review.webp" target="_blank" rel="noopener" aria-label={`${copy.reviewTitle} · ${copy.fullSize}`}>
+      <img src="/assets/folder-review-detail.webp" width="1440" height="685" loading="lazy" alt={copy.reviewAlt} />
+    </a>
+    <ol class="workflow" role="list">
+      {copy.workflow.map(({ title, description }, index) => (
+        <li class="feature-card">
+          <span class="step">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="home-section container" id="tools" aria-labelledby="tools-heading">
+    <div class="section-intro">
+      <h2 id="tools-heading">{copy.toolsTitle}</h2>
+      <p>{copy.toolsIntro}</p>
+    </div>
+    <div class="tools-grid">
+      {copy.tools.map(([title, description]) => (
+        <article class="tool-card">
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="endcap container" aria-labelledby="end-heading">
+    <img src="/assets/zcompare-icon.svg" alt="" width="64" height="64" loading="lazy" />
+    <div>
+      <h2 id="end-heading">{copy.closingTitle}</h2>
+      <p>{copy.closingDescription}</p>
+    </div>
+    <a class="button" href="https://github.com/zwyyy456/zcompare">{copy.projectLink}</a>
+  </section>
+</Page>

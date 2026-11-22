@@ -1,0 +1,89 @@
+---
+import '../styles/site.css';
+
+interface Props {
+  lang: 'zh-Hans' | 'en';
+  page: 'home' | 'support' | 'privacy';
+  title: string;
+  description: string;
+}
+
+const { lang, page, title, description } = Astro.props;
+const en = lang === 'en';
+const isHome = page === 'home';
+const repo = 'https://github.com/zwyyy456/zcompare';
+const prefix = en ? '/en' : '';
+const route = isHome ? '' : `/${page}`;
+const zhPath = route || '/';
+const enPath = `/en${route}`;
+const canonical = Astro.site && new URL(en ? enPath : zhPath, Astro.site);
+const links = {
+  home: prefix || '/',
+  support: `${prefix}/support`,
+  privacy: `${prefix}/privacy`,
+  alternate: en ? zhPath : enPath,
+};
+const labels = en
+  ? { home: 'zcompare home', nav: 'Main navigation', examples: 'Workbench', formats: 'Formats', review: 'Review', tools: 'Workflow', support: 'Support', privacy: 'Privacy', light: 'Light', dark: 'Dark', toLight: 'Switch to light mode', toDark: 'Switch to dark mode' }
+  : { home: 'zcompare 首页', nav: '主导航', examples: '工作台', formats: '文件格式', review: '审阅流程', tools: '工作流', support: '支持', privacy: '隐私政策', light: '浅色', dark: '深色', toLight: '切换到浅色模式', toDark: '切换到深色模式' };
+---
+<!doctype html>
+<html lang={lang} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" href="/assets/zcompare-icon.svg" type="image/svg+xml" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="alternate" hreflang="zh-Hans" href={Astro.site ? new URL(zhPath, Astro.site) : zhPath} />
+    <link rel="alternate" hreflang="en" href={Astro.site ? new URL(enPath, Astro.site) : enPath} />
+    <link rel="alternate" hreflang="x-default" href={Astro.site ? new URL(zhPath, Astro.site) : zhPath} />
+    <script>
+      import '../site.js';
+    </script>
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href={isHome ? '#top' : links.home} aria-label={labels.home}>
+          <img src="/assets/zcompare-icon.svg" alt="" width="34" height="34" />
+          zcompare
+        </a>
+        <nav aria-label={labels.nav}>
+          {isHome && <a class="nav-section" href="#compare">{labels.examples}</a>}
+          {isHome && <a class="nav-section" href="#formats">{labels.formats}</a>}
+          {isHome && <a class="nav-section" href="#review">{labels.review}</a>}
+          {isHome && <a class="nav-section" href="#tools">{labels.tools}</a>}
+          <a href={links.support} aria-current={page === 'support' ? 'page' : undefined}>{labels.support}</a>
+          <a class="nav-external" href={repo}>GitHub</a>
+          <a class="language-link" href={links.alternate} lang={en ? 'zh-Hans' : 'en'} hreflang={en ? 'zh-Hans' : 'en'}>{en ? '简体中文' : 'English'}</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label={labels.toLight}
+            data-light={labels.light}
+            data-dark={labels.dark}
+            data-to-light={labels.toLight}
+            data-to-dark={labels.toDark}
+            hidden
+          >{labels.light}</button>
+        </nav>
+      </div>
+    </header>
+
+    <main><slot /></main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>zcompare <span class="muted">for macOS</span></span>
+        <div class="footer-links">
+          <a href={links.support} aria-current={page === 'support' ? 'page' : undefined}>{labels.support}</a>
+          <a href={links.privacy} aria-current={page === 'privacy' ? 'page' : undefined}>{labels.privacy}</a>
+          <a href={repo}>GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
